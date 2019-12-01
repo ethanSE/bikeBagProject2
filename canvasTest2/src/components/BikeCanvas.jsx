@@ -1,26 +1,42 @@
 import React from 'react';
-import bike from './bike.jpg';
 
 class BikeCanvas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.canvas = React.createRef();
+        this.changeFunction = this.changeFunction.bind(this);
+        this.fileInput = React.createRef();
+        this.img = new Image();
+    }
 
-    componentDidMount() {
-        const canvas = this.refs.canvas;
-        const ctx = canvas.getContext("2d");
-        const img = this.refs.image;
+    changeFunction() {
+        console.log(this);
+        this.img.onload = this.draw();
+        this.img.onerror = this.failed;
+        this.img.src = URL.createObjectURL(this.fileInput.current.files[0]); 
+    }
 
-        img.onload = () => {
-            ctx.drawImage(img, 0, 0)
-            ctx.font = "40px Courier"
-            ctx.fillText(this.props.text, 210, 75)
-        }
+    draw(){ //draw image to canvas
+        console.log('draw running')
+        console.log(this)
+        this.canvas.current.width = 950;
+        this.canvas.current.height = 600;
+        var ctx = this.canvas.current.getContext('2d');
+        ctx.drawImage(this.img, 0, 0);
+    }
+
+    failed() {
+        console.error("The provided file couldn't be loaded as an Image media");
     }
 
     render () {
+        var canvasStyle = {
+            backgroundColor: 'blue'
+        }
         return (
             <div>
-                <img src={bike} />
-                <canvas ref='canvas' width={640} height={400} />
-                <img ref='image' src='https://www.planetx.co.uk/imgs/products/px/950x600_constWH/EBOOPICKRIV1_P1.jpg?v=6.1' className='hidden' alt='jnakjsdnskajun' />
+                <input type='file' ref={this.fileInput} onChange={this.changeFunction}/>
+                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle}/>
             </div>
         );
     }
