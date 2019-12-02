@@ -15,7 +15,6 @@ class BikeCanvas extends React.Component {
 
         function changeFunction () {
             img = new Image();
-            console.log(files.current.files[0])
             img.onload = draw;
             img.onerror = failed;
             img.src = URL.createObjectURL(files.current.files[0]);
@@ -23,8 +22,8 @@ class BikeCanvas extends React.Component {
 
         function draw(){ //draw image to canvas
             console.log('draw running')
-            canvas.current.width = 950;
-            canvas.current.height = 600;
+            canvas.current.width = img.width;
+            canvas.current.height = img.height;
             var ctx = canvas.current.getContext('2d');
             ctx.drawImage(img, 0, 0);
         }
@@ -33,8 +32,13 @@ class BikeCanvas extends React.Component {
             console.error("The provided file couldn't be loaded as an Image media");
         }
 
-        function canvasClick() {
-            console.log('clicked')
+        function canvasClick(evt) {
+            console.log('clicked');
+            let rect = canvas.current.getBoundingClientRect();
+            let x = (evt.clientX - rect.left);
+            console.log(x);
+            
+
         }
 
         var canvasStyle = {
@@ -43,7 +47,7 @@ class BikeCanvas extends React.Component {
         return (
             <div>
                 <input type='file' ref={this.fileInput} onChange={changeFunction}/>
-                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle} onClick={canvasClick}/>
+                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle} onClick={canvasClick.bind(this)}/>
             </div>
         );
     }
