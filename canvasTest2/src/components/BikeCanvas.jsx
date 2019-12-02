@@ -11,7 +11,8 @@ class BikeCanvas extends React.Component {
     render () {
         var canvas = this.canvas;
         var img = null;
-        var files = this.fileInput
+        var files = this.fileInput;
+        let coords = [];
 
         function changeFunction () {
             img = new Image();
@@ -36,9 +37,20 @@ class BikeCanvas extends React.Component {
             console.log('clicked');
             let rect = canvas.current.getBoundingClientRect();
             let x = (evt.clientX - rect.left);
-            console.log(x);
-            
+            let y = (evt.clientY - rect.top);
+            console.log(x, y);
+            coords.push([x,y]);
+            drawCircle(x,y);
+            console.log(coords);
+        }
 
+        function drawCircle(x, y) {
+            var ctx = canvas.current.getContext('2d');
+            ctx.strokeStyle = "#FF0000";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, 2 * Math.PI);
+            ctx.stroke();
         }
 
         var canvasStyle = {
