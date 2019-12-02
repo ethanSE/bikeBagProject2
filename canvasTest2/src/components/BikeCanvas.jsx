@@ -1,42 +1,49 @@
 import React from 'react';
 
+
 class BikeCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvas = React.createRef();
-        this.changeFunction = this.changeFunction.bind(this);
         this.fileInput = React.createRef();
-        this.img = new Image();
-    }
-
-    changeFunction() {
-        console.log(this);
-        this.img.onload = this.draw();
-        this.img.onerror = this.failed;
-        this.img.src = URL.createObjectURL(this.fileInput.current.files[0]); 
-    }
-
-    draw(){ //draw image to canvas
-        console.log('draw running')
-        console.log(this)
-        this.canvas.current.width = 950;
-        this.canvas.current.height = 600;
-        var ctx = this.canvas.current.getContext('2d');
-        ctx.drawImage(this.img, 0, 0);
-    }
-
-    failed() {
-        console.error("The provided file couldn't be loaded as an Image media");
     }
 
     render () {
+        var canvas = this.canvas;
+        var img = null;
+        var files = this.fileInput
+
+        function changeFunction () {
+            img = new Image();
+            console.log(files.current.files[0])
+            img.onload = draw;
+            img.onerror = failed;
+            img.src = URL.createObjectURL(files.current.files[0]);
+        }
+
+        function draw(){ //draw image to canvas
+            console.log('draw running')
+            canvas.current.width = 950;
+            canvas.current.height = 600;
+            var ctx = canvas.current.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+        }
+
+        function failed() {
+            console.error("The provided file couldn't be loaded as an Image media");
+        }
+
+        function canvasClick() {
+            console.log('clicked')
+        }
+
         var canvasStyle = {
             backgroundColor: 'blue'
         }
         return (
             <div>
-                <input type='file' ref={this.fileInput} onChange={this.changeFunction}/>
-                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle}/>
+                <input type='file' ref={this.fileInput} onChange={changeFunction}/>
+                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle} onClick={canvasClick}/>
             </div>
         );
     }
