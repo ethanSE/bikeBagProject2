@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import { AppContainer } from 'react-hot-loader';
 import { HashRouter } from 'react-router-dom';
 import './index.css';
+import { createStore } from 'redux';
+import coordinatesReducer from './reducers/coordinatesReducer';
+import { Provider } from 'react-redux';
+
+const store = createStore(coordinatesReducer);
 
 const render = (Component) => {
     ReactDOM.render(
-        <AppContainer>
+        <Provider store={store}>
             <HashRouter>
                 <Component />
             </HashRouter>
-        </AppContainer>,
+        </Provider>,
         document.getElementById('root')
     );
 };

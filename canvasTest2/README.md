@@ -26,7 +26,7 @@ _Jsx_
 
 ### License
 
-MIT License
 
+MIT License
 Copyright (c) 2019 **_Ethan Samuels-Ellingson_**
 

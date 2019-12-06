@@ -67,23 +67,6 @@ class BikeCanvas extends React.Component {
             setSvgActive = true;
         }
 
-        let getPoints = function() {
-            console.log(coords)
-            let coords2 = [[0,0],[120,120],[120,0]];
-            let coordString = "";
-            coords2.forEach(function(coord){
-                coordString = coordString.concat(coord[0].toString() + "," + coord[1].toString() + " ");
-            });
-            console.log(coordString);
-            return (coordString);
-        }
-        let svgOutput = 
-            <svg height="250" width="500">
-                <polygon points={getPoints()} style={canvasStyle}/>
-            </svg>;
-        
-        
-
         return (
             <div className='canvas'>
                 <input type='file' ref={this.fileInput} onChange={changeFunction}/>           
