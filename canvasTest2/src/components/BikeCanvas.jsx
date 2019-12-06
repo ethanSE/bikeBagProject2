@@ -54,16 +54,19 @@ class BikeCanvas extends React.Component {
         }
 
         var canvasStyle = {
-            backgroundColor: 'blue'
+            fill: 'red', 
+            stroke: 'purple', 
+            strokeWidth: 1
         }
         return (
             <div>
                 <input type='file' ref={this.fileInput} onChange={changeFunction}/>
-                <canvas ref={this.canvas} width='0' height='0' style={canvasStyle} onClick={canvasClick.bind(this)}/>
+                <canvas ref={this.canvas} width='0' height='0' onClick={canvasClick.bind(this)}/>
+                <svg height="250" width="500">
+                    <polygon points="220,10 300,210 170,250 123,234" style={canvasStyle} />
+                </svg>
             </div>
         );
     }
 }
 export default BikeCanvas;
-
-
