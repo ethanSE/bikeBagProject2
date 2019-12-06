@@ -1,4 +1,5 @@
 import React from 'react';
+import SvgDisplay from './SvgDisplay';
 
 
 class BikeCanvas extends React.Component {
@@ -6,6 +7,10 @@ class BikeCanvas extends React.Component {
         super(props);
         this.canvas = React.createRef();
         this.fileInput = React.createRef();
+        this.svgActive = false;
+        this.state = {
+            coords: []
+        }
     }
 
     render () {
@@ -13,6 +18,11 @@ class BikeCanvas extends React.Component {
         var img = null;
         var files = this.fileInput;
         let coords = [];
+        var canvasStyle = {
+            fill: 'red',
+            stroke: 'purple',
+            strokeWidth: 1
+        }
 
         function changeFunction () {
             img = new Image();
@@ -42,6 +52,7 @@ class BikeCanvas extends React.Component {
             coords.push([x,y]);
             drawCircle(x,y);
             console.log(coords);
+            console.log(coords.toString())
         }
 
         function drawCircle(x, y) {
@@ -52,24 +63,33 @@ class BikeCanvas extends React.Component {
             ctx.arc(x, y, 10, 0, 2 * Math.PI);
             ctx.stroke();
         }
-
-        var canvasStyle = {
-            fill: 'red', 
-            stroke: 'purple', 
-            strokeWidth: 1
+        function setSvgActive() {
+            setSvgActive = true;
         }
 
         let getPoints = function() {
-            return ("220,10 300,210 170,250 123,234 ");
+            console.log(coords)
+            let coords2 = [[0,0],[120,120],[120,0]];
+            let coordString = "";
+            coords2.forEach(function(coord){
+                coordString = coordString.concat(coord[0].toString() + "," + coord[1].toString() + " ");
+            });
+            console.log(coordString);
+            return (coordString);
         }
-       
+        let svgOutput = 
+            <svg height="250" width="500">
+                <polygon points={getPoints()} style={canvasStyle}/>
+            </svg>;
+        
+        
+
         return (
-            <div>
-                <input type='file' ref={this.fileInput} onChange={changeFunction}/>
+            <div className='canvas'>
+                <input type='file' ref={this.fileInput} onChange={changeFunction}/>           
                 <canvas ref={this.canvas} width='0' height='0' onClick={canvasClick.bind(this)}/>
-                <svg height="250" width="500">
-                    <polygon points={getPoints()} style={canvasStyle} />
-                </svg>
+                <button onClick={setSvgActive}>Submit</button>
+                <SvgDisplay coords={coords}/>
             </div>
         );
     }
