@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgDisplay from './SvgDisplay';
+import StyleSelection from './StyleSelection';
 
 
 class BikeCanvas extends React.Component {
@@ -18,28 +18,30 @@ class BikeCanvas extends React.Component {
         var img = null;
         var files = this.fileInput;
         let coords = [];
+
         var canvasStyle = {
             fill: 'red',
             stroke: 'purple',
             strokeWidth: 1
         }
 
-        function changeFunction () {
+        function onImageLoad () {
             img = new Image();
-            img.onload = draw;
-            img.onerror = failed;
+            img.onload = drawImage;
+            img.onerror = imageLoadFailed;
             img.src = URL.createObjectURL(files.current.files[0]);
         }
 
-        function draw(){ //draw image to canvas
+        function drawImage(){ //draw image to canvas
             console.log('draw running')
+            console.log(img.width)
             canvas.current.width = img.width;
             canvas.current.height = img.height;
             var ctx = canvas.current.getContext('2d');
             ctx.drawImage(img, 0, 0);
         }
 
-        function failed() {
+        function imageLoadFailed() {
             console.error("The provided file couldn't be loaded as an Image media");
         }
 
@@ -52,7 +54,6 @@ class BikeCanvas extends React.Component {
             coords.push([x,y]);
             drawCircle(x,y);
             console.log(coords);
-            console.log(coords.toString())
         }
 
         function drawCircle(x, y) {
@@ -63,16 +64,14 @@ class BikeCanvas extends React.Component {
             ctx.arc(x, y, 10, 0, 2 * Math.PI);
             ctx.stroke();
         }
-        function setSvgActive() {
-            setSvgActive = true;
-        }
 
         return (
-            <div className='canvas'>
-                <input type='file' ref={this.fileInput} onChange={changeFunction}/>           
+            <div className='canvas'>          
+                <StyleSelection/>
+                <input className='fileInput' type='file' ref={this.fileInput} onChange={onImageLoad} /> 
                 <canvas ref={this.canvas} width='0' height='0' onClick={canvasClick.bind(this)}/>
-                <button onClick={setSvgActive}>Submit</button>
-                <SvgDisplay coords={coords}/>
+                {/* <button onClick={setSvgActive}>Submit</button> */}
+                {/* <SvgDisplay coords={coords}/> */}
             </div>
         );
     }

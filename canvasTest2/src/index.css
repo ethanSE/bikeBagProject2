@@ -1,6 +1,52 @@
 body {
     background-color: #393e46;
 }
+
 .canvas {
     margin-top: 50px;
+}
+
+.header {
+    background-color: #3c415e;
+    text-align: center;
+    margin: 30px;
+    padding: 20px;
+    border: 10px solid #1cb3c8;
+    border-radius: 5px;
+    color: #dfe2e2;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+  justify-content: space-evenly;
+}
+
+.grid-item {
+    text-align: center;
+    background-color: #3c415e;
+    border: 10px solid #1cb3c8;
+    color: #dfe2e2;
+    border-radius: 5px;
+}
+
+.fileInput {
+    overflow: hidden;
+    width: 80%;
+    margin-left: 10%;
+    height: auto;
+    background-color: #3c415e;
+    margin-top: 20px;
+    content: 'Select some files';
+    display: inline-block;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 3px 3px #fff;
+    font-weight: 700;
+    font-size: 10pt;
 }

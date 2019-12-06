@@ -24,6 +24,8 @@ export default SvgDisplay;
 //     console.log(coordString);
 //     return (coordString);
 // }
+
+
 // let svgOutput =
 //     <svg height="250" width="500">
 //         <polygon points={getPoints()} style={canvasStyle} />
