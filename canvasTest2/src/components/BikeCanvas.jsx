@@ -19,12 +19,6 @@ class BikeCanvas extends React.Component {
         var files = this.fileInput;
         let coords = [];
 
-        var canvasStyle = {
-            fill: 'red',
-            stroke: 'purple',
-            strokeWidth: 1
-        }
-
         function onImageLoad () {
             img = new Image();
             img.onload = drawImage;
@@ -32,13 +26,15 @@ class BikeCanvas extends React.Component {
             img.src = URL.createObjectURL(files.current.files[0]);
         }
 
-        function drawImage(){ //draw image to canvas
-            console.log('draw running')
-            console.log(img.width)
-            canvas.current.width = img.width;
-            canvas.current.height = img.height;
+        function drawImage(){
+            console.log('draw running');
+
+            console.log(img);
+            canvas.current.width = 800;
+            console.log('ratio', canvas.current.width * (img.height / img.width) )
+            canvas.current.height = canvas.current.width * (img.height / img.width);
             var ctx = canvas.current.getContext('2d');
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, 0, 0, canvas.current.width, canvas.current.height);
         }
 
         function imageLoadFailed() {
@@ -69,11 +65,14 @@ class BikeCanvas extends React.Component {
             <div className='canvas'>          
                 <StyleSelection/>
                 <input className='fileInput' type='file' ref={this.fileInput} onChange={onImageLoad} /> 
-                <canvas ref={this.canvas} width='0' height='0' onClick={canvasClick.bind(this)}/>
+                <div className='jkl'>
+                    <canvas ref={this.canvas} width='0' height='0' onClick={canvasClick.bind(this)} />
+                </div>
+               
                 {/* <button onClick={setSvgActive}>Submit</button> */}
-                {/* <SvgDisplay coords={coords}/> */}
             </div>
         );
     }
 }
+
 export default BikeCanvas;
