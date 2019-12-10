@@ -4,10 +4,10 @@ import App from './components/App';
 import { HashRouter } from 'react-router-dom';
 import './index.css';
 import { createStore } from 'redux';
-import coordinatesReducer from './reducers/coordinatesReducer';
+import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 
-const store = createStore(coordinatesReducer);
+const store = createStore(rootReducer);
 
 const render = (Component) => {
     ReactDOM.render(

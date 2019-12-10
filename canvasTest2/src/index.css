@@ -36,6 +36,14 @@ body {
     height: auto;
 }
 
+.grid-item:hover {
+    box-shadow: 0 0 15px white;
+}
+
+.active {
+    box-shadow: 0 0 15px lightgreen;
+}
+
 .fileInput {
     overflow: hidden;
     width: 80%;
@@ -65,4 +73,7 @@ body {
 
 .bagIcon {
     width: 80%;
+    height: auto;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
