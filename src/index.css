@@ -21,13 +21,13 @@ body {
     color: #dfe2e2;
 }
 
-.grid-container {
+.grid-container-style {
   display: grid;
   grid-template-columns: 25% 25% 25%;
   justify-content: space-evenly;
 }
 
-.grid-item {
+.grid-item-style {
     text-align: center;
     background-color: #3c415e;
     border: 10px solid #1cb3c8;
