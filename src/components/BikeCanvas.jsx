@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import StyleSelection from './StyleSelection';
 
 //state
@@ -12,18 +12,12 @@ import StyleSelection from './StyleSelection';
 //     fileUploaded - show top tube length input
 //     submitted - hide inputs (?)
 
-
-
 function BikeCanvas() {
     var canvas = useRef();
     var fileInput = useRef();
     var scaleInput = useRef();
     var img = null;
     let coords = [];
-
-    //ui state
-    const [active, setActive] = useState([null, 'active', null]);
-
 
     function onImageLoad() {
         img = new Image();
@@ -64,7 +58,7 @@ function BikeCanvas() {
 
     return (
         <div className='canvas'>
-            <StyleSelection active={active}/>
+            <StyleSelection/>
             <input className='fileInput' type='file' ref={fileInput} onChange={onImageLoad} />
             <canvas ref={canvas} width='0' height='0' onClick={canvasClick.bind(this)} />
             <input ref={scaleInput} type='number'/>
