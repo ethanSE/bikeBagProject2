@@ -2,16 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function Message(props) {
-    console.log(props.style)
     var messageBody = null;
     if (typeof props.style != 'number') {
         messageBody = 'Select a style'
     } else if (typeof props.image != 'string'){
         messageBody = 'upload a photo of your bike'
-    } else if (typeof props.scale != 'number'){
+    } else if (props.scale == 0){
         messageBody = 'specify scale';
     }
-
 
     return (
         <div className='message'>
@@ -19,7 +17,6 @@ function Message(props) {
         </div>
     )
 }
-
 
 function mapStateToProps(state) {
     return {

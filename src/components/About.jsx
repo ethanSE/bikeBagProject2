@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function About(props) {
-    console.log(props)
     return(
         <div className='grid-container-about'>
-        <img src={props.image} />
             <div className='heroDiv'>
             </div>
 
