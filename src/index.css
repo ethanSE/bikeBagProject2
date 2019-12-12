@@ -1,7 +1,9 @@
 body {
     background-color: #393e46;
 }
-
+.hidden {
+    display: none;
+}
 .canvas {
     margin-top: 50px;
 }
