@@ -27,23 +27,23 @@ function ImageUpload(props) {
         console.error("The provided file couldn't be loaded as an Image media");
     }
 
-    let fileUploadJSX = null;
-    console.log(props.image)
-    if (props.image.length) {
-        return null;
-    } else {
+    if (!props.image.length && typeof props.style == 'number')
+        {
         return (
             <div>
                 <input className='fileInput' type='file' ref={fileInput} onChange={onImageLoad} />
                 <canvas className='hidden' ref={uploadCanvas} width='' height='' />
             </div>
         );
-    }    
+    } else {
+        return null;
+    } 
 }
 
 function mapStateToProps(state) {
     return {
-        image: state.image
+        image: state.image,
+        style: state.style
     };
 }
 

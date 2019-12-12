@@ -67,6 +67,20 @@ body {
     font-size: 10pt;
 }
 
+.message {
+    width: 80%;
+    margin-left: 10%;
+    height: auto;
+    background-color: #3c415e;
+    margin-top: 20px;
+    display: inline-block;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    padding: 5px 8px;
+    text-align: center;
+    color: #dfe2e2;
+}
+
 .jkl {
     display: grid;
     grid-template-columns: 80%;

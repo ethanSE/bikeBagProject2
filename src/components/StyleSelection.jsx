@@ -36,7 +36,4 @@ function mapStateToProps(state) {
         style: state.style
     }
 }
-
-
-StyleSelection = connect(mapStateToProps)(StyleSelection);
-export default StyleSelection;
+export default connect(mapStateToProps)(StyleSelection);
