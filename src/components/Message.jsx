@@ -16,7 +16,7 @@ function Message(props) {
 
     return (
         <div className='message'>
-            {messageBody}
+            <p>{messageBody}</p>
         </div>
     )
 }

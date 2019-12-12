@@ -19,3 +19,8 @@ export const setImage = (image) => ({
     type: types.SET_IMAGE,
     image: image
 });
+
+export const setSvgString = (svgString) => ({
+    type: types.SET_SVG_STRING,
+    svgString: svgString
+});

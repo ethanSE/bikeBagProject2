@@ -1,4 +1,4 @@
-const scaleReducer = (state = 0, action) => {
+const scaleReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_SCALE':
             return action.scale;

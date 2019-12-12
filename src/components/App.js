@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import About from './About';
+import Download from './Download';
 import CustomSpecification from './CustomSpecification';
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/custom' component={CustomSpecification} />
           <Route exact path='/' component={About} />
+          <Route exact path='/download' component={Download} />
         </Switch>
       </div>
     );
