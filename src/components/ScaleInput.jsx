@@ -8,9 +8,6 @@ function ScaleInput(props) {
     let scaleInputRef = useRef();
     let topTubePoints = [];
 
-    console.log('scale =', props.scale);
-    console.log(typeof props.scale == 'number')
-
     if (props.image.length && props.scale === 0) {
         var image = new Image();
         image.onload = function () {
@@ -35,16 +32,12 @@ function ScaleInput(props) {
     }
 
     function setPixelToInchScale() {
-        console.log(scaleInputRef.value)
         if (topTubePoints.length === 2) {
-            console.log('2 points')
             let asq = (topTubePoints[0][0] - topTubePoints[1][0]) ** 2;
             let bsq = (topTubePoints[0][1] - topTubePoints[1][1]) ** 2;
             let csq = Math.sqrt(asq + bsq);
-            console.log(csq)
             let scale = (csq / scaleInputRef.value).toFixed(2);
             props.dispatch(setScale(scale));
-            console.log('canvas coords per inch =', scale);
         }
     }
 

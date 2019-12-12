@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import StyleSelection from './StyleSelection';
+import ShapeInput from './ShapeInput';
 import ScaleInput from './ScaleInput';
 import { connect } from 'react-redux';
 import ImageUpload from './ImageUpload';
@@ -12,6 +13,7 @@ function BikeCanvas(props) {
             <Message />
             <ImageUpload />
             <ScaleInput />
+            <ShapeInput />
         </div>
     );
 }
