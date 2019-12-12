@@ -10,12 +10,12 @@ import About from './About';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-    //bind methods
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //   };
+  //   //bind methods
+  // }
 
   //methods
   

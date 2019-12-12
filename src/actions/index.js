@@ -14,3 +14,8 @@ export const setScale = (scale) => ({
     type: types.SET_SCALE,
     scale: scale
 });
+
+export const setImage = (image) => ({
+    type: types.SET_IMAGE,
+    image: image
+});

@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function About() {
+function About(props) {
+    console.log(props)
     return(
         <div className='grid-container-about'>
+        <img src={props.image} />
             <div className='heroDiv'>
             </div>
 
@@ -23,4 +26,11 @@ function About() {
     )
 }
 
+function mapStateToProps(state) {
+    return {
+        image: state.image
+    }
+}
+
+About = connect(mapStateToProps)(About);
 export default About;

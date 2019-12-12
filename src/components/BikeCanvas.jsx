@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import StyleSelection from './StyleSelection';
+import { connect } from 'react-redux';
+import { setImage } from './../actions';
 
 //state
 // coords: []
@@ -12,12 +14,15 @@ import StyleSelection from './StyleSelection';
 //     fileUploaded - show top tube length input
 //     submitted - hide inputs (?)
 
-function BikeCanvas() {
+function BikeCanvas(props) {
+    console.log(props)
+    props.dispatch(setImage('hi'));
     var canvas = useRef();
     var fileInput = useRef();
     var scaleInput = useRef();
     var img = null;
     let coords = [];
+    var canvasDataUrl = null;
 
     function onImageLoad() {
         img = new Image();
@@ -29,10 +34,11 @@ function BikeCanvas() {
     function drawImage() {
         var windowWidth = window.innerWidth;
         canvas.current.width = windowWidth * 0.8;
-        console.log('ratio', canvas.current.width * (img.height / img.width))
         canvas.current.height = canvas.current.width * (img.height / img.width);
         var ctx = canvas.current.getContext('2d');
         ctx.drawImage(img, 0, 0, canvas.current.width, canvas.current.height);
+        canvasDataUrl = canvas.current.toDataURL('image/png');
+        props.dispatch(setImage(canvasDataUrl));
     }
 
     function imageLoadFailed() {
@@ -62,8 +68,9 @@ function BikeCanvas() {
             <input className='fileInput' type='file' ref={fileInput} onChange={onImageLoad} />
             <canvas ref={canvas} width='0' height='0' onClick={canvasClick.bind(this)} />
             <input ref={scaleInput} type='number'/>
+            <img src={canvasDataUrl} alt=""/>
         </div>
     );
-
 }
-export default BikeCanvas;
+
+export default connect()(BikeCanvas);

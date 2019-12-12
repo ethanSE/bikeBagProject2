@@ -8,7 +8,6 @@ import { setStyle } from './../actions';
 
 function StyleSelection(props) {
     console.log(props)
-
     var activeArray = [null, null, null];
     if (props.style) {
         activeArray[props.style - 1] = 'active';
