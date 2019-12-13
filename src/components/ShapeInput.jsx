@@ -38,21 +38,15 @@ function ShapeInput(props) {
     }
 
     function shapeInputSubmit() {
+        // coords[coords.length - 1] = coords[0];
         coords = xyMinTranslation(coords);
         props.dispatch(createAllSides(coords));
     }
 
     function xyMinTranslation(coords){
-        xMin = yMin = 5000;
-        coords.forEach((coord) => {
-            console.log(coord)
-            if(coord[0] < xMin) {
-                xMin = coord[0];
-            }
-            if(coord[1] < yMin) {
-                yMin = coord[1];
-            }
-        });
+        yMin = Math.min(...(coords.map(c => c[1])));
+        xMin = Math.min(...(coords.map(c => c[0])));
+        
         coords.forEach((coord) =>{
             coord[0] = coord[0] - xMin;
             coord[1] = coord[1] - yMin;
