@@ -1,4 +1,4 @@
 export const initialState = {
-  coords: [],
+  coords: [[0,0],[0,500],[500,0],[500,500],[0,0]],
   scale: 0
 };

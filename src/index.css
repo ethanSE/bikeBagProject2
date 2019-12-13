@@ -13,6 +13,12 @@ body {
     margin-top: 20px;
 }
 
+.outputCanvas {
+    margin: 15px;
+    width: 50%;
+} 
+/* put multiple in css grid */
+
 .header {
     background-color: #3c415e;
     text-align: center;
