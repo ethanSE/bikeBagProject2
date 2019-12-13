@@ -24,3 +24,8 @@ export const setSvgString = (svgString) => ({
     type: types.SET_SVG_STRING,
     svgString: svgString
 });
+
+export const setCanvasSize = (dimensions) => ({
+    type: types.SET_DISPLAY_CANVAS_SIZE,
+    dimensions: dimensions
+});

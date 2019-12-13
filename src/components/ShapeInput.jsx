@@ -1,10 +1,13 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { setCoordinates } from './../actions'
+import { setCoordinates, setCanvasSize } from './../actions'
 
 function ShapeInput(props) {
     let canvasShapeRef = useRef();
     let coords = [];
+    let xMin = 5000;
+    let yMin = 5000;
+    let xMax, yMax, xScale, yScale;
 
     if (props.scale) {
         var image = new Image();
@@ -36,8 +39,42 @@ function ShapeInput(props) {
     }
 
     function shapeInputSubmit() {
-        props.dispatch(setCoordinates(coords))
-        //redirect to some other route
+        coords = xyMinTranslation(coords);
+        props.dispatch(setCoordinates(coords));
+        //use middleware to dispatch action to set canvas scale
+    }
+
+    function xyMinTranslation(coords){
+        xMin = yMin = 5000;
+        xMax = yMax = 0;
+       
+        coords.forEach((coord) => {
+            console.log(coord)
+            if(coord[0] < xMin) {
+                xMin = coord[0];
+            }
+            if(coord[0] > xMax) {
+                xMax = coord[0];
+            }
+            if(coord[1] < yMin) {
+                yMin = coord[1];
+            }
+            if(coord[1] > yMax) {
+                yMax = coord[1];
+            }
+        });
+        //xmin 465
+        //x max 776
+        //y min 236
+        //ymax 442
+        xScale = xMax - xMin;
+        yScale = yMax - yMin;
+
+        coords.forEach((coord) =>{
+            coord[0] = coord[0] - xMin;
+            coord[1] = coord[1] - yMin;
+        })
+        return(coords);
     }
 
     if (props.scale) {

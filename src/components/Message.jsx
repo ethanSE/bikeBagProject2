@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function Message(props) {
-    console.log(props)
     var messageBody = null;
     if (typeof props.style != 'number') {
         messageBody = 'Select a style'
