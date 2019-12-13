@@ -7,7 +7,6 @@ function Download(props) {
     let downloadCanvas = useRef();
     let svgString = '';
     let svgStringOutput = null;
-    console.log(props.dimensions);
     let outputCanvasWidth = 0;
     let outputCanvasHeight = 0;
     determineOutputCanvasSize();
@@ -15,8 +14,6 @@ function Download(props) {
     if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
     }
-
-    
 
     function determineOutputCanvasSize() {
         props.coords.forEach((coord) => {
@@ -29,8 +26,8 @@ function Download(props) {
         })
     }
   
-    function clicked() {
-        if (props.coords) {
+    function renderClicked() {
+        if (props.coords.length) {
             var ctx = downloadCanvas.current.getContext('2d');
             console.log(props.coords)
             ctx.beginPath();
@@ -45,32 +42,34 @@ function Download(props) {
         }
     }
 
-    function download() {
-        var ctx2 = new C2S(500, 500);
-        if (props.coords) {
-            var ctx2 = downloadCanvas.current.getContext('2d');
-            var ctx2 = C2S(500, 500);
-            console.log(props.coords)
-            ctx2.beginPath();
-            ctx2.strokeStyle = "#FF0000";
-            ctx2.lineWidth = 3;
-            ctx2.moveTo(props.coords[0][0], props.coords[0][1]);
-            for (let i = 1; i < props.coords.length; i++) {
-                console.log('ok')
-                ctx2.lineTo(props.coords[i][0], props.coords[i][1]);
-                ctx2.moveTo(props.coords[i][0], props.coords[i][1]);
+    function downloadClicked() {
+        if(props.coords.length) {
+            var ctx2 = new C2S(500, 500);
+            if (props.coords) {
+                var ctx2 = downloadCanvas.current.getContext('2d');
+                var ctx2 = C2S(500, 500);
+                console.log(props.coords)
+                ctx2.beginPath();
+                ctx2.strokeStyle = "#FF0000";
+                ctx2.lineWidth = 3;
+                ctx2.moveTo(props.coords[0][0], props.coords[0][1]);
+                for (let i = 1; i < props.coords.length; i++) {
+                    console.log('ok')
+                    ctx2.lineTo(props.coords[i][0], props.coords[i][1]);
+                    ctx2.moveTo(props.coords[i][0], props.coords[i][1]);
+                }
+                ctx2.stroke();
+                svgString = ctx2.getSerializedSvg(true);
+                console.log(props.coords)
+                props.dispatch(setSvgString(svgString));
             }
-            ctx2.stroke();
-            svgString = ctx2.getSerializedSvg(true);
-            console.log(props.coords)
-            props.dispatch(setSvgString(svgString));
-        }
+        }        
     }
 
     return (
         <div>
-            <button onClick={clicked}>Render</button>
-            <button onClick={download}>Download</button>
+            <button onClick={renderClicked}>Render</button>
+            <button onClick={downloadClicked}>Download</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
             {svgStringOutput}
         </div>
@@ -83,7 +82,7 @@ function mapStateToProps(state) {
         scale: state.scale,
         image: state.image,
         svgString: state.svgString,
-        dimension: state.dimensions
+        dimensions: state.dimensions
     }
 }
 export default connect(mapStateToProps)(Download);

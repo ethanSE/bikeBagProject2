@@ -29,3 +29,16 @@ export const setCanvasSize = (dimensions) => ({
     type: types.SET_DISPLAY_CANVAS_SIZE,
     dimensions: dimensions
 });
+
+export function setImage2(image){
+    return function(dispatch, image) { 
+        dispatch(setCanvasSize(image));
+        dispatch(setStyle(2));
+    }
+}
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { setCoordinates, setCanvasSize, setCoordinatesAndCanvasSize } from './../actions'
+import { setCoordinates } from './../actions'
 
 function ShapeInput(props) {
     let canvasShapeRef = useRef();
