@@ -1,4 +1,5 @@
-const scaleReducer = (state = {}, action) => {
+import {initialState} from '../constants/InitialState';
+const scaleReducer = (state = initialState.scale, action) => {
     switch (action.type) {
         case 'SET_SCALE':
             return action.scale;

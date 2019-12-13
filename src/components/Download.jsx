@@ -8,7 +8,30 @@ function Download(props) {
     let svgString = '';
     let svgStringOutput = null;
 
-    if(props.svgString.length) {
+    //generate all shapes(?)
+        //new reducer for making a big new state slice with all sides as objects(?)
+
+    //shove left
+    let array = [[25, 4], [234, 23551], [124, 34]]
+    let lowestX = array[0][0];
+    array.forEach((coord) => {
+        if (coord[0] < lowestX) {
+            lowestX = coord[0];
+        }
+        console.log(lowestX)
+    });
+    array = array.map((coord) => [coord[0]-lowestX, coord[1]]);
+    console.log(array)
+    //shove top
+
+    //do for each shape
+
+
+    //output a bunch of canvases(?) to show each side?
+    // keep all seperate in a string?
+
+
+    if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
     }
     function clicked() {
@@ -31,7 +54,7 @@ function Download(props) {
         var ctx = new C2S(500, 500);
         if (props.coords) {
             var ctx = downloadCanvas.current.getContext('2d');
-            var ctx = C2S(500,500);
+            var ctx = C2S(500, 500);
             console.log(props.coords)
             ctx.beginPath();
             ctx.strokeStyle = "#FF0000";
@@ -44,14 +67,14 @@ function Download(props) {
             }
             ctx.stroke();
             svgString = ctx.getSerializedSvg(true);
-            console.log(svgString)
+            console.log(props.coords)
             props.dispatch(setSvgString(svgString));
         }
     }
 
     return (
         <div>
-            <canvas ref={downloadCanvas} width='500' height='500' />
+            <canvas ref={downloadCanvas} width='800' height='800' />
             <button onClick={clicked}>Render</button>
             <button onClick={download}>Download</button>
             {svgStringOutput}
