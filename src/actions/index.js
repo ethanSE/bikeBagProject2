@@ -42,15 +42,15 @@ export function createAllSides(coords) {
         //mirror and push in second side
         let mirroredSide = [];
         //alter it !!!!!!!!!!
-        allSides.push(mirroredSide);
+        allSides.push(coords); //temporary!!!!!!!!!
 
         //push in top botton front bac rectangles
             //make an array of side lenghts
             let sideLengths = [];
-            for(let i = 0; i < coords.length; i++) {
+            for(let i = 0; i < coords.length - 1; i++) {
                 //find distance
-                let xDifSq = (coords[0][0] - coords[1][0]) ** 2;
-                let yDifSq = (coords[0][1] - coords[1][1]) ** 2;
+                let xDifSq = (coords[i][0] - coords[i + 1][0]) ** 2;
+                let yDifSq = (coords[i][1] - coords[i + 1][1]) ** 2;
                 let newSideLength = Math.sqrt(xDifSq + yDifSq);
                 sideLengths.push(newSideLength);
             }
@@ -58,6 +58,7 @@ export function createAllSides(coords) {
             let width = getState().scale * 2.5;
             //set up width of rectangle sides
             sideLengths.forEach((sideLength) => {
+                console.log(sideLength);
                 let newSide = [];
                 newSide.push([0,0]);
                 newSide.push([sideLength, 0]);

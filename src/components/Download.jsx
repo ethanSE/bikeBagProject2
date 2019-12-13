@@ -17,14 +17,16 @@ function Download(props) {
     }
 
     function determineOutputCanvasSize() {
-        props.coords.forEach((coord) => {
-            if (coord[0] > outputCanvasWidth) {
-                outputCanvasWidth = coord[0]
-            }
-            if (coord[1] > outputCanvasHeight) {
-                outputCanvasHeight = coord[1]
-            }
-        })
+        if(props.coords.length){
+            props.coords[0].forEach((coord) => {
+                if (coord[0] > outputCanvasWidth) {
+                    outputCanvasWidth = coord[0]
+                }
+                if (coord[1] > outputCanvasHeight) {
+                    outputCanvasHeight = coord[1]
+                }
+            });
+        }  
     }
   
     function renderClicked() {
@@ -45,23 +47,21 @@ function Download(props) {
 
     function downloadClicked() {
         if(props.coords.length) {
+            //currently only works for one shape
             var ctx2 = new C2S(500, 500);
             if (props.coords) {
-                var ctx2 = downloadCanvas.current.getContext('2d');
-                var ctx2 = C2S(500, 500);
-                console.log(props.coords)
-                ctx2.beginPath();
-                ctx2.strokeStyle = "#FF0000";
-                ctx2.lineWidth = 3;
-                ctx2.moveTo(props.coords[0][0], props.coords[0][1]);
-                for (let i = 1; i < props.coords.length; i++) {
-                    console.log('ok')
-                    ctx2.lineTo(props.coords[i][0], props.coords[i][1]);
-                    ctx2.moveTo(props.coords[i][0], props.coords[i][1]);
-                }
-                ctx2.stroke();
+                props.coords.forEach((side) => {
+                    ctx2.beginPath();
+                    ctx2.strokeStyle = "#FF0000";
+                    ctx2.lineWidth = 3;
+                    ctx2.moveTo(side[0][0], side[0][1]);
+                    for (let i = 1; i < side.length; i++) {
+                        ctx2.lineTo(side[i][0], side[i][1]);
+                        ctx2.moveTo(side[i][0], side[i][1]);
+                    }
+                    ctx2.stroke();
+                })
                 svgString = ctx2.getSerializedSvg(true);
-                console.log(props.coords)
                 props.dispatch(setSvgString(svgString));
             }
         }        
