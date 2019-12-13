@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { setCoordinates } from './../actions'
+import { createAllSides } from './../actions'
 
 function ShapeInput(props) {
     let canvasShapeRef = useRef();
@@ -39,7 +39,7 @@ function ShapeInput(props) {
 
     function shapeInputSubmit() {
         coords = xyMinTranslation(coords);
-        props.dispatch(setCoordinates(coords));
+        props.dispatch(createAllSides(coords));
     }
 
     function xyMinTranslation(coords){

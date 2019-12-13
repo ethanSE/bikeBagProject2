@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { setImage2 } from './../actions';
+import { setImage } from './../actions';
 import { connect } from 'react-redux';
 
 function ImageUpload(props) {
@@ -20,7 +20,7 @@ function ImageUpload(props) {
         uploadCanvas.current.height = img.height;
         ctx.drawImage(img, 0, 0);
         let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
-        props.dispatch(setImage2(canvasDataUrl));
+        props.dispatch(setImage(canvasDataUrl));
     }
 
     function imageLoadFailed() {

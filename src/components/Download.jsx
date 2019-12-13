@@ -10,6 +10,7 @@ function Download(props) {
     let outputCanvasWidth = 0;
     let outputCanvasHeight = 0;
     determineOutputCanvasSize();
+    console.log(props.coords);
 
     if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
@@ -29,14 +30,14 @@ function Download(props) {
     function renderClicked() {
         if (props.coords.length) {
             var ctx = downloadCanvas.current.getContext('2d');
-            console.log(props.coords)
+            console.log(props.coords[0])
             ctx.beginPath();
             ctx.strokeStyle = "#FF0000";
             ctx.lineWidth = 3;
-            ctx.moveTo(props.coords[0][0], props.coords[0][1]);
-            for (let i = 1; i < props.coords.length; i++) {
-                ctx.lineTo(props.coords[i][0], props.coords[i][1]);
-                ctx.moveTo(props.coords[i][0], props.coords[i][1]);
+            ctx.moveTo(props.coords[0][0][0], props.coords[0][0][1]);
+            for (let i = 1; i < props.coords[0].length; i++) {
+                ctx.lineTo(props.coords[0][i][0], props.coords[0][i][1]);
+                ctx.moveTo(props.coords[0][i][0], props.coords[0][i][1]);
             }
             ctx.stroke();
         }
