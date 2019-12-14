@@ -7,20 +7,17 @@ function Download(props) {
     let downloadCanvas = useRef();
     let svgString = '';
     let svgStringOutput = null;
-    let outputCanvasWidth = 0;
-    let outputCanvasHeight = 0;
-    
-    console.log(props.coords);
+    var outputCanvasWidth = 0;
+    var outputCanvasHeight = 0;
 
+    if(props.coords[0]){
+        outputCanvasWidth = Math.max(...(props.coords[0].map(c => c[0])));
+        outputCanvasHeight = Math.max(...(props.coords[0].map(c => c[1])));
+    }
+    
     if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
     }
-
-    // function determineOutputCanvasSize(coords) {
-    //     if(props.coords.length)
-    //     outputCanvasWidth = Math.max(...coords.map(c => c[0]));
-    //     outputCanvasHeight = Math.max(...coords.map(c => c[1]));
-    // }
   
     function renderClicked() {
         if (props.coords.length) {
@@ -63,7 +60,7 @@ function Download(props) {
         <div>
             <button onClick={renderClicked}>Render</button>
             <button onClick={downloadClicked}>Download</button>
-            <canvas className='outputCanvas' ref={downloadCanvas} width={500} height={500} />
+            <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
             {svgStringOutput}
         </div>
     )
@@ -82,18 +79,6 @@ export default connect(mapStateToProps)(Download);
 
     //generate all shapes(?)
         //new reducer for making a big new state slice with all sides as objects(?)
-
-    //shove left
-    // let array = [[25, 4], [234, 23551], [124, 34]]
-    // let lowestX = array[0][0];
-    // array.forEach((coord) => {
-    //     if (coord[0] < lowestX) {
-    //         lowestX = coord[0];
-    //     }
-    //     console.log(lowestX)
-    // });
-    // array = array.map((coord) => [coord[0]-lowestX, coord[1]]);
-    // console.log(array)
     //shove top
     //do for each shape
     //output a bunch of canvases(?) to show each side?

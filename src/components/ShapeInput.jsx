@@ -39,7 +39,6 @@ function ShapeInput(props) {
 
     function shapeInputSubmit() {
         coords = xyMinTranslation(coords);
-        
         props.dispatch(createAllSides(coords));
     }
 
