@@ -32,26 +32,21 @@ export const setCanvasSize = (dimensions) => ({
 
 export function createAllSides(coords) {
     return (dispatch, getState) => {
-        console.log(coords);
-        //create all sides
         let allSides = [];      
         allSides.push(coords);  //push in first side
 
         //mirror and push in second side
         let halfWidth = Math.max(...(coords.map(c => c[0]))) / 2;
         
-        console.log(halfWidth);
         //get half   //mirror x values based on half
-        let mirroredSide = coords[0].map((coord) => {
-            let newX = coord[0]; //flip
 
-
-
-
+        let mirroredSide = coords.map((coord) => {
+            let newX = halfWidth + (halfWidth - coord[0])
+            
             return ([newX,coord[1]]);
             }
         );
-
+        console.log(mirroredSide)
         allSides.push(mirroredSide);    
         
         let sideLengths = [];
@@ -63,7 +58,6 @@ export function createAllSides(coords) {
         }
         let width = getState().scale * 2.5;
         sideLengths.forEach((sideLength) => {
-            console.log(sideLength);
             let newSide = [];
             newSide.push([0, 0]);
             newSide.push([sideLength, 0]);
