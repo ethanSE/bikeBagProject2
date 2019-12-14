@@ -17,15 +17,13 @@ function Download(props) {
     }
     
     if (props.svgString.length) {
-        svgStringOutput = <p>{props.svgString.toString()}</p>
+        svgStringOutput = <div className='outputText'><p>{props.svgString.toString()}</p></div>
     }
 
     if(props.scale !== 0){
-        scaleOutput = <p>{props.scale}</p>
+        scaleOutput = <div className='outputText'><p>{props.scale} Pixels per Inch</p></div>
     }
 
-    
-  
     function renderClicked() {
         if (props.coords.length) {
             var ctx = downloadCanvas.current.getContext('2d');
@@ -46,13 +44,12 @@ function Download(props) {
         if(props.coords.length) {
             let width = Math.max(...(props.coords[0].map(c => c[0])));
             let height = Math.max(...(props.coords[0].map(c => c[1])));
-
             var ctx2 = new C2S(width, height);
             if (props.coords) {
                 props.coords.forEach((side) => {
                     ctx2.beginPath();
                     ctx2.strokeStyle = "#FF0000";
-                    ctx2.lineWidth = 3;
+                    ctx2.lineWidth = 1;
                     ctx2.moveTo(side[0][0], side[0][1]);
                     for (let i = 1; i < side.length; i++) {
                         ctx2.lineTo(side[i][0], side[i][1]);
@@ -61,6 +58,7 @@ function Download(props) {
                     ctx2.stroke();
                 })
                 svgString = ctx2.getSerializedSvg(true);
+                navigator.clipboard.writeText(svgString);
                 props.dispatch(setSvgString(svgString));
             }
         }        
@@ -69,7 +67,7 @@ function Download(props) {
     return (
         <div>
             <button onClick={renderClicked}>Render</button>
-            <button onClick={downloadClicked}>Download</button>
+            <button onClick={downloadClicked}>Copy Svg To Clipboard</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
             {svgStringOutput}
             {scaleOutput}
