@@ -12,7 +12,6 @@ function ScaleInput(props) {
         var image = new Image();
         image.onload = function () {
             var windowWidth = window.innerWidth;
-            console.log(canvasScaleRef)
             canvasScaleRef.current.width = windowWidth * 0.8;
             canvasScaleRef.current.height = canvasScaleRef.current.width * (image.height / image.width);
             var ctx = canvasScaleRef.current.getContext('2d');

@@ -9,28 +9,23 @@ function Download(props) {
     let svgStringOutput = null;
     let outputCanvasWidth = 0;
     let outputCanvasHeight = 0;
-    determineOutputCanvasSize();
+    
+    console.log(props.coords);
 
     if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
     }
 
-    function determineOutputCanvasSize() {
-        if(props.coords.length){
-            props.coords[0].forEach((coord) => {
-                if (coord[0] > outputCanvasWidth) {
-                    outputCanvasWidth = coord[0]
-                }
-                if (coord[1] > outputCanvasHeight) {
-                    outputCanvasHeight = coord[1]
-                }
-            });
-        }  
-    }
+    // function determineOutputCanvasSize(coords) {
+    //     if(props.coords.length)
+    //     outputCanvasWidth = Math.max(...coords.map(c => c[0]));
+    //     outputCanvasHeight = Math.max(...coords.map(c => c[1]));
+    // }
   
     function renderClicked() {
         if (props.coords.length) {
             var ctx = downloadCanvas.current.getContext('2d');
+            console.log(props.coords[0])
             ctx.beginPath();
             ctx.strokeStyle = "#FF0000";
             ctx.lineWidth = 3;
@@ -45,7 +40,6 @@ function Download(props) {
 
     function downloadClicked() {
         if(props.coords.length) {
-            //currently only works for one shape
             var ctx2 = new C2S(500, 500);
             if (props.coords) {
                 props.coords.forEach((side) => {
@@ -69,7 +63,7 @@ function Download(props) {
         <div>
             <button onClick={renderClicked}>Render</button>
             <button onClick={downloadClicked}>Download</button>
-            <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
+            <canvas className='outputCanvas' ref={downloadCanvas} width={500} height={500} />
             {svgStringOutput}
         </div>
     )

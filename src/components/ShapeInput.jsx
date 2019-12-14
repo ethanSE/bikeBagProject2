@@ -38,20 +38,20 @@ function ShapeInput(props) {
     }
 
     function shapeInputSubmit() {
-        // coords[coords.length - 1] = coords[0];
         coords = xyMinTranslation(coords);
+        
         props.dispatch(createAllSides(coords));
     }
 
     function xyMinTranslation(coords){
+        coords[coords.length - 1] = coords[0]; 
         yMin = Math.min(...(coords.map(c => c[1])));
         xMin = Math.min(...(coords.map(c => c[0])));
-        
-        coords.forEach((coord) =>{
-            coord[0] = coord[0] - xMin;
-            coord[1] = coord[1] - yMin;
+
+        let newCoords = coords.map((coord) => {
+            return([coord[0]-xMin, coord[1]-yMin])
         })
-        return(coords);
+        return(newCoords);
     }
 
     if (props.scale) {

@@ -32,11 +32,9 @@ export const setCanvasSize = (dimensions) => ({
 
 export function createAllSides(coords) {
     return (dispatch, getState) => {
+        console.log(coords);
         //create all sides
-        let allSides = [];
-        coords[coords.length - 1] = coords[0]; //side is closed. ignores last user coord and replaces it
-
-        
+        let allSides = [];      
         allSides.push(coords);  //push in first side
 
         //mirror and push in second side
