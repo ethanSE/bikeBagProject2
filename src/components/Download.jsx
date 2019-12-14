@@ -7,6 +7,7 @@ function Download(props) {
     let downloadCanvas = useRef();
     let svgString = '';
     let svgStringOutput = null;
+    let scaleOutput = null;
     var outputCanvasWidth = 0;
     var outputCanvasHeight = 0;
 
@@ -18,6 +19,12 @@ function Download(props) {
     if (props.svgString.length) {
         svgStringOutput = <p>{props.svgString.toString()}</p>
     }
+
+    if(props.scale !== 0){
+        scaleOutput = <p>{props.scale}</p>
+    }
+
+    
   
     function renderClicked() {
         if (props.coords.length) {
@@ -37,7 +44,10 @@ function Download(props) {
 
     function downloadClicked() {
         if(props.coords.length) {
-            var ctx2 = new C2S(500, 500);
+            let width = Math.max(...(props.coords[0].map(c => c[0])));
+            let height = Math.max(...(props.coords[0].map(c => c[1])));
+
+            var ctx2 = new C2S(width, height);
             if (props.coords) {
                 props.coords.forEach((side) => {
                     ctx2.beginPath();
@@ -62,6 +72,7 @@ function Download(props) {
             <button onClick={downloadClicked}>Download</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
             {svgStringOutput}
+            {scaleOutput}
         </div>
     )
 }
