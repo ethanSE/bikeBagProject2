@@ -30,8 +30,9 @@ function ImageUpload(props) {
     if (!props.image.length && typeof props.style == 'number')
         {
         return (
-            <div>
-                <input className='fileInput' type='file' ref={fileInput} onChange={onImageLoad} />
+            <div className='imageUpload'>
+                <label className='imageUploadButton' htmlFor='file'><p>Upload Photo</p></label>
+                <input className='fileInput' type='file' name='file' id='file' ref={fileInput} onChange={onImageLoad} />
                 <canvas className='hidden' ref={uploadCanvas} width='' height='' />
             </div>
         );

@@ -8,7 +8,7 @@ function Message(props) {
     } else if (typeof props.image != 'string'){
         messageBody = 'upload a photo of your bike'
     } else if (props.scale === 0){
-        messageBody = 'specify scale';
+        messageBody = 'specify scale. Select the ends of the top tube and enter the length';
     } else if (Object.keys(props.coords).length === 0) {
         messageBody = 'enter shape'
     }

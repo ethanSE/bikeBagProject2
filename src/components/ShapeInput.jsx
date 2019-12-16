@@ -7,6 +7,7 @@ function ShapeInput(props) {
     let coords = [];
     let xMin = 5000;
     let yMin = 5000;
+    var ctx;
 
     if (props.scale) {
         var image = new Image();
@@ -14,7 +15,7 @@ function ShapeInput(props) {
             var windowWidth = window.innerWidth;
             canvasShapeRef.current.width = windowWidth * 0.8;
             canvasShapeRef.current.height = canvasShapeRef.current.width * (image.height / image.width);
-            var ctx = canvasShapeRef.current.getContext('2d');
+            ctx = canvasShapeRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
         }
         image.src = props.image;
@@ -29,7 +30,7 @@ function ShapeInput(props) {
     }
 
     function drawCircle(x, y) {
-        var ctx = canvasShapeRef.current.getContext('2d');
+        // var ctx = canvasShapeRef.current.getContext('2d');
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -53,11 +54,18 @@ function ShapeInput(props) {
         return(newCoords);
     }
 
+    function resetShape() {
+        coords = [];
+        ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
+        
+    }
+
     if (props.scale) {
         return (
-            <div>
-                <canvas ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />
-                <button onClick={shapeInputSubmit}>Submit Shape</button>
+            <div  className='shapeInputGrid'>
+                <button className='shapeInputButton' onClick={shapeInputSubmit}>Submit Shape</button>
+                <button className='shapeInputButton' onClick={resetShape}>Reset Shape</button>
+                <canvas className='shapeInputCanvas' ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />
             </div>
         )
     } else {

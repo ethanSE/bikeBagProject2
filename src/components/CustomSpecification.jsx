@@ -6,22 +6,26 @@ import { connect } from 'react-redux';
 import ImageUpload from './ImageUpload';
 import Message from './Message';
 import { Redirect } from 'react-router-dom';
+import Download from './Download';
 
 function BikeCanvas(props) {
     if(props.coords.length > 1) {
         return (
-            <Redirect to="/download" />
+            <Download />
         )
+    } else {
+        return (
+            <div className='customSpec'>
+                <StyleSelection />
+                <Message />
+                <ScaleInput />
+                <ImageUpload />
+                <ShapeInput />
+                
+            </div>
+        );
     }
-    return (
-        <div className='canvas'>
-            <StyleSelection />
-            <Message />
-            <ImageUpload />
-            <ScaleInput />
-            <ShapeInput />
-        </div>
-    );
+    
 }
 
 function mapStateToProps(state) {

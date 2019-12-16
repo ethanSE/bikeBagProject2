@@ -52,11 +52,11 @@ function ScaleInput(props) {
     if (props.image.length && props.scale === 0) {
         return (
             <div>
-                <canvas ref={canvasScaleRef} width='0' height='0' onClick={canvasScaleClick} />
-                <form onSubmit={setPixelToInchScale}>
-                    <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length' type='number' />
+                <form onSubmit={setPixelToInchScale} className='scaleInputForm'>
+                    <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length in inches' type='number' />
                     <button type='submit'>Submit</button>
                 </form>
+                <canvas ref={canvasScaleRef} width='0' height='0' onClick={canvasScaleClick} />
             </div>
         )
     } else {

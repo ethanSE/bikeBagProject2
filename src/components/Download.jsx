@@ -58,12 +58,10 @@ function Download(props) {
                     ctx2.stroke();
                 })
                 svgString = ctx2.getSerializedSvg(true);
-                // navigator.clipboard.writeText(svgString);
-                // props.dispatch(setSvgString(svgString));
                 const svgDownload = document.createElement("a");
                 const file = new Blob([svgString], { type: 'text/plain' });
                 svgDownload.href = URL.createObjectURL(file);
-                svgDownload.download = "myFile.txt";
+                svgDownload.download = "bagPlan.svg";
                 document.body.appendChild(svgDownload); // Required for this to work in FireFox
                 svgDownload.click();
 
@@ -92,12 +90,3 @@ function mapStateToProps(state) {
     }
 }
 export default connect(mapStateToProps)(Download);
-
-    //generate all shapes(?)
-        //new reducer for making a big new state slice with all sides as objects(?)
-    //shove top
-    //do for each shape
-    //output a bunch of canvases(?) to show each side?
-    // keep all seperate in a string?
-
-//do in middleWare?

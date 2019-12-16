@@ -13,16 +13,16 @@ function StyleSelection(props) {
     }
 
     return (
-        <div className='styleSelection grid-container-style'>
-            <div className={'grid-item-style ' + activeArray[0]} onClick={() => {props.dispatch(setStyle(1))}}>
+        <div className='styleSelection styleContainer'>
+            <div className={'styleItem ' + activeArray[0]} onClick={() => {props.dispatch(setStyle(1))}}>
                 <h4>Top Tube</h4>
                 <TopTube className='bagIcon' />
             </div>
-            <div className={'grid-item-style ' + activeArray[1]} onClick={() => {props.dispatch(setStyle(2))}}>
+            <div className={'styleItem ' + activeArray[1]} onClick={() => {props.dispatch(setStyle(2))}}>
                 <h4>Front</h4>
                 <Front className='bagIcon'/>
             </div>
-            <div className={'grid-item-style ' + activeArray[2]} onClick={() => {props.dispatch(setStyle(3))}}>
+            <div className={'styleItem ' + activeArray[2]} onClick={() => {props.dispatch(setStyle(3))}}>
                 <h4>Full</h4>
                 <Full className='bagIcon' />
             </div>
