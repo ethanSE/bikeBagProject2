@@ -58,8 +58,15 @@ function Download(props) {
                     ctx2.stroke();
                 })
                 svgString = ctx2.getSerializedSvg(true);
-                navigator.clipboard.writeText(svgString);
-                props.dispatch(setSvgString(svgString));
+                // navigator.clipboard.writeText(svgString);
+                // props.dispatch(setSvgString(svgString));
+                const svgDownload = document.createElement("a");
+                const file = new Blob([svgString], { type: 'text/plain' });
+                svgDownload.href = URL.createObjectURL(file);
+                svgDownload.download = "myFile.txt";
+                document.body.appendChild(svgDownload); // Required for this to work in FireFox
+                svgDownload.click();
+
             }
         }        
     }
