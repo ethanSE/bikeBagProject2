@@ -11,6 +11,8 @@ function Message(props) {
         messageBody = 'specify scale. Select the ends of the top tube and enter the length';
     } else if (Object.keys(props.coords).length === 0) {
         messageBody = 'enter shape'
+    } else if (props.scale !== 0) {
+        messageBody = `${props.scale} pixels per inch`;
     }
 
     return (

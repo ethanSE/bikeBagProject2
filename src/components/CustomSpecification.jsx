@@ -11,7 +11,11 @@ import Download from './Download';
 function BikeCanvas(props) {
     if(props.coords.length > 1) {
         return (
-            <Download />
+            <div>
+                <Message />
+                <Download />
+            </div>
+           
         )
     } else {
         return (

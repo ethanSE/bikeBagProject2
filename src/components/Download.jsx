@@ -6,22 +6,12 @@ import C2S from 'canvas2svg';
 function Download(props) {
     let downloadCanvas = useRef();
     let svgString = '';
-    let svgStringOutput = null;
-    let scaleOutput = null;
     var outputCanvasWidth = 0;
     var outputCanvasHeight = 0;
 
     if(props.coords[0]){
         outputCanvasWidth = Math.max(...(props.coords[0].map(c => c[0])));
         outputCanvasHeight = Math.max(...(props.coords[0].map(c => c[1])));
-    }
-    
-    if (props.svgString.length) {
-        svgStringOutput = <div className='outputText'><p>{props.svgString.toString()}</p></div>
-    }
-
-    if(props.scale !== 0){
-        scaleOutput = <div className='outputText'><p>{props.scale} Pixels per Inch</p></div>
     }
 
     function renderClicked() {
@@ -62,21 +52,17 @@ function Download(props) {
                 const file = new Blob([svgString], { type: 'text/plain' });
                 svgDownload.href = URL.createObjectURL(file);
                 svgDownload.download = "bagPlan.svg";
-                document.body.appendChild(svgDownload); // Required for this to work in FireFox
+                document.body.appendChild(svgDownload);
                 svgDownload.click();
-
             }
         }        
     }
 
     return (
         <div className='results'>
-            {scaleOutput}
             <button className='button' onClick={renderClicked}>Render</button>
-            <button className='button' onClick={downloadClicked}>Copy Svg To Clipboard</button>
+            <button className='button' onClick={downloadClicked}>Download SVG</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
-            {svgStringOutput}
-            
         </div>
     )
 }
@@ -90,4 +76,5 @@ function mapStateToProps(state) {
         dimensions: state.dimensions
     }
 }
+
 export default connect(mapStateToProps)(Download);
