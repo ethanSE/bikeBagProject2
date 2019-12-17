@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import About from './About';
-import Download from './Download';
 import CustomSpecification from './CustomSpecification';
 
 class App extends React.Component {

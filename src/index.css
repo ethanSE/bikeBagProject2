@@ -1,54 +1,20 @@
+.active {
+    box-shadow: 0 0 15px lightgreen;
+}
+
+.bagIcon {
+    width: 80%;
+    height: auto;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
 body {
     background-color: #393e46;
 }
-.hidden {
-    display: none;
-}
-.customSpec {
-    margin-top: 50px;
-}
 
-.customSpec canvas {
-    margin-left: 10%;
-    margin-top: 20px;
-}
-
-.header {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(57, 62, 70, 0.5)), url(./assets/images/IMG_7651.JPG);
-    height: 650px;
+.button {
     text-align: center;
-    color: #dfe2e2;
-    background-position: center;
-    position: relative;
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-}
-
-.header h1 {
-    float: left;
-    text-shadow:
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
-}
-
-.header a {
-    color: #1cb3c8;
-    text-shadow:
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
-}
-.shapeInputGrid {
-    display: grid;
-    justify-content: space-evenly;
-    grid-template-columns: auto auto;
-    grid-auto-rows: 1fr auto;
-}
-
-.shapeInputButton {
     background-color: #F58B20;
     border: none;
     height: 40px;
@@ -59,18 +25,138 @@ body {
     width: auto;
 }
 
-.shapeInputCanvas {
-    grid-column: 1/3;
-    grid-row: 2/3;
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: #b56618;
+}
+
+.customSpec {
+    margin-top: 50px;
+}
+
+/* .customSpec canvas {
+    margin-left: 10%;
+    margin-top: 20px;
+} */
+
+.fileInput {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+    z-index: -1;
+    padding: 90px 20;
+}
+
+.hidden {
+    display: none;
+}
+
+.header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(57, 62, 70, 0.5)), url(./assets/images/IMG_7651.JPG);
+    height: 650px;
+    text-align: center;
+    color: #dfe2e2;
+    background-position: center;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
+}
+
+.header h1 {
+    float: left;
+}
+
+.header a {
+    color: #1cb3c8;
+}
+
+.imageUpload {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.imageUploadButton {
+    grid-column: 2/3;
+}
+
+.imageUploadButton p {
+    padding-top: 8px;
+}
+
+.message {
+    min-width: 225px;
+    width: 80%;
+    
+    height: auto;
+    background-color: #3c415e;
+    display: inline-block;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    text-align: center;
+    color: #dfe2e2;
+    margin: 30px;
+    margin-left: 10%;
+}
+
+.scaleInput input{
+    grid-column: 2/3;
+    width: 60%;
+    margin: auto;
+    height: 40px;
+    min-width: 200px;
+}
+
+.scaleInputForm {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+
+.scaleInput canvas {
+    width: 80%;
+}
+
+
+/* .scaleInputForm input {
+    background-color: #DFE2E2;
+    font-weight: 600;
+    height: 40px;
+    width: 60%;
+} */
+
+.shapeInputGrid {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: auto auto;
+    grid-auto-rows: 1fr auto;
+}
+
+.shapeInputButton {
     width: auto;
 }
 
-.styleContainer {
-  display: grid;
-  grid-template-columns: 25% 25% 25%;
-  justify-content: space-evenly;
-}
+/* .shapeInputCanvas {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    width: auto;
+} */
 
+.styleContainer {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    justify-content: space-evenly;
+  }
+  
 .styleItem {
     text-align: center;
     max-width: 250px;
@@ -84,81 +170,5 @@ body {
 
 .styleItem:hover {
     box-shadow: 0 0 15px white;
-}
-
-.active {
-    box-shadow: 0 0 15px lightgreen;
-}
-.imageUpload {
-    display: grid;
-    grid-template-columns: auto auto auto;
-}
-
-.imageUploadButton {
-    grid-column: 2/3;
-    min-width: 225px;
-    text-align: center;
-    background-color: #F58B20;
-    border: none;
-    height: 40px;
-    border-radius: 5px;
-    font-weight: bolder;
-    margin: auto;
-}
-
-.imageUploadButton p {
-    padding-top: 8px;
-}
-
-.fileInput {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-    z-index: -1;
-    padding: 90px 20;
-}
-
-.scaleInputForm {  
-    width: 50%;
-    margin: auto;
-}
-
-.scaleInputForm button {
-    background-color: #F58B20;
-    border: none;
-    height: 40px;
-    border-radius: 5px;
-    font-weight: bolder;
-    width: 40%;
-}
-
-.scaleInputForm input {
-    background-color: #DFE2E2;
-    font-weight: 600;
-    height: 40px;
-    width: 60%;
-}
-
-.message, .outputText {
-    min-width: 225px;
-    width: 80%;
-    margin-left: 10%;
-    height: auto;
-    background-color: #3c415e;
-    margin-top: 20px;
-    display: inline-block;
-    border: 5px solid #1cb3c8;
-    border-radius: 5px;
-    text-align: center;
-    color: #dfe2e2;
-    margin-bottom: 10px;
-}
-
-.bagIcon {
-    width: 80%;
-    height: auto;
-    margin-bottom: 5%;
-    margin-top: 5%;
+    cursor: pointer;
 }

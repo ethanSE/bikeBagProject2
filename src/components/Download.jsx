@@ -70,12 +70,13 @@ function Download(props) {
     }
 
     return (
-        <div>
-            <button onClick={renderClicked}>Render</button>
-            <button onClick={downloadClicked}>Copy Svg To Clipboard</button>
+        <div className='results'>
+            {scaleOutput}
+            <button className='button' onClick={renderClicked}>Render</button>
+            <button className='button' onClick={downloadClicked}>Copy Svg To Clipboard</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
             {svgStringOutput}
-            {scaleOutput}
+            
         </div>
     )
 }

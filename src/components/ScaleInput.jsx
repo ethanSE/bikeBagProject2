@@ -7,6 +7,7 @@ function ScaleInput(props) {
     let canvasScaleRef = useRef();
     let scaleInputRef = useRef();
     let topTubePoints = [];
+    let ctx;
 
     if (props.image.length && props.scale === 0) {
         var image = new Image();
@@ -14,7 +15,7 @@ function ScaleInput(props) {
             var windowWidth = window.innerWidth;
             canvasScaleRef.current.width = windowWidth * 0.8;
             canvasScaleRef.current.height = canvasScaleRef.current.width * (image.height / image.width);
-            var ctx = canvasScaleRef.current.getContext('2d');
+            ctx = canvasScaleRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height);
         }
         image.src = props.image;
@@ -48,13 +49,18 @@ function ScaleInput(props) {
         ctx.arc(x, y, 10, 0, 2 * Math.PI);
         ctx.stroke();
     }
+    function resetCoordinates() {
+        topTubePoints = [];
+        ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height);
+    }
 
     if (props.image.length && props.scale === 0) {
         return (
-            <div>
+            <div className='scaleInput'>
                 <form onSubmit={setPixelToInchScale} className='scaleInputForm'>
                     <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length in inches' type='number' />
-                    <button type='submit'>Submit</button>
+                    <button className='button' type='submit'>Submit</button>
+                    <button className='button' onClick={resetCoordinates}>Reset</button>
                 </form>
                 <canvas ref={canvasScaleRef} width='0' height='0' onClick={canvasScaleClick} />
             </div>
@@ -70,4 +76,5 @@ function mapStateToProps(state) {
         scale: state.scale
     }
 }
+
 export default connect(mapStateToProps)(ScaleInput);

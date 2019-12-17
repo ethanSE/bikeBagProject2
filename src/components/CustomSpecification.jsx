@@ -20,12 +20,10 @@ function BikeCanvas(props) {
                 <Message />
                 <ScaleInput />
                 <ImageUpload />
-                <ShapeInput />
-                
+                <ShapeInput /> 
             </div>
         );
     }
-    
 }
 
 function mapStateToProps(state) {

@@ -63,8 +63,8 @@ function ShapeInput(props) {
     if (props.scale) {
         return (
             <div  className='shapeInputGrid'>
-                <button className='shapeInputButton' onClick={shapeInputSubmit}>Submit Shape</button>
-                <button className='shapeInputButton' onClick={resetShape}>Reset Shape</button>
+                <button className='shapeInputButton button' onClick={shapeInputSubmit}>Submit Shape</button>
+                <button className='shapeInputButton button' onClick={resetShape}>Reset Shape</button>
                 <canvas className='shapeInputCanvas' ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />
             </div>
         )
