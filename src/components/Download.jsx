@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { setSvgString } from './../actions'
 import C2S from 'canvas2svg';
 
 function Download(props) {
@@ -31,18 +30,14 @@ function Download(props) {
     }
 
     function downloadClicked() {
-        if(props.coords.length) {
-            let width = null;
-            let xMaxOfShapes = [];
-            props.coords.forEach((coord) => {
-                xMaxOfShapes.push(Math.max(...(props.coords[0].map(c => c[0]))));
+        if(props.coords.length) { 
+             // let width = Math.max(props.coords.map((coord) => {return (Math.max(...(coord.map(c => c[0]))))})); trying to do some code golf          
+            let xMaxOfShapes = props.coords.map((coord) => {
+                return (Math.max(...(coord.map(c => c[0]))));
             });
-            let largestX = Math.max(...xMaxOfShapes);
-
-            console.log(largestX);
-
+            let width = Math.max(...xMaxOfShapes);
             let height = Math.max(...(props.coords[0].map(c => c[1])));
-            var ctx2 = new C2S(largestX, height);
+            var ctx2 = new C2S(width, height);
             console.log(props.maxSideLength);
             if (props.coords) {
                 props.coords.forEach((side) => {
@@ -57,7 +52,13 @@ function Download(props) {
                     ctx2.stroke();
                 })
                 svgString = ctx2.getSerializedSvg(true);
-                const svgDownload = document.createElement("a");
+                let start = svgString.indexOf('width=');
+                let end = svgString.indexOf('>');
+                let widthInches = width / props.scale;
+                let heightInches = height / props.scale;
+                let inchesScale = `width='${widthInches}in' height='${heightInches}in' viewBox='0 0 ${width} ${height}'`
+                svgString = svgString.substr(0, start) + inchesScale + svgString.substr(end);
+                const svgDownload = document.createElement('a');
                 const file = new Blob([svgString], { type: 'text/plain' });
                 svgDownload.href = URL.createObjectURL(file);
                 svgDownload.download = "bagPlan.svg";

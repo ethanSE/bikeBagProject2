@@ -5,7 +5,6 @@ import ScaleInput from './ScaleInput';
 import { connect } from 'react-redux';
 import ImageUpload from './ImageUpload';
 import Message from './Message';
-import { Redirect } from 'react-router-dom';
 import Download from './Download';
 
 function BikeCanvas(props) {
