@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     style: styleReducer,
     image: imageReducer,
     svgString: svgStringReducer,
-    dimensions: displayCanvasSizeReducer
+    dimensions: displayCanvasSizeReducer,
 })
 
 export default rootReducer;

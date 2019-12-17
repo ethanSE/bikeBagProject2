@@ -37,11 +37,6 @@ body {
     margin-top: 50px;
 }
 
-/* .customSpec canvas {
-    margin-left: 10%;
-    margin-top: 20px;
-} */
-
 .fileInput {
 	width: 0.1px;
 	height: 0.1px;
@@ -96,7 +91,6 @@ body {
 .message {
     min-width: 225px;
     width: 80%;
-    
     height: auto;
     background-color: #3c415e;
     display: inline-block;
@@ -108,48 +102,55 @@ body {
     margin-left: 10%;
 }
 
-.scaleInput input{
-    grid-column: 2/3;
-    width: 60%;
+.results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.scaleInput button {
+    width: 25%;
     margin: auto;
-    height: 40px;
-    min-width: 200px;
+}
+
+.scaleInputCanvas {
+    margin-top: 20px;
+    margin-left: 10%;
 }
 
 .scaleInputForm {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
-    margin-top: 20px;
-}
-
-.scaleInput canvas {
+    grid-template-columns: 2fr 1fr 1fr;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
     width: 80%;
+    margin: auto;
 }
 
-
-/* .scaleInputForm input {
-    background-color: #DFE2E2;
-    font-weight: 600;
+.scaleInput input{
+    grid-column: 1/2;
     height: 40px;
-    width: 60%;
-} */
+    width: 90%;
+    min-width: 200px;
+}
 
 .shapeInputGrid {
     display: grid;
     justify-content: space-evenly;
     grid-template-columns: auto auto;
-    grid-auto-rows: 1fr auto;
+    grid-template-rows: auto auto;
+}
+
+.shapeInputCanvas {
+    margin-top: 20px;
+    grid-column: 1/3;
+    margin: auto;
 }
 
 .shapeInputButton {
     width: auto;
+    margin: auto;
+    margin-bottom: 20px;
 }
-
-/* .shapeInputCanvas {
-    grid-column: 1/3;
-    grid-row: 2/3;
-    width: auto;
-} */
 
 .styleContainer {
     display: grid;

@@ -25,12 +25,21 @@ function ShapeInput(props) {
         let rect = canvasShapeRef.current.getBoundingClientRect();
         let x = (evt.clientX - rect.left);
         let y = (evt.clientY - rect.top);
+        for (let i=0; i < coords.length; i++){
+            let distance = Math.hypot(coords[i][0] - x, coords[i][1]-y);
+            if(distance < 10 ){
+                coords.push(coords[i]);
+                drawCircle(coords[i]);
+                drawLines();
+                return;
+            };
+        }
         coords.push([x, y]);
         drawCircle(x, y);
+        drawLines();
     }
 
     function drawCircle(x, y) {
-        // var ctx = canvasShapeRef.current.getContext('2d');
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -60,9 +69,19 @@ function ShapeInput(props) {
         
     }
 
+    function drawLines() {
+        for (let i = 0; i < coords.length - 1; i++ ){
+            ctx.strokeStyle = "#FF0000";
+            ctx.lineWidth = 3;
+            ctx.moveTo(coords[i][0], coords[i][1]);
+            ctx.lineTo(coords[i+1][0], coords[i+1][1]);
+            ctx.stroke();
+        }
+    }
+
     if (props.scale) {
         return (
-            <div  className='shapeInputGrid'>
+            <div className='shapeInputGrid'>
                 <button className='shapeInputButton button' onClick={shapeInputSubmit}>Submit Shape</button>
                 <button className='shapeInputButton button' onClick={resetShape}>Reset Shape</button>
                 <canvas className='shapeInputCanvas' ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />

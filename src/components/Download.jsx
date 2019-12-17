@@ -32,9 +32,18 @@ function Download(props) {
 
     function downloadClicked() {
         if(props.coords.length) {
-            let width = Math.max(...(props.coords[0].map(c => c[0])));
+            let width = null;
+            let xMaxOfShapes = [];
+            props.coords.forEach((coord) => {
+                xMaxOfShapes.push(Math.max(...(props.coords[0].map(c => c[0]))));
+            });
+            let largestX = Math.max(...xMaxOfShapes);
+
+            console.log(largestX);
+
             let height = Math.max(...(props.coords[0].map(c => c[1])));
-            var ctx2 = new C2S(width, height);
+            var ctx2 = new C2S(largestX, height);
+            console.log(props.maxSideLength);
             if (props.coords) {
                 props.coords.forEach((side) => {
                     ctx2.beginPath();

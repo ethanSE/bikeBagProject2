@@ -62,7 +62,7 @@ function ScaleInput(props) {
                     <button className='button' type='submit'>Submit</button>
                     <button className='button' onClick={resetCoordinates}>Reset</button>
                 </form>
-                <canvas ref={canvasScaleRef} width='0' height='0' onClick={canvasScaleClick} />
+                <canvas className='scaleInputCanvas' ref={canvasScaleRef} width='0' height='0' onClick={canvasScaleClick} />
             </div>
         )
     } else {
