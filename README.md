@@ -3,6 +3,8 @@
 
 #### By _**Ethan Samuels-Ellingson**_
 
+https://ethanse.github.io/bikeBagProject/
+
 ## Description
 
 This project was created to practice React and redux. It allows users to upload a photo of their bike, specify custom dimensions and scale, and receive a pattern for cutting out the fabric. It ouputs an SVG file which can be fed to a laser cutter.
