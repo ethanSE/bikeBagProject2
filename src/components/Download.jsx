@@ -71,6 +71,7 @@ function Download(props) {
         <div className='results'>
             <button className='button' onClick={renderClicked}>Render</button>
             <button className='button' onClick={downloadClicked}>Download SVG</button>
+            <button className='button'>Order Custom</button>
             <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
         </div>
     )

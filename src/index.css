@@ -18,12 +18,11 @@ body {
     text-align: center;
     background-color: #F58B20;
     border: none;
-    height: 40px;
+    min-height: 40px;
     border-radius: 5px;
     font-weight: bolder;
     margin: auto;
-    min-width: 180px;
-    width: auto;
+    width: 
 }
 
 .button:hover {
@@ -91,10 +90,9 @@ body {
 
 .imageUploadButton {
     grid-column: 2/3;
-}
-
-.imageUploadButton p {
-    padding-top: 8px;
+    width: 90%;
+    padding-top: 16px;
+    margin-bottom: 50px;
 }
 
 .message {
@@ -111,14 +109,14 @@ body {
     margin-left: 10%;
 }
 
-.message p {
-    
-}
-
 .results {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.results button{
+    width: 90%;
 }
 
 .scaleInput button {
@@ -145,6 +143,10 @@ body {
     height: 40px;
     width: 90%;
     min-width: 200px;
+}
+
+.scaleInput button {
+    width: 90%;
 }
 
 .shapeInputGrid {
@@ -183,10 +185,41 @@ body {
     height: auto;
     margin: auto;
     font-family: 'Nanum Gothic Coding', monospace;
-    font-weight: bolder;
+}
+
+.styleItem h4 {
+    
+    font-size: large;
 }
 
 .styleItem:hover {
     box-shadow: 0 0 15px white;
     cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+    .styleItem {
+        height: 100%;
+    }
+
+    .scaleInput input{
+        grid-column: 1/3;
+        height: 40px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .scaleInputForm {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .scaleInput button{
+        min-width: 100px;
+        width: 90%;
+    }
+
+    .shapeInputButton {
+        min-width: 0px;
+        width: 90%;
+    }
 }
