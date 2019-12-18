@@ -16,7 +16,6 @@ function Download(props) {
     function renderClicked() {
         if (props.coords.length) {
             var ctx = downloadCanvas.current.getContext('2d');
-            console.log(props.coords[0])
             ctx.beginPath();
             ctx.strokeStyle = "#FF0000";
             ctx.lineWidth = 3;

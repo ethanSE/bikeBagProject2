@@ -11,7 +11,6 @@ function BikeCanvas(props) {
     if(props.coords.length > 1) {
         return (
             <div>
-                <Message />
                 <Download />
             </div>
            

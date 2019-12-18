@@ -25,7 +25,7 @@ function ScaleInput(props) {
         let rect = canvasScaleRef.current.getBoundingClientRect();
         let x = (evt.clientX - rect.left);
         let y = (evt.clientY - rect.top);        
-        if( topTubePoints.length < 2) { //if less than two points add a new point
+        if( topTubePoints.length < 2) {
             drawCircle(x,y);
             topTubePoints.push([x,y]);
         }
@@ -33,10 +33,8 @@ function ScaleInput(props) {
 
     function setPixelToInchScale() {
         if (topTubePoints.length === 2) {
-            let asq = (topTubePoints[0][0] - topTubePoints[1][0]) ** 2;
-            let bsq = (topTubePoints[0][1] - topTubePoints[1][1]) ** 2;
-            let csq = Math.sqrt(asq + bsq);
-            let scale = (csq / scaleInputRef.value).toFixed(2);
+            let distance = Math.hypot(topTubePoints[0][0] - topTubePoints[1][0], topTubePoints[0][1] - topTubePoints[1][1])
+            let scale = (distance / scaleInputRef.value);
             props.dispatch(setScale(scale));
         }
     }

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Nanum+Gothic+Coding&display=swap');
 .active {
     box-shadow: 0 0 15px lightgreen;
 }
@@ -60,6 +61,8 @@ body {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover; 
+    font-family: 'Bebas Neue', cursive;
+    padding-top: 15px;
     text-shadow:
     -1px -1px 0 #000,  
      1px -1px 0 #000,
@@ -69,10 +72,16 @@ body {
 
 .header h1 {
     float: left;
+    margin-left: 10px;
 }
 
 .header a {
     color: #1cb3c8;
+}
+.header h3 {
+    margin-top: 5px;
+    margin-right: 10px;
+    float: right;
 }
 
 .imageUpload {
@@ -102,7 +111,12 @@ body {
     margin-left: 10%;
 }
 
+.message p {
+    
+}
+
 .results {
+    margin-top: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -159,6 +173,7 @@ body {
   }
   
 .styleItem {
+    padding-top: 10px;
     text-align: center;
     max-width: 250px;
     background-color: #3c415e;
@@ -167,6 +182,8 @@ body {
     border-radius: 5px;
     height: auto;
     margin: auto;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: bolder;
 }
 
 .styleItem:hover {

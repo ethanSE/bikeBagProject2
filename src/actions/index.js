@@ -43,9 +43,7 @@ export function createAllSides(coords) {
         allSides.push(mirroredSide);    
         let sideLengths = [];
         for (let i = 0; i < coords.length - 1; i++) {
-            let xDifSq = (coords[i][0] - coords[i + 1][0]) ** 2;
-            let yDifSq = (coords[i][1] - coords[i + 1][1]) ** 2;
-            let newSideLength = Math.sqrt(xDifSq + yDifSq);
+            let newSideLength = Math.hypot(coords[i][0] - coords[i + 1][0], coords[i][1] - coords[i + 1][1]);
             sideLengths.push(newSideLength);
         }
         let width = getState().scale * 2.5;
