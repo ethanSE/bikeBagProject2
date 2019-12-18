@@ -6,11 +6,7 @@
 
 ## Description
 
-This application was made to practice canvas for upcoming project.
-
-## Setup/Installation Requirements
-
-_in the project directory run 'npm run start'_
+This project was created to practice React and redux. It allows users to upload a photo of their bike, specify custom dimensions and scale, and receive a pattern for cutting out the fabric
 
 ## Known Bugs
 none
