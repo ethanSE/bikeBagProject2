@@ -96,6 +96,8 @@ body {
 }
 
 .message {
+    padding-top: 12px;
+    font-size: larger;
     min-width: 225px;
     width: 80%;
     height: auto;
@@ -189,7 +191,7 @@ body {
 
 .styleItem h4 {
     
-    font-size: large;
+    font-size: xx-large;
 }
 
 .styleItem:hover {
@@ -200,6 +202,9 @@ body {
 @media screen and (max-width: 425px) {
     .styleItem {
         height: 100%;
+    }
+    .styleItem h4{
+       font-size: small;
     }
 
     .scaleInput input{
