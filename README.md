@@ -39,7 +39,7 @@ In its current state this project:
 
 Goals for this project include:  
   • do some more math to add in seam allowances  
-  • include a back end with authentication, data persistance, admin route for accessing orders  
+  • icorporate a firebase back-end with authentication, data persistance, admin route for accessing orders  
   • in admin route overlay user input and user's photo for verification of user input prior to construction. allow admin to tweak design before production or contact customer  
   • get some more experience with web development and see if any companies are interesting in implementing a similar solution
 
