@@ -43,10 +43,6 @@ Goals for this project include:
   • in admin route overlay user input and user's photo for verification of user input prior to construction. allow admin to tweak design before production or contact customer  
   • get some more experience with web development and see if any companies are interesting in implementing a similar solution
 
-
-
-This project is still in development and I have a couple of other deadlines to meet in the near future.
-
 ## Support and contact details
 
 _contact Ethan Samuels-Ellingson at ethansamuelsellingson@gmail.com _
@@ -54,7 +50,7 @@ _contact Ethan Samuels-Ellingson at ethansamuelsellingson@gmail.com _
 
 _React_  
 _Redux_  
-_Thunk + custom middleware_  
+_Thunk   
 _Canvas2Svg_  
 
 ### License
