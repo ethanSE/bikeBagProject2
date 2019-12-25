@@ -1,4 +1,28 @@
-import * as types from './../constants/ActionTypes';
+import firebase from 'firebase';
+
+import constants from './../constants';
+const { types, firebaseConfig } = constants;
+firebase.initializeApp(firebaseConfig);
+
+
+const users = firebase.database().ref('users');
+
+export function addUser(email, password) {
+    console.log('check')
+    return () => users.push({
+        email: email,
+        password: password
+    });
+}
+
+export function sendNewUserToFireBase(email, password) {
+    console.log(email, password);
+    return () => firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    });
+}
 
 export const setCoordinates = (coords) => ({
     type: types.SET_COORDINATES,
