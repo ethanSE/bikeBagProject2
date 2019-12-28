@@ -4,7 +4,6 @@ import Full from '../assets/images/Full';
 import Front from '../assets/images/Front';
 import { connect } from 'react-redux'; 
 import { setStyle } from './../actions';
-// import { PropTypes } from 'prop-types';
 
 function StyleSelection(props) {
     var activeArray = [null, null, null];

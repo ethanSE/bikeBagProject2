@@ -1,0 +1,26 @@
+Feature: User Authentication
+
+Background:
+   Given the user has navigated to 'account' route
+
+Scenario: A user can log in
+    Given a user has an account
+    When the user inputs the correct email address
+    And the user inputs the correct password
+    And the user clicks the login button
+    Then the user will be logged in
+    And the user will be redirected to the home page
+
+Scenario: A user can create an account
+    Given there is not already an accout associated with the provided email
+    When A user input an email
+    And the user inputs a password and confirmation password
+    And the passwords match eachother and requirements
+    Then the account is created
+    And the user is logged in
+
+
+Scenario: A user can log out
+    Given a user is logged in
+    When a user clicks 'log out'
+    Then the user will be logged out

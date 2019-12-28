@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
-import About from './About';
+import Home from './About';
+import Account from './Account';
 import CustomSpecification from './CustomSpecification';
 
 class App extends React.Component {
@@ -11,8 +12,8 @@ class App extends React.Component {
         <Header/>
         <Switch>
           <Route exact path='/custom' component={CustomSpecification} />
-          <Route exact path='/' component={About} />
-          {/* <Route exact path ='/howitworks' component={history} /> */}
+          <Route exact path='/' component={Home} />
+          <Route exact path='/account' component={Account} />
         </Switch>
       </div>
     );

@@ -8,10 +8,3 @@ function TopLeft(array) {
     });
     return lowestX;
 }
-
-
-// export default TopLeft;
-
-// findLowestY
-
-//     return shiftedArray;

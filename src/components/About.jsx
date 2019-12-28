@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function About(props) {
+function Home(props) {
     return(
         <div className='grid-container-about'>
             <div className='heroDiv'>
@@ -30,5 +30,4 @@ function mapStateToProps(state) {
     }
 }
 
-About = connect(mapStateToProps)(About);
-export default About;
+export default connect(mapStateToProps)(Home);
