@@ -5,6 +5,7 @@ import coordsReducer from './coordsReducer';
 import imageReducer from './imageReducer';
 import svgStringReducer from './svgStringReducer';
 import displayCanvasSizeReducer from './displayCanvasSizeReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
     scale: scaleReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     image: imageReducer,
     svgString: svgStringReducer,
     dimensions: displayCanvasSizeReducer,
+    user: userReducer
 })
 
 export default rootReducer;

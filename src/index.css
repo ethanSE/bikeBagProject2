@@ -3,6 +3,17 @@
     box-shadow: 0 0 15px lightgreen;
 }
 
+.accountButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.accountButtons button {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 400px;
+}
+
 .bagIcon {
     width: 80%;
     height: auto;
