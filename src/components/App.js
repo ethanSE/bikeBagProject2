@@ -4,7 +4,6 @@ import Header from './Header';
 import Home from './Home';
 import Account from './Account';
 import CustomSpecification from './CustomSpecification';
-import { watchAuthState } from './../actions';
 
 class App extends React.Component {
 

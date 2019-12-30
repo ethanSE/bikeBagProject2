@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { addUser, sendNewUserToFirebase, signOut, signIn, setAccountUI } from './../actions';
+import { sendNewUserToFirebase, signIn } from './../actions';
 import { Redirect } from 'react-router-dom';
 
 function Account(props) {
@@ -61,8 +61,6 @@ function Account(props) {
     }
 }
 
-
-{/*  */}
 function mapStateToProps(state){
     return {
         user: state.user,

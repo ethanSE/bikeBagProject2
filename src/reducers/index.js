@@ -6,6 +6,7 @@ import imageReducer from './imageReducer';
 import svgStringReducer from './svgStringReducer';
 import displayCanvasSizeReducer from './displayCanvasSizeReducer';
 import userReducer from './userReducer';
+import customSpecUIReducer from './customSpecUIReducer';
 
 const rootReducer = combineReducers({
     scale: scaleReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     image: imageReducer,
     svgString: svgStringReducer,
     dimensions: displayCanvasSizeReducer,
-    user: userReducer
-})
+    user: userReducer,
+    customSpecUI: customSpecUIReducer
+});
 
 export default rootReducer;

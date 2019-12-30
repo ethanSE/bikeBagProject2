@@ -20,8 +20,8 @@ function BikeCanvas(props) {
             <div className='customSpec'>
                 <StyleSelection />
                 <Message />
-                <ScaleInput />
                 <ImageUpload />
+                <ScaleInput />                
                 <ShapeInput /> 
             </div>
         );
