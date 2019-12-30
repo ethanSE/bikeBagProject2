@@ -7,7 +7,7 @@ function Account(props) {
     let emailInputRef = useRef();
     let passwordInputRef = useRef();
     let reenterPasswordInputRef = useRef();
-    const [ activeForm, setActiveForm ] = React.useState('none')
+    const [ activeForm, setActiveForm ] = React.useState('signIn')
 
     function createAccountFormSubmit() {
         if(passwordInputRef.value === reenterPasswordInputRef.value) {
@@ -29,7 +29,7 @@ function Account(props) {
             <form onSubmit={signInFormSubmit} className='signInForm'>
                 <input ref={(input) => { emailInputRef = input }} placeholder='Email' type='text' />
                 <input ref={(input) => { passwordInputRef = input }} placeholder='password' type='password' />
-                <button className='button' type='submit'>Submit</button>
+            <button className='button accountButton' type='submit'>Sign In</button>
             </form>
     } else if (activeForm === 'createAccount') {
         form =
@@ -37,8 +37,13 @@ function Account(props) {
             <input ref={(input) => { emailInputRef = input }} placeholder='Email' type='text' />
             <input ref={(input) => { passwordInputRef = input }} placeholder='password' type='password' />
             <input ref={(input) => { reenterPasswordInputRef = input }} placeholder='re-enter password' type='password' />
-            <button className='button' type='submit'>Create Account</button>
+            <button className='button accountButton' type='submit'>Create Account</button>
         </form>
+    }
+    let button = <button className='button accountButton' onClick={() => setActiveForm('createAccount')}>Create Accout</button>
+    
+    if(activeForm === 'createAccount') {
+        button = <button className='button accountButton' onClick={() => setActiveForm('signIn')}>Already have an account? -  Sign In</button>
     }
 
     if(props.user) {
@@ -48,17 +53,16 @@ function Account(props) {
 
     } else {
         return (
-            <div>
-                <div className='accountButtons'>
-                    <button className='button' onClick={() => setActiveForm('signIn')}>Sign In</button>
-                    <button className='button' onClick={() => setActiveForm('createAccount')}>Create Accout</button>
-                </div>
+            <div className='account'>
                 {form}
+                {button}
             </div>
         )
     }
 }
 
+
+{/*  */}
 function mapStateToProps(state){
     return {
         user: state.user,

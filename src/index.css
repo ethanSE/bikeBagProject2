@@ -3,15 +3,21 @@
     box-shadow: 0 0 15px lightgreen;
 }
 
-.accountButtons {
+.account {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.accountButtons button {
-    margin-top: 20px;
-    width: 80%;
-    max-width: 400px;
+.account form {
+    display: grid;
+    grid-template-columns: 320px;
+    justify-content: center;
+}
+
+.account form input{
+    margin: 10px;
 }
 
 .bagIcon {
@@ -33,7 +39,12 @@ body {
     border-radius: 5px;
     font-weight: bolder;
     margin: auto;
-    width: 
+}
+
+.accountButton {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 30px;
 }
 
 .button:hover {
