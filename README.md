@@ -13,7 +13,7 @@ As a cycling enthusiast and bike commuter I have been interested in custom bike 
 I have researched the custom made-to-order bike frame bag market and have noticed several areas in which tech could help to connect customers with products.
 
 
-1. Many company's are out-dated and require users to fill out complex forms with several meauserments to place custom orders. On several companies' websites the call to action is to email them to begin the communication process. This is not particularly engaging.
+1. Many companies' websites are out-dated and require users to fill out complex forms with several meauserments to place custom orders. On several companies' websites the call to action is to email them to begin the communication process. This is not particularly engaging.
 
 2. There is a lot of room for automation in the design and construction process that would reduce time and material costs.
 
