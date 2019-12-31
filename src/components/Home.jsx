@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setActiveCustomSpecComponent } from './../actions';
-
 function Home(props) {
-    setActiveCustomSpecComponent();
     return(
         <div className='grid-container-about'>
             <div className='heroDiv'>

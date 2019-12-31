@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 function Message(props) {
     var messageBody = null;
-    if (typeof props.style != 'number') {
+    if (props.customSpecUI.image === 'hidden') {
         messageBody = 'Select a style'
-    } else if (typeof props.image != 'string'){
+    } else if (props.customSpecUI.image === 'active'){
         messageBody = 'upload a photo of your bike'
-    } else if (props.scale === 0){
+    } else if (props.customSpecUI.scale === 'active'){
         messageBody = 'specify scale. Select the ends of the top tube and enter the length';
-    } else if (Object.keys(props.coords).length === 0) {
+    } else if (props.customSpecUI.shape === 'active') {
         messageBody = 'enter shape'
     }
     return (
@@ -21,10 +21,9 @@ function Message(props) {
 
 function mapStateToProps(state) {
     return {
-        style: state.style,
-        image: state.image,
         scale: state.scale,
-        coords: state.coords   
+        coords: state.coords,
+        customSpecUI: state.customSpecUI
     }
 }
 

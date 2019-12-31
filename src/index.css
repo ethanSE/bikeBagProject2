@@ -59,6 +59,20 @@ body {
     margin-top: 50px;
 }
 
+.customActive {
+    padding-top: 15px;
+    background-color: #3c415e;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.customActive h3 {
+    text-align: center;
+    color: #dfe2e2;
+}
 .fileInput {
 	width: 0.1px;
 	height: 0.1px;
@@ -86,9 +100,9 @@ body {
     padding-top: 15px;
     text-shadow:
     -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .header h1 {
@@ -99,6 +113,7 @@ body {
 .header a {
     color: #1cb3c8;
 }
+
 .header h3 {
     margin-top: 5px;
     margin-right: 10px;
@@ -106,18 +121,25 @@ body {
 }
 
 .imageUpload {
+    font-size: larger;
     display: grid;
     grid-template-columns: auto auto auto;
+}
+
+.imageUpload h3 {
+    grid-column: 1/4;
 }
 
 .imageUploadButton {
     grid-column: 2/3;
     width: 90%;
     padding-top: 16px;
-    margin-bottom: 50px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.message {
+/* .message {
     padding-top: 12px;
     font-size: larger;
     min-width: 225px;
@@ -131,6 +153,21 @@ body {
     color: #dfe2e2;
     margin: 30px;
     margin-left: 10%;
+} */
+
+.minimized {
+    font-size: larger;
+    min-width: 225px;
+    width: 80%;
+    height: auto;
+    background-color: #3c415e;
+    display: inline-block;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    text-align: center;
+    color: #dfe2e2;
+    margin: 20px;
+    margin-left: 10%;    
 }
 
 .results {
@@ -150,7 +187,7 @@ body {
 
 .scaleInputCanvas {
     margin-top: 20px;
-    margin-left: 10%;
+    margin-bottom: 0px;
 }
 
 .scaleInputForm {
@@ -158,7 +195,6 @@ body {
     grid-template-columns: 2fr 1fr 1fr;
     justify-content: space-evenly;
     margin-bottom: 20px;
-    width: 80%;
     margin: auto;
 }
 
@@ -167,6 +203,7 @@ body {
     height: 40px;
     width: 90%;
     min-width: 200px;
+    margin: auto;
 }
 
 .scaleInput button {
@@ -178,6 +215,10 @@ body {
     justify-content: space-evenly;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
+}
+
+.shapeInputGrid h3 {
+    grid-column: 1/3;
 }
 
 .shapeInputCanvas {
@@ -232,7 +273,8 @@ body {
     .scaleInput input{
         grid-column: 1/3;
         height: 40px;
-        width: 100%;
+        width: 90%;
+        margin: auto;
         margin-bottom: 10px;
     }
 

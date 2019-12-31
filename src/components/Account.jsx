@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { sendNewUserToFirebase, signIn } from './../actions';
 import { Redirect } from 'react-router-dom';

@@ -1,4 +1,5 @@
 import constants from './../constants';
+import { setActiveCustomSpecComponent } from './customSpecUI';
 const { types } = constants;
 export * from './auth';
 export * from './customSpecUI';
@@ -11,11 +12,6 @@ export const setCoordinates = (coords) => ({
 export const setStyle = (style) => ({
     type: types.SET_STYLE,
     style: style
-});
-
-export const setScale = (scale) => ({
-    type: types.SET_SCALE,
-    scale: scale
 });
 
 export const setImage = (image) => ({
@@ -32,6 +28,38 @@ export const setCanvasSize = (dimensions) => ({
     type: types.SET_DISPLAY_CANVAS_SIZE,
     dimensions: dimensions
 });
+
+export const setScale = (scale) => ({
+    type: types.SET_SCALE,
+    scale: scale
+});
+
+export function setScaleAndUpdateUI(scale) {
+    return (dispatch, getState) => {
+        if(getState().scale === 0 ) {
+            dispatch(setActiveCustomSpecComponent('shape'));
+        }
+        dispatch(setScale(scale));
+    }
+}
+
+export function setImageAndUpdateUI(image) {
+    return (dispatch, getState) => {
+        if(getState().image === '') {
+            dispatch(setActiveCustomSpecComponent('scale'));
+        }
+        dispatch(setImage(image));
+    }
+}
+
+export function setStyleUpdateUI(style) {
+    return (dispatch, getState) =>{
+        if ( getState().style === 0 ) {
+            dispatch(setActiveCustomSpecComponent('image'));
+        }
+        dispatch(setStyle(style));
+    }
+}
 
 export function createAllSides(coords) {
     return (dispatch, getState) => {
@@ -63,3 +91,4 @@ export function createAllSides(coords) {
         dispatch(setCoordinates(allSides));
     }
 }
+
