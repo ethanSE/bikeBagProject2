@@ -7,6 +7,7 @@ import svgStringReducer from './svgStringReducer';
 import displayCanvasSizeReducer from './displayCanvasSizeReducer';
 import userReducer from './userReducer';
 import customSpecUIReducer from './customSpecUIReducer';
+import activeMainComponentReducer from './activeMainComponentReducer';
 
 const rootReducer = combineReducers({
     scale: scaleReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     svgString: svgStringReducer,
     dimensions: displayCanvasSizeReducer,
     user: userReducer,
-    customSpecUI: customSpecUIReducer
+    customSpecUI: customSpecUIReducer,
+    activeMainComponent: activeMainComponentReducer
 });
 
 export default rootReducer;

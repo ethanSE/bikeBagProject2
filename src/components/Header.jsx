@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { setActiveMainComponent } from './../actions';
 import { connect } from 'react-redux';
 import { signOut } from '../actions';
 
@@ -8,21 +8,19 @@ function Header(props) {
         props.dispatch(signOut());
     }
 
+    let account = <h3 onClick={() => props.dispatch(setActiveMainComponent('account'))}> Sign In </h3>
     if(props.user) {
-        return (
-            <div className='header'>
-                <h1>Bike Frame Bag Designer</h1>
-                <h3><Link to="/custom">Custom</Link> | <Link to="/">Home</Link> | <Link to='/' onClick={signOutClick}>Sign Out</Link></h3>
-            </div>
-        )
-    } else {
-        return (
-            <div className='header'>
-                <h1>Bike Frame Bag Designer</h1>
-                <h3><Link to="/custom">Custom</Link> | <Link to="/">Home</Link> | <Link to="/account">Sign In / Create Account</Link></h3>
-            </div>
-        )
-    }
+        account = <h3 onClick={signOutClick}>Sign Out</h3>
+    } 
+
+    return (
+        <div className='header'>
+            <h1>Bike Frame Bag Designer</h1>
+            {account}
+            <h3 onClick={() => props.dispatch(setActiveMainComponent('custom'))}> Custom </h3>
+            <h3 onClick={() => props.dispatch(setActiveMainComponent('home'))}> Home </h3>
+        </div>
+    )
 }
 
 function mapStateToProps(state) {
@@ -32,4 +30,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Header);
-

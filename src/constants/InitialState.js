@@ -7,5 +7,6 @@ export const initialState = {
     scale:  'hidden',
     shape:  'hidden',
     signIn: 'hidden'
-  }
+  },
+  activeMainComponent: 'home'
 };

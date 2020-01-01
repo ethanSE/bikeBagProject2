@@ -4,6 +4,11 @@ const { types } = constants;
 export * from './auth';
 export * from './customSpecUI';
 
+export const setActiveMainComponent = (newActiveMainComponent) => ({
+    type: types.SET_ACTIVE_MAIN_COMPONENT,
+    activeMainComponent: newActiveMainComponent
+})
+
 export const setCoordinates = (coords) => ({
     type: types.SET_COORDINATES,
     coords: coords

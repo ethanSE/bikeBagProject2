@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import { HashRouter } from 'react-router-dom';
+
 import './index.css';
 import thunkMiddleware from 'redux-thunk';
 import middlewareLogger from './middleware/middlewareLogger'
@@ -15,9 +15,9 @@ store.dispatch(watchAuthState());
 const render = (Component) => {
     ReactDOM.render(
         <Provider store={store}>
-            <HashRouter>
-                <Component />
-            </HashRouter>
+
+            <Component />
+
         </Provider>,
         document.getElementById('root')
     );
