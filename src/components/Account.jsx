@@ -8,7 +8,8 @@ function Account(props) {
     let reenterPasswordInputRef = useRef();
     const [activeForm, setActiveForm] = React.useState('signIn')
 
-    function createAccountFormSubmit() {
+    function createAccountFormSubmit(e) {
+        e.preventDefault();
         if (passwordInputRef.value === reenterPasswordInputRef.value) {
             props.dispatch(sendNewUserToFirebase(emailInputRef.value, passwordInputRef.value));
         } else {
@@ -16,30 +17,30 @@ function Account(props) {
         }
     }
 
-    function signInFormSubmit() {
+    function signInFormSubmit(e) {
+        e.preventDefault();
         props.dispatch(signIn(emailInputRef.value, passwordInputRef.value));
         passwordInputRef.value = '';
         emailInputRef.value = '';
     }
 
     let form = (activeForm === 'signIn') ? (
-        <form onSubmit={signInFormSubmit} className='signInForm'>
+        <form onSubmit={ e => signInFormSubmit(e)} className='signInForm'>
             <input ref={(input) => { emailInputRef = input }} placeholder='Email' type='text' />
             <input ref={(input) => { passwordInputRef = input }} placeholder='password' type='password' />
             <button className='button accountButton' type='submit'>Sign In</button>
             <button className='button accountButton' onClick={() => setActiveForm('createAccount')}>Create Accout</button>
         </form> 
-    ) : ( 
-        <form onSubmit={createAccountFormSubmit} className='accountInputForm'>
+    ) :  
+        <form onSubmit={e => createAccountFormSubmit(e)} className='accountInputForm'>
             <input ref={(input) => { emailInputRef = input }} placeholder='Email' type='text' />
             <input ref={(input) => { passwordInputRef = input }} placeholder='password' type='password' />
             <input ref={(input) => { reenterPasswordInputRef = input }} placeholder='re-enter password' type='password' />
             <button className='button accountButton' type='submit'>Create Account</button>
             <button className='button accountButton' onClick={() => setActiveForm('signIn')}>Already have an account? -  Sign In</button>
         </form>
-    );
-
-    if (props.activeMainComponent != 'account') {
+    
+    if (props.activeMainComponent !== 'account') {
         return null;
     } else if (props.user) {
         props.dispatch(setActiveMainComponent('home'));

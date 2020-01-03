@@ -35,7 +35,7 @@ export function signIn(email, password) {
             } else {
                 alert(errorMessage);
             }
-            console.log(error);
+            console.log('error');
         })
             .then(console.log(myFirebase.auth().currentUser))
     }

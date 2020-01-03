@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function Home(props) {
+    console.log(props);
     if (props.activeMainComponent === 'home') {
         return (
             <div className='grid-container-about'>
@@ -31,7 +32,8 @@ function Home(props) {
 function mapStateToProps(state) {
     return {
         image: state.image,
-        activeMainComponent: state.activeMainComponent
+        activeMainComponent: state.activeMainComponent,
+        user: state.user
     }
 }
 
