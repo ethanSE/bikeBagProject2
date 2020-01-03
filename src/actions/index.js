@@ -93,6 +93,7 @@ export function createAllSides(coords) {
             allSides.push((newSide));
         });
         console.log(sideLengths);
+        dispatch(setActiveCustomSpecComponent('download'));
         dispatch(setCoordinates(allSides));
     }
 }

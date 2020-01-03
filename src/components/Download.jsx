@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import C2S from 'canvas2svg';
+import { setActiveCustomSpecComponent } from '../actions/customSpecUI';
 
 function Download(props) {
     let downloadCanvas = useRef();
@@ -67,14 +68,28 @@ function Download(props) {
         }        
     }
 
-    return (
-        <div className='results'>
-            <button className='button' onClick={renderClicked}>Render</button>
-            <button className='button' onClick={downloadClicked}>Download SVG</button>
-            <button className='button'>Order Custom</button>
-            <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
-        </div>
-    )
+    function placeOrder() {
+        return null;
+    }
+
+    let customOrderOrSignIn = (props.user)  ? (
+        <button onClick={() => props.dispatch(setActiveCustomSpecComponent('signInActive'))} className='button'>Order Custom</button>
+    ) : (
+        <button onClick={placeOrder} className='button'>Order Custom</button>
+    );
+    
+    if (props.customSpecUI.download === 'active') {
+        return (
+            <div className='results'>
+                <button className='button' onClick={renderClicked}>Render</button>
+                <button className='button' onClick={downloadClicked}>Download SVG</button>
+                {customOrderOrSignIn}
+                <canvas className='outputCanvas' ref={downloadCanvas} width={outputCanvasWidth} height={outputCanvasHeight} />
+            </div>
+        );
+    } else {
+        return null;
+    }
 }
 
 function mapStateToProps(state) {
@@ -83,7 +98,9 @@ function mapStateToProps(state) {
         scale: state.scale,
         image: state.image,
         svgString: state.svgString,
-        dimensions: state.dimensions
+        dimensions: state.dimensions,
+        customSpecUI: state.customSpecUI,
+        user: state.user
     }
 }
 

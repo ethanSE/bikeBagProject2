@@ -8,27 +8,18 @@ import Download from './Download';
 
 function BikeCanvas(props) {
     if (props.activeMainComponent === 'custom') {
-        if (props.coords.length > 1) {
-            return (
-                <div>
-                    <Download />
-                </div>
-
-            )
-        } else {
-            return (
-                <div className='customSpec'>
-                    <StyleSelection />
-                    <ImageUpload />
-                    <ScaleInput />
-                    <ShapeInput />
-                </div>
-            );
-        }
+        return (
+            <div className='customSpec'>
+                <StyleSelection />
+                <ImageUpload />
+                <ScaleInput />
+                <ShapeInput />
+                <Download />
+            </div>
+        );
     } else {
         return null;
     }
-    
 }
 
 function mapStateToProps(state) {

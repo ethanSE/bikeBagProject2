@@ -26,6 +26,20 @@ export function setActiveCustomSpecComponent(newActiveComponent) {
                 if (newUIState.scale === 'active') newUIState.scale = 'minimized';
                 newUIState.shape = 'active';
                 break;
+            case 'download':
+                newUIState.image = 'minimized';
+                newUIState.scale = 'minimized';
+                newUIState.shape = 'minimized';
+                newUIState.download = 'active';
+                break;
+            case 'signInActive':
+                newUIState.signIn = 'active';
+                break;
+            case 'signInHidden':
+                newUIState.signIn = 'hidden';
+                break;
+            default:
+                break;
         }
         dispatch(setCustomSpecUI(newUIState));
     }

@@ -31,7 +31,8 @@ function ScaleInput(props) {
             }
         }
 
-        function setPixelToInchScale() {
+        function setPixelToInchScale(event) {
+            event.preventDefault();
             if (topTubePoints.length === 2) {
                 let distance = Math.hypot(topTubePoints[0][0] - topTubePoints[1][0], topTubePoints[0][1] - topTubePoints[1][1])
                 let scale = (distance / scaleInputRef.value);
@@ -55,7 +56,7 @@ function ScaleInput(props) {
         return (
             <div className='scaleInput customActive' ref={scaleInputDivRef}>
                 <h3>Scale</h3>
-                <form onSubmit={setPixelToInchScale} className='scaleInputForm'>
+                <form onSubmit={(event) => setPixelToInchScale(event)} className='scaleInputForm'>
                     <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length in inches' type='number' />
                     <button className='button' type='submit'>Submit</button>
                     <button className='button' onClick={resetCoordinates}>Reset</button>

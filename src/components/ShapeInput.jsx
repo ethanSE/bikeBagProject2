@@ -11,17 +11,15 @@ function ShapeInput(props) {
         let xMin = 5000;
         let yMin = 5000;
         var ctx;
-
-        if (props.scale) {
-            var image = new Image();
-            image.onload = function () {
-                canvasShapeRef.current.width = shapeInputDivRef.current.clientWidth;
-                canvasShapeRef.current.height = canvasShapeRef.current.width * (image.height / image.width);
-                ctx = canvasShapeRef.current.getContext('2d');
-                ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
-            }
-            image.src = props.image;
+        var image = new Image();
+    
+        image.onload = function () {
+            canvasShapeRef.current.width = shapeInputDivRef.current.clientWidth;
+            canvasShapeRef.current.height = canvasShapeRef.current.width * (image.height / image.width);
+            ctx = canvasShapeRef.current.getContext('2d');
+            ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
         }
+        image.src = props.image;
 
         function canvasShapeClick(evt) {
             let rect = canvasShapeRef.current.getBoundingClientRect();
@@ -50,8 +48,10 @@ function ShapeInput(props) {
         }
 
         function shapeInputSubmit() {
-            coords = xyMinTranslation(coords);
-            props.dispatch(createAllSides(coords));
+            if (coords.length > 3) {
+                coords = xyMinTranslation(coords);
+                props.dispatch(createAllSides(coords));
+            }
         }
 
         function xyMinTranslation(coords) {
@@ -68,7 +68,6 @@ function ShapeInput(props) {
         function resetShape() {
             coords = [];
             ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
-
         }
 
         function drawLines() {
@@ -80,7 +79,6 @@ function ShapeInput(props) {
                 ctx.stroke();
             }
         }
-        //move a lot of logic to middleware
         
         return (
             <div className='shapeInputGrid customActive' ref={shapeInputDivRef}>
