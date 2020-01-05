@@ -69,13 +69,19 @@ function Download(props) {
     }
 
     function placeOrder() {
-        return null;
+        console.log('hi44444');
     }
 
+    function signInClicked() {
+        console.log('hi88888888')
+        props.dispatch(setActiveCustomSpecComponent('signInActive'))
+
+    }
+    
     let customOrderOrSignIn = (props.user)  ? (
-        <button onClick={() => props.dispatch(setActiveCustomSpecComponent('signInActive'))} className='button'>Order Custom</button>
-    ) : (
         <button onClick={placeOrder} className='button'>Order Custom</button>
+    ) : (
+        <button onClick = { signInClicked } className = 'button'>Order Custom</button>
     );
     
     if (props.customSpecUI.download === 'active') {

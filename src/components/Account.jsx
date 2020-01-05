@@ -40,24 +40,25 @@ function Account(props) {
             <button className='button accountButton' onClick={() => setActiveForm('signIn')}>Already have an account? -  Sign In</button>
         </form>
     
-    if (props.activeMainComponent !== 'account') {
-        return null;
-    } else if (props.user) {
+    if (props.activeMainComponent === 'account' && props.user) {
         props.dispatch(setActiveMainComponent('home'));
         return null;
+    } else if (!props.user && (props.activeMainComponent === 'account' || props.customSpecUI.signIn === 'active')) {
+       return (
+           <div className='account'>
+               {form}
+           </div>
+       )
     } else {
-        return (
-            <div className='account'>
-                {form}
-            </div>
-        )
+        return null;
     }
 }
 
 function mapStateToProps(state) {
     return {
         user: state.user,
-        activeMainComponent: state.activeMainComponent
+        activeMainComponent: state.activeMainComponent,
+        customSpecUI: state.customSpecUI
     }
 }
 export default connect(mapStateToProps)(Account);

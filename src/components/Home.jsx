@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function Home(props) {
-    console.log(props);
     if (props.activeMainComponent === 'home') {
         return (
             <div className='grid-container-about'>
