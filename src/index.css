@@ -106,6 +106,7 @@ body {
 }
 
 .header h1 {
+    font-size: xx-large;
     float: left;
     margin-left: 10px;
 }
@@ -119,6 +120,30 @@ body {
 
 .header h3:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+
+    .header {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: 45px auto;
+    }
+
+    .header h1 {
+        /* margin-top: 20px; */
+        margin-left: 0px;
+        float: none;
+        grid-column: 1/4;
+        /* height: 40px; */
+    }
+
+    .header h3 {
+        margin-top: 0px;
+        margin-right: 0px;
+        float: right;
+        color: #1cb3c8;
+    }
 }
 
 .imageUpload {
@@ -245,7 +270,7 @@ body {
     text-align: center;
     max-width: 250px;
     background-color: #3c415e;
-    border: 10px solid #1cb3c8;
+    border: 6px solid #1cb3c8;
     color: #F58B20;
     border-radius: 5px;
     height: auto;
@@ -262,14 +287,17 @@ body {
     box-shadow: 0 0 15px white;
     cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+     .styleItem h4{
+       font-size: large;
+    }
+}
 
 @media screen and (max-width: 425px) {
     .styleItem {
         height: 100%;
     }
-    .styleItem h4{
-       font-size: small;
-    }
+   
 
     .scaleInput input{
         grid-column: 1/3;
