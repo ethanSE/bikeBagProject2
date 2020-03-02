@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { setActiveCustomSpecComponent, setImageAndUpdateUI } from './../actions';
 
-function ImageUpload(props) {
+const ImageUpload = (props) => {
     let fileInput = useRef();
     let uploadCanvas = useRef();
     var img = new Image();
@@ -19,7 +17,6 @@ function ImageUpload(props) {
         uploadCanvas.current.height = img.height;
         ctx.drawImage(img, 0, 0);
         let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
-        props.dispatch(setImageAndUpdateUI(canvasDataUrl));
     }
 
     function imageLoadFailed() {
@@ -41,7 +38,7 @@ function ImageUpload(props) {
             );
         case 'minimized':
             return (
-                <div className='minimized' onClick={() => props.dispatch(setActiveCustomSpecComponent('image'))}>
+                <div className='minimized' onClick={console.log()}>
                     <h3>Image Upload</h3>
                 </div>
             );
@@ -50,30 +47,4 @@ function ImageUpload(props) {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        image: state.image,
-        style: state.style,
-        customSpecUI: state.customSpecUI
-    };
-}
-
-export default connect(mapStateToProps)(ImageUpload);
-
-// props.dispatch(setActiveCustomSpecComponent('scale'));
-// props.dispatch(setActiveCustomSpecComponent('shape'));
-
-    //old render condition
-
-    // if (!props.image.length && typeof props.style == 'number')
-    //     {
-    //     return (
-    //         <div className='imageUpload'>
-    //             <label className='imageUploadButton button' htmlFor='file'><p>Upload Photo</p></label>
-    //             <input className='fileInput' type='file' name='file' id='file' ref={fileInput} onChange={onImageLoad} />
-    //             <canvas className='hidden' ref={uploadCanvas} width='' height='' />
-    //         </div>
-    //     );
-    // } else {
-    //     return null;
-    // }
+export default ImageUpload;

@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { createAllSides, setActiveCustomSpecComponent } from './../actions'
 
 function ShapeInput(props) {
     let canvasShapeRef = useRef();
@@ -50,7 +48,7 @@ function ShapeInput(props) {
         function shapeInputSubmit() {
             if (coords.length > 3) {
                 coords = xyMinTranslation(coords);
-                props.dispatch(createAllSides(coords));
+                //create all sides(?)
             }
         }
 
@@ -90,7 +88,7 @@ function ShapeInput(props) {
         )
     } else if (props.customSpecUI.shape === 'minimized') {
         return (
-            <div className='minimized' onClick={() => props.dispatch(setActiveCustomSpecComponent('shape'))}>
+            <div className='minimized' onClick={() => console.log()}>
                 <h3>Shape</h3>
             </div>
         )
@@ -99,11 +97,4 @@ function ShapeInput(props) {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        image: state.image,
-        scale: state.scale,
-        customSpecUI: state.customSpecUI
-    }
-}
-export default connect(mapStateToProps)(ShapeInput);
+export default ShapeInput;

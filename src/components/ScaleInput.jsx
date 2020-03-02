@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { setScaleAndUpdateUI, setActiveCustomSpecComponent } from './../actions'
 
 function ScaleInput(props) {
     let canvasScaleRef = useRef();
@@ -36,7 +34,6 @@ function ScaleInput(props) {
             if (topTubePoints.length === 2) {
                 let distance = Math.hypot(topTubePoints[0][0] - topTubePoints[1][0], topTubePoints[0][1] - topTubePoints[1][1])
                 let scale = (distance / scaleInputRef.value);
-                props.dispatch(setScaleAndUpdateUI(scale));
             }
         }
 
@@ -66,7 +63,7 @@ function ScaleInput(props) {
         )
     } else if (props.customSpecUI.scale === 'minimized') {
         return (
-            <div className='minimized' onClick={() => props.dispatch(setActiveCustomSpecComponent('scale'))}>
+            <div className='minimized' onClick={console.log()}>
                 <h3>Scale</h3>
             </div>
         )
@@ -75,12 +72,4 @@ function ScaleInput(props) {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        image: state.image,
-        scale: state.scale,
-        customSpecUI: state.customSpecUI
-    }
-}
-
-export default connect(mapStateToProps)(ScaleInput);
+export default ScaleInput;

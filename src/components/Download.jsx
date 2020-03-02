@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
 import C2S from 'canvas2svg';
-import { setActiveCustomSpecComponent } from '../actions/customSpecUI';
 
 function Download(props) {
     let downloadCanvas = useRef();
@@ -74,7 +72,7 @@ function Download(props) {
 
     function signInClicked() {
         console.log('hi88888888')
-        props.dispatch(setActiveCustomSpecComponent('signInActive'))
+        //set active main component
 
     }
     
@@ -98,16 +96,4 @@ function Download(props) {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        coords: state.coords,
-        scale: state.scale,
-        image: state.image,
-        svgString: state.svgString,
-        dimensions: state.dimensions,
-        customSpecUI: state.customSpecUI,
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps)(Download);
+export default Download;

@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { sendNewUserToFirebase, signIn, setActiveMainComponent } from './../actions';
 
 function Account(props) {
     let emailInputRef = useRef();
@@ -11,7 +9,7 @@ function Account(props) {
     function createAccountFormSubmit(e) {
         e.preventDefault();
         if (passwordInputRef.value === reenterPasswordInputRef.value) {
-            props.dispatch(sendNewUserToFirebase(emailInputRef.value, passwordInputRef.value));
+           console.log()
         } else {
             console.log('no');
         }
@@ -19,7 +17,7 @@ function Account(props) {
 
     function signInFormSubmit(e) {
         e.preventDefault();
-        props.dispatch(signIn(emailInputRef.value, passwordInputRef.value));
+        console.log()
         passwordInputRef.value = '';
         emailInputRef.value = '';
     }
@@ -41,7 +39,7 @@ function Account(props) {
         </form>
     
     if (props.activeMainComponent === 'account' && props.user) {
-        props.dispatch(setActiveMainComponent('home'));
+        //set active main component
         return null;
     } else if (!props.user && (props.activeMainComponent === 'account' || props.customSpecUI.signIn === 'active')) {
        return (
@@ -54,11 +52,4 @@ function Account(props) {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.user,
-        activeMainComponent: state.activeMainComponent,
-        customSpecUI: state.customSpecUI
-    }
-}
-export default connect(mapStateToProps)(Account);
+export default Account;
