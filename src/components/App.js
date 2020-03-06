@@ -4,10 +4,19 @@ import Home from './Home';
 import Account from './Account';
 import CustomSpecification from './CustomSpecification';
 import { ModeContext } from '../modeContext';
+import { CustomSpecContext } from '../customSpecContext';
 
 const App = () => {
+  //set up mode context
   const [activeMainComponent, setActiveMainComponent] = useState('home');
   const mode = { activeMainComponent, setActiveMainComponent };
+
+
+  //set up customSpecContext
+  const [style, setStyle] = useState(null);
+  const custom = { style, setStyle };
+
+
 
   const woo = () => {
     // console.log('woo ran')
@@ -25,8 +34,10 @@ const App = () => {
 
   return (
     <ModeContext.Provider value={mode}>
-      <Header />
-      {woo()}
+      <CustomSpecContext.Provider value={custom}>
+        <Header />
+        {woo()}
+      </CustomSpecContext.Provider>
     </ModeContext.Provider>
   )
 }

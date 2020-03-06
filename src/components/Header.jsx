@@ -4,7 +4,7 @@ import styles from '../styles/Header.module.css';
 
 const Header = () => {
     const { setActiveMainComponent } = useContext(ModeContext);
-    let account = <h3 onClick={() => console.log()}> Sign In </h3>
+    let account = <h3  onClick={() => console.log()}> Sign In </h3>
 
     return (
         <div className={styles.header}>

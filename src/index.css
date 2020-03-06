@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Nanum+Gothic+Coding&display=swap');
 
-.active {
-    box-shadow: 0 0 15px lightgreen;
-}
-
 .account {
     display: grid;
     grid-template-columns: 1fr;
@@ -19,13 +15,6 @@
 
 .account form input{
     margin: 10px;
-}
-
-.bagIcon {
-    width: 80%;
-    height: auto;
-    margin-bottom: 5%;
-    margin-top: 5%;
 }
 
 body {
@@ -54,10 +43,6 @@ body {
 
 .button:active {
     background-color: #b56618;
-}
-
-.customSpec {
-    margin-top: 50px;
 }
 
 .customActive {
@@ -206,45 +191,8 @@ body {
     margin-bottom: 20px;
 }
 
-.styleContainer {
-    display: grid;
-    grid-template-columns: 25% 25% 25%;
-    justify-content: space-evenly;
-  }
-  
-.styleItem {
-    padding-top: 10px;
-    text-align: center;
-    max-width: 250px;
-    background-color: #3c415e;
-    border: 6px solid #1cb3c8;
-    color: #F58B20;
-    border-radius: 5px;
-    height: auto;
-    margin: auto;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
 
-.styleItem h4 {
-    
-    font-size: xx-large;
-}
-
-.styleItem:hover {
-    box-shadow: 0 0 15px white;
-    cursor: pointer;
-}
-@media screen and (max-width: 768px) {
-     .styleItem h4{
-       font-size: large;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .styleItem {
-        height: 100%;
-    }
-   
+@media screen and (max-width: 425px) {   
 
     .scaleInput input{
         grid-column: 1/3;

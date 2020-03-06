@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TopTube from '../assets/images/Toptube';
 import Full from '../assets/images/Full';
 import Front from '../assets/images/Front';
+import { CustomSpecContext } from '../customSpecContext';
+import cssStyle from '../styles/StyleSelection.module.css';
 
-function StyleSelection(props) {
-    var activeArray = [null, null, null];
-    if (props.style) {
-        activeArray[props.style - 1] = 'active';
-    }
+const StyleSelection = () => {
+    const { style, setStyle } = useContext(CustomSpecContext)
 
     return (
-        <div className='styleSelection styleContainer'>
-            <div className={'styleItem ' + activeArray[0]} onClick={() => console.log()}>
+        <div className={cssStyle.styleContainer}>
+            <div className={style === 'topTube' ? cssStyle.styleItemActive : cssStyle.styleItem } onClick={() => setStyle('topTube')}>
                 <h4>Top Tube</h4>
-                <TopTube className='bagIcon' />
+                <TopTube className={cssStyle.bagIcon} />
             </div>
-            <div className={'styleItem ' + activeArray[1]} onClick={() => { console.log()}}>
+            <div className={style === 'front' ? cssStyle.styleItemActive : cssStyle.styleItem} onClick={() => setStyle('front')}>
                 <h4>Front</h4>
-                <Front className='bagIcon'/>
+                <Front className={cssStyle.bagIcon} />
             </div>
-            <div className={'styleItem ' + activeArray[2]} onClick={() => { console.log()}}>
+            <div className={style === 'full' ? cssStyle.styleItemActive : cssStyle.styleItem} onClick={() => setStyle('full')}>
                 <h4>Full</h4>
-                <Full className='bagIcon' />
+                <Full className={cssStyle.bagIcon} />
             </div>
         </div>
     )
 }
+
 export default StyleSelection;
