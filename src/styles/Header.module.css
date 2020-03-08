@@ -31,6 +31,10 @@
     color: #1cb3c8;
 }
 
+.header h1 {
+    margin-left: 10px;
+}
+
 .header h3:hover {
     text-decoration: underline;
 }

@@ -4,17 +4,21 @@ import ShapeInput from './ShapeInput';
 import ScaleInput from './ScaleInput';
 import ImageUpload from './ImageUpload';
 import Download from './Download';
+import styles from '../styles/CustomSpec.module.css';
 
 const BikeCanvas = () => {
     return (
-        <div className='customSpec'>
+        <div className={styles.customSpec} >
             <StyleSelection />
-            {/* <ImageUpload /> */}
-            {/* <ScaleInput />
-            <ShapeInput />
+            <ImageUpload />
+            <ScaleInput />
+            {/* <ShapeInput />
             <Download /> */}
         </div>
     );
 }
 
 export default BikeCanvas;
+
+
+

@@ -1,10 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import Header from './Header';
 import Home from './Home';
 import Account from './Account';
 import CustomSpecification from './CustomSpecification';
 import { ModeContext } from '../modeContext';
 import { CustomSpecContext } from '../customSpecContext';
+
+
+const initialCustomSpecUIState = {
+  image: null,
+  scale: null,
+  shape: null,
+  download: null
+}
+
+const initialCustomSpecState = {
+  style: '',
+  image: null,
+  coords: null,
+}
+
+const customSpecUIReducer = (state, action) => {
+  switch (action) {
+    case 'image':
+      return { ...state, image: 'active' }
+    case 'scale':
+      return {
+        ...state,
+        image: state.image === 'active' ? 'minimized' : null,
+        scale: 'active'
+      }
+    default:
+      throw new Error();
+  }
+}
 
 const App = () => {
   //set up mode context
@@ -13,13 +42,17 @@ const App = () => {
 
 
   //set up customSpecContext
-  const [style, setStyle] = useState(null);
-  const custom = { style, setStyle };
+  const [customSpecState, setCustomSpecState] = useState(initialCustomSpecState);
+  const [customSpecUIState, dispatch] = useReducer(customSpecUIReducer, initialCustomSpecUIState);
+  const custom = { customSpecState, setCustomSpecState, customSpecUIState, dispatch };
 
 
+  useEffect(() => {
+    console.log(customSpecUIState);
+  }, [customSpecUIState])
 
-  const woo = () => {
-    // console.log('woo ran')
+  const renderMainComponent = () => {
+    // console.log('renderMainComponent ran')
     switch (mode.activeMainComponent) {
       case 'home':
         return <Home />
@@ -36,7 +69,7 @@ const App = () => {
     <ModeContext.Provider value={mode}>
       <CustomSpecContext.Provider value={custom}>
         <Header />
-        {woo()}
+        {renderMainComponent()}
       </CustomSpecContext.Provider>
     </ModeContext.Provider>
   )

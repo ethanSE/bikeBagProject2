@@ -1,44 +1,52 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext, useState } from 'react';
+import { CustomSpecContext } from '../customSpecContext';
+import styles from '../styles/ImageUpload.module.css';
 
-const ImageUpload = (props) => {
+
+const ImageUpload = () => {
+    const { customSpecUIState, setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
+
     let fileInput = useRef();
     let uploadCanvas = useRef();
     var img = new Image();
 
-    function onImageLoad() {
+    const onImageLoad = () => {
+        console.log('image load start')
         img.onload = saveImage;
         img.onerror = imageLoadFailed;
         img.src = URL.createObjectURL(fileInput.current.files[0]);
     }
 
-    function saveImage() {
+    const saveImage = () => {
         let ctx = uploadCanvas.current.getContext('2d');
         uploadCanvas.current.width = img.width;
         uploadCanvas.current.height = img.height;
         ctx.drawImage(img, 0, 0);
         let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
+        setCustomSpecState({ ...customSpecState, image: canvasDataUrl })
+        dispatch('scale');
     }
 
-    function imageLoadFailed() {
+    const imageLoadFailed = () => {
         console.error("The provided file couldn't be loaded as an Image media");
     }
 
-    switch (props.customSpecUI.image) {
+    switch (customSpecUIState.image) {
         case 'active':
             return (
-                <div className='imageUpload customActive'>
+                <div className={styles.imageUpload}>
                     <h3>Image Upload</h3>
-                    {/* <div className='message'>
-                        <p>upload a photo of your bike</p>
-                    </div> */}
-                    <label className='imageUploadButton button' htmlFor='file'><p>Upload Photo</p></label>
-                    <input className='fileInput' type='file' name='file' id='file' ref={fileInput} onChange={onImageLoad} />
-                    <canvas className='hidden' ref={uploadCanvas} width='' height='' />
+                    <label className={styles.button} htmlFor='file'><p>Upload Photo</p></label>
+                    <input className={styles.fileInput} type='file' name='file' id='file' ref={fileInput} onChange={onImageLoad} />
+                    <canvas className={styles.hidden}
+                        ref={uploadCanvas}
+                        width=''
+                        height='' />
                 </div>
             );
         case 'minimized':
             return (
-                <div className='minimized' onClick={console.log()}>
+                <div className='minimized' onClick={dispatch('image')}>
                     <h3>Image Upload</h3>
                 </div>
             );

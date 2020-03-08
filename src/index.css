@@ -59,59 +59,10 @@ body {
     text-align: center;
     color: #dfe2e2;
 }
-.fileInput {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-    z-index: -1;
-    padding: 90px 20;
-}
-
-.home
 
 .hidden {
     display: none;
 }
-
-
-
-
-.imageUpload {
-    font-size: larger;
-    display: grid;
-    grid-template-columns: auto auto auto;
-}
-
-.imageUpload h3 {
-    grid-column: 1/4;
-}
-
-.imageUploadButton {
-    grid-column: 2/3;
-    width: 90%;
-    padding-top: 16px;
-    margin: auto;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-/* .message {
-    padding-top: 12px;
-    font-size: larger;
-    min-width: 225px;
-    width: 80%;
-    height: auto;
-    background-color: #3c415e;
-    display: inline-block;
-    border: 5px solid #1cb3c8;
-    border-radius: 5px;
-    text-align: center;
-    color: #dfe2e2;
-    margin: 30px;
-    margin-left: 10%;
-} */
 
 .minimized {
     font-size: larger;
