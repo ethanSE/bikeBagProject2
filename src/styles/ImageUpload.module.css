@@ -1,4 +1,5 @@
 .imageUpload {
+    align-self: center;
     font-size: larger;
     display: flex;
     flex-direction: column;

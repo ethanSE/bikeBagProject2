@@ -5,7 +5,6 @@ import styles from '../styles/ImageUpload.module.css';
 
 const ImageUpload = () => {
     const { customSpecUIState, setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
-
     let fileInput = useRef();
     let uploadCanvas = useRef();
     var img = new Image();

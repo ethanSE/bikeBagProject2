@@ -1,14 +1,40 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { CustomSpecContext } from '../customSpecContext';
+import styles from '../styles/ScaleInput.module.css'
+
+function debounce(fn, ms) {
+    let timer
+    return () => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            timer = null
+            fn.apply(this, arguments)
+        }, ms)
+    };
+}
 
 const ScaleInput = () => {
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [topTubePoints, setTopTubePoints] = useState([]);
     const { customSpecUIState, setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
 
     let canvasScaleRef = useRef();
     let scaleInputRef = useRef();
     let scaleInputDivRef = useRef();
 
-    let topTubePoints = [];
+    useEffect(() => {
+        window.addEventListener('resize', debouncedHandleResize)
+        return () => {
+            window.removeEventListener('resize', debouncedHandleResize)
+        };
+    })
+    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 10)
+
+
+    // useEffect(() => {
+    //     topTubePoints.forEach((point) => drawCircle(point[0], point[1]));
+    // }, [topTubePoints, windowWidth]);
+
     let ctx;
 
     if (customSpecState.image) {
@@ -26,9 +52,13 @@ const ScaleInput = () => {
         let rect = canvasScaleRef.current.getBoundingClientRect();
         let x = (evt.clientX - rect.left);
         let y = (evt.clientY - rect.top);
+        console.log(x, y)
         if (topTubePoints.length < 2) {
-            drawCircle(x, y);
-            topTubePoints.push([x, y]);
+            console.log('hi')
+            
+            // drawCircle(x, y); have useEffect do drawing?
+            setTopTubePoints([...topTubePoints, [x, y]]);
+            console.log(topTubePoints)
         }
     }
 
@@ -48,8 +78,10 @@ const ScaleInput = () => {
         ctx.arc(x, y, 10, 0, 2 * Math.PI);
         ctx.stroke();
     }
+
+
     const resetCoordinates = () => {
-        topTubePoints = [];
+        setTopTubePoints([]);
         ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height);
     }
 
@@ -74,7 +106,6 @@ const ScaleInput = () => {
             )
         default:
             return null;
-
     }
 }
 

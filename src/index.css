@@ -89,36 +89,6 @@ body {
     width: 90%;
 }
 
-.scaleInput button {
-    width: 25%;
-    margin: auto;
-}
-
-.scaleInputCanvas {
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-
-.scaleInputForm {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
-    margin: auto;
-}
-
-.scaleInput input{
-    grid-column: 1/2;
-    height: 40px;
-    width: 90%;
-    min-width: 200px;
-    margin: auto;
-}
-
-.scaleInput button {
-    width: 90%;
-}
-
 .shapeInputGrid {
     display: grid;
     justify-content: space-evenly;
