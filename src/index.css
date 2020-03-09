@@ -115,25 +115,4 @@ body {
 
 @media screen and (max-width: 425px) {   
 
-    .scaleInput input{
-        grid-column: 1/3;
-        height: 40px;
-        width: 90%;
-        margin: auto;
-        margin-bottom: 10px;
-    }
-
-    .scaleInputForm {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .scaleInput button{
-        min-width: 100px;
-        width: 90%;
-    }
-
-    .shapeInputButton {
-        min-width: 0px;
-        width: 90%;
-    }
 }

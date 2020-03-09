@@ -1,29 +1,45 @@
-.scaleInput button {
-    width: 25%;
-    margin: auto;
-}
-
-.scaleInputCanvas {
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-
 .scaleInputForm {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
-    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
 
 .scaleInput input{
-    grid-column: 1/2;
-    height: 40px;
-    width: 90%;
-    min-width: 200px;
-    margin: auto;
+    margin: 5px;
+    flex: 2;
 }
 
 .scaleInput button {
-    width: 90%;
+    margin: 5px;
+    flex: 1;
+}
+
+.scaleInput {
+    padding-top: 15px;
+    background-color: #3c415e;
+    border: 5px solid #1cb3c8;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.scaleInput h3 {
+    text-align: center;
+    color: #dfe2e2;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: #b56618;
+}
+
+.button {
+    text-align: center;
+    background-color: #F58B20;
+    border: none;
+    height: 40px;
+    border-radius: 5px;
+    font-weight: bolder;
 }
