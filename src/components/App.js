@@ -18,17 +18,23 @@ const initialCustomSpecState = {
   style: '',
   image: null,
   coords: null,
+  shape: null
 }
 
 const customSpecUIReducer = (state, action) => {
   switch (action) {
     case 'image':
-      return { ...state, image: 'active' }
+      return {
+        ...state,
+        image: 'active',
+        scale: state.scale === 'active' ? 'minimized' : state.scale === 'minimized' ? 'minimized': null
+      }
+
     case 'scale':
       return {
         ...state,
-        image: state.image === 'active' ? 'minimized' : null,
-        scale: 'active'
+        scale: 'active',
+        image: state.image === 'active' ? 'minimized' : state.image === 'minimized' ? 'minimized' : null,
       }
     default:
       throw new Error();
@@ -52,7 +58,6 @@ const App = () => {
   }, [customSpecUIState])
 
   const renderMainComponent = () => {
-    // console.log('renderMainComponent ran')
     switch (mode.activeMainComponent) {
       case 'home':
         return <Home />

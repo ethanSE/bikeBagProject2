@@ -10,7 +10,6 @@ const ImageUpload = () => {
     var img = new Image();
 
     const onImageLoad = () => {
-        console.log('image load start')
         img.onload = saveImage;
         img.onerror = imageLoadFailed;
         img.src = URL.createObjectURL(fileInput.current.files[0]);
@@ -45,7 +44,7 @@ const ImageUpload = () => {
             );
         case 'minimized':
             return (
-                <div className='minimized' onClick={dispatch('image')}>
+                <div className={styles.minimized} onClick={() => dispatch('image')}>
                     <h3>Image Upload</h3>
                 </div>
             );
