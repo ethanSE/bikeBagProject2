@@ -1,18 +1,7 @@
-import React, { useRef, useContext, useEffect, useState, useLayoutEffect } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { CustomSpecContext } from '../customSpecContext';
+import { debounce } from '../actions';
 import styles from '../styles/ScaleInput.module.css'
-import { Button } from 'react-bootstrap';
-
-function debounce(fn, ms) {
-    let timer
-    return () => {
-        clearTimeout(timer)
-        timer = setTimeout(() => {
-            timer = null
-            fn.apply(this, arguments)
-        }, ms)
-    };
-}
 
 const ScaleInput = () => {
     const { customSpecUIState, dispatch } = useContext(CustomSpecContext)
@@ -21,7 +10,7 @@ const ScaleInput = () => {
             return <ScaleInputActive />
         case 'minimized':
             return (
-                <div className={styles.scaleInput} onClick={() => dispatch('scale')}>
+                <div className={styles.minimized} onClick={() => dispatch('scale')}>
                     <h3>Scale</h3>
                 </div>
             )
@@ -50,12 +39,12 @@ const ScaleInputActive = () => {
         };
     }, [])
 
+    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
+
     //draws the image and points on the canvas when window width or points changes
     useEffect(() => {
         drawImageOnCanvas();
     }, [windowWidth, topTubePoints])
-
-    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
 
 
     //loads image onto canvas and calls drawTopTubePoints
@@ -63,9 +52,10 @@ const ScaleInputActive = () => {
         let image = new Image();
         image.onload = () => {
             if (!sourceDimensions) setSourceDimensions({ imageHeight: image.height, imageWidth: image.width });
-            canvasScaleRef.current.width = scaleInputDivRef.current.clientWidth; //get size of canvas 
-            canvasScaleRef.current.height = canvasScaleRef.current.width * (image.height / image.width);
-            let ctx = canvasScaleRef.current.getContext('2d');
+            let displayScaleFactor = scaleInputDivRef.current.clientWidth / image.width;
+            canvasScaleRef.current.width = image.width * displayScaleFactor;
+            canvasScaleRef.current.height = image.height * displayScaleFactor;
+            ctx = canvasScaleRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height); //draws image on canvas
             drawTopTubePoints()
         }
@@ -74,19 +64,15 @@ const ScaleInputActive = () => {
 
     //draws the points on the canvas
     const drawTopTubePoints = () => {
-        if (topTubePoints) {
-            topTubePoints.forEach(point => {
-                drawCircle((point[0] * (canvasScaleRef.current.width / sourceDimensions.imageWidth)),
-                    (point[1] * (canvasScaleRef.current.height / sourceDimensions.imageHeight)))
-            })
-        } else {
-            console.log('top tube points is null')
-        }
+        topTubePoints.forEach(point => {
+            drawCircle((point[0] * (canvasScaleRef.current.width / sourceDimensions.imageWidth)),
+                (point[1] * (canvasScaleRef.current.height / sourceDimensions.imageHeight)))
+        })
     }
 
     //draws a user-selected point on the canvas
     const drawCircle = (x, y) => {
-        let ctx = canvasScaleRef.current.getContext('2d');
+        ctx = canvasScaleRef.current.getContext('2d');
         ctx.strokeStyle = "#FF0000";
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -96,13 +82,18 @@ const ScaleInputActive = () => {
 
     //captures user click on the canvas and converts to pixel coordinates of original image
     const canvasScaleClick = (evt) => {
+        let displayScaleFactor = scaleInputDivRef.current.clientWidth / sourceDimensions.imageWidth;
         if (topTubePoints.length < 2) {
             let rect = canvasScaleRef.current.getBoundingClientRect();
             let x = (evt.clientX - rect.left);
             let y = (evt.clientY - rect.top);
-            let xSourceCoord = x * sourceDimensions.imageWidth / canvasScaleRef.current.width;
-            let ySourceCoord = y * sourceDimensions.imageHeight / canvasScaleRef.current.height;
-            setTopTubePoints([...topTubePoints, [xSourceCoord, ySourceCoord]]);
+            let xSourceCoord = x / displayScaleFactor;
+            let ySourceCoord = y / displayScaleFactor;
+            if (topTubePoints.length == 1) {
+                setTopTubePoints([topTubePoints[0], [xSourceCoord, ySourceCoord]]);
+            } else {
+                setTopTubePoints([[xSourceCoord, ySourceCoord]]);
+            }
         }
     }
 

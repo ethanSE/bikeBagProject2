@@ -20,6 +20,7 @@
     border: 5px solid #1cb3c8;
     border-radius: 5px;
     width: 80%;
+    margin-bottom: 20px;
 }
 
 .scaleInput h3 {
@@ -52,4 +53,7 @@
     border: 5px solid #1cb3c8;
     border-radius: 5px;
     width: 80%;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
 }

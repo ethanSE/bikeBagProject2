@@ -5,6 +5,7 @@ import Account from './Account';
 import CustomSpecification from './CustomSpecification';
 import { ModeContext } from '../modeContext';
 import { CustomSpecContext } from '../customSpecContext';
+import { copySync } from 'fs-extra';
 
 
 const initialCustomSpecUIState = {
@@ -17,7 +18,7 @@ const initialCustomSpecUIState = {
 const initialCustomSpecState = {
   style: '',
   image: null,
-  coords: null,
+  scale: null,
   shape: null
 }
 
@@ -27,14 +28,33 @@ const customSpecUIReducer = (state, action) => {
       return {
         ...state,
         image: 'active',
-        scale: state.scale === 'active' ? 'minimized' : state.scale === 'minimized' ? 'minimized': null
+        scale: state.scale === null ? null : 'minimized',
+        shape: state.shape === null ? null : 'minimized',
+        confirmation: state.confirmation == null ? null : 'minimized'
       }
 
     case 'scale':
       return {
         ...state,
         scale: 'active',
-        image: state.image === 'active' ? 'minimized' : state.image === 'minimized' ? 'minimized' : null,
+        image: 'minimized',
+        shape: state.shape == null ? null : 'minimized',
+        confirmation: state.confirmation == null ? null : 'minimized'
+      }
+    case 'shape':
+      return {
+        ...state,
+        shape: 'active',
+        image: 'minimized',
+        scale: 'minimized',
+        confirmation: state.confirmation == null ? null : 'minimized'
+      }
+    case 'confirmation':
+      return {
+        ...state,
+        shape: 'minimized',
+        scale: 'minimized',
+        image: 'minimized',
       }
     default:
       throw new Error();
@@ -52,10 +72,12 @@ const App = () => {
   const [customSpecUIState, dispatch] = useReducer(customSpecUIReducer, initialCustomSpecUIState);
   const custom = { customSpecState, setCustomSpecState, customSpecUIState, dispatch };
 
-
   useEffect(() => {
-    console.log(customSpecUIState);
-  }, [customSpecUIState])
+    console.log(customSpecState)
+  }, [customSpecState]);
+
+
+
 
   const renderMainComponent = () => {
     switch (mode.activeMainComponent) {

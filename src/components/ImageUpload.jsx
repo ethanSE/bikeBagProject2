@@ -2,7 +2,6 @@ import React, { useRef, useContext, useState } from 'react';
 import { CustomSpecContext } from '../customSpecContext';
 import styles from '../styles/ImageUpload.module.css';
 
-
 const ImageUpload = () => {
     const { customSpecUIState, setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
     let fileInput = useRef();
@@ -29,6 +28,7 @@ const ImageUpload = () => {
         console.error("The provided file couldn't be loaded as an Image media");
     }
 
+
     switch (customSpecUIState.image) {
         case 'active':
             return (
@@ -41,16 +41,16 @@ const ImageUpload = () => {
                         width=''
                         height='' />
                 </div>
-            );
+            )
         case 'minimized':
             return (
                 <div className={styles.minimized} onClick={() => dispatch('image')}>
                     <h3>Image Upload</h3>
                 </div>
-            );
-        default:
-            return null;
+            )
+        default: return null
     }
+
 }
 
 export default ImageUpload;

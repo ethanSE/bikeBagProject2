@@ -1,8 +1,9 @@
 import React from 'react';
 import StyleSelection from './StyleSelection';
-import ShapeInput from './ShapeInput';
-import ScaleInput from './ScaleInput';
 import ImageUpload from './ImageUpload';
+import ScaleInput from './ScaleInput';
+import ShapeInput from './ShapeInput';
+import NewShapeInput from './NewShapeInput';
 import Download from './Download';
 import styles from '../styles/CustomSpec.module.css';
 
@@ -12,13 +13,10 @@ const BikeCanvas = () => {
             <StyleSelection />
             <ImageUpload />
             <ScaleInput />
-            {/* <ShapeInput />
-            <Download /> */}
+            <NewShapeInput />
+            {/*<Download /> */}
         </div>
     );
 }
 
 export default BikeCanvas;
-
-
-

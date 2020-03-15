@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
+import { CustomSpecContext } from '../customSpecContext';
 
-function ShapeInput(props) {
+const ShapeInput = () => {
+    const { customSpecUIState, dispatch, customSpecState, setCustomSpecState } = useContext(CustomSpecContext)
+   
     let canvasShapeRef = useRef();
     let shapeInputDivRef = useRef();
     
-    if (props.customSpecUI.shape === 'active') {
+    if (customSpecUIState.shape === 'active') {
         let coords = [];
         let xMin = 5000;
         let yMin = 5000;
@@ -17,7 +20,7 @@ function ShapeInput(props) {
             ctx = canvasShapeRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height);
         }
-        image.src = props.image;
+        image.src = customSpecState.image;
 
         function canvasShapeClick(evt) {
             let rect = canvasShapeRef.current.getBoundingClientRect();
@@ -48,7 +51,6 @@ function ShapeInput(props) {
         function shapeInputSubmit() {
             if (coords.length > 3) {
                 coords = xyMinTranslation(coords);
-                //create all sides(?)
             }
         }
 
@@ -86,7 +88,7 @@ function ShapeInput(props) {
                 <canvas className='shapeInputCanvas' ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />
             </div>
         )
-    } else if (props.customSpecUI.shape === 'minimized') {
+    } else if (customSpecUIState.shape === 'minimized') {
         return (
             <div className='minimized' onClick={() => console.log()}>
                 <h3>Shape</h3>
