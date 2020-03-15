@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c7cf3709efb998402c93d268b955721b",
+    "revision": "427ca6ef38bfca0c1262f85233577b3a",
     "url": "/bikeBagProject2/index.html"
   },
   {
-    "revision": "bf1cee6d188791ad6555",
+    "revision": "4adec0750d1824238372",
     "url": "/bikeBagProject2/static/css/main.46763b73.chunk.css"
   },
   {
-    "revision": "00fbae455fc125706c82",
-    "url": "/bikeBagProject2/static/js/2.7810e4ba.chunk.js"
+    "revision": "8eda5040a9e08a99485a",
+    "url": "/bikeBagProject2/static/js/2.0cdd66a4.chunk.js"
   },
   {
-    "revision": "bf1cee6d188791ad6555",
-    "url": "/bikeBagProject2/static/js/main.9527faaf.chunk.js"
+    "revision": "4adec0750d1824238372",
+    "url": "/bikeBagProject2/static/js/main.151545e8.chunk.js"
   },
   {
     "revision": "0d11c0f262f3a43b0239",
