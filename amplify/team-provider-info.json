@@ -1,0 +1,22 @@
+{
+    "env": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bikebagproject2-env-153000-authRole",
+            "UnauthRoleArn": "arn:aws:iam::082613591818:role/amplify-bikebagproject2-env-153000-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::082613591818:role/amplify-bikebagproject2-env-153000-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-bikebagproject2-env-153000-deployment",
+            "UnauthRoleName": "amplify-bikebagproject2-env-153000-unauthRole",
+            "StackName": "amplify-bikebagproject2-env-153000",
+            "StackId": "arn:aws:cloudformation:us-west-2:082613591818:stack/amplify-bikebagproject2-env-153000/8e89de90-670c-11ea-b162-0a7bf50fa3c2",
+            "AmplifyAppId": "d18kocjujujk64"
+        },
+        "categories": {
+            "auth": {
+                "bikebagproject2bd47dc12": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"517151323430-f629p8b6nvfmghsqg082jjm2r8cuif58.apps.googleusercontent.com\",\"client_secret\":\"g3QfftlB9mSKEf5jfkr3cwD1\"}]"
+                }
+            }
+        }
+    }
+}

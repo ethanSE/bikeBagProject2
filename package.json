@@ -8,6 +8,7 @@
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
+    "aws-amplify": "^2.2.6",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.0.6",
@@ -79,7 +80,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://ethanse.github.io/bikeBagProject/",
+  "homepage": "https://ethanse.github.io/bikeBagProject2/",
   "browserslist": {
     "production": [
       ">0.2%",
