@@ -3,7 +3,6 @@ import StyleSelection from './StyleSelection';
 import ImageUpload from './ImageUpload';
 import ScaleInput from './ScaleInput';
 import ShapeInput from './ShapeInput';
-import NewShapeInput from './NewShapeInput';
 import Download from './Download';
 import styles from '../styles/CustomSpec.module.css';
 
@@ -13,7 +12,7 @@ const BikeCanvas = () => {
             <StyleSelection />
             <ImageUpload />
             <ScaleInput />
-            <NewShapeInput />
+            <ShapeInput />
             {/*<Download /> */}
         </div>
     );
