@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext } from 'react';
 import { CustomSpecContext } from '../customSpecContext';
 import styles from '../styles/ImageUpload.module.css';
 

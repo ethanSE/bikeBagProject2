@@ -32,20 +32,13 @@ const ScaleInputActive = () => {
     let ctx;
 
     //sets up a listener to update state on window resize
+    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
     useEffect(() => {
         window.addEventListener('resize', debouncedHandleResize);
         return () => {
             window.removeEventListener('resize', debouncedHandleResize)
         };
     }, [])
-
-    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
-
-    //draws the image and points on the canvas when window width or points changes
-    useEffect(() => {
-        drawImageOnCanvas();
-    }, [windowWidth, topTubePoints])
-
 
     //loads image onto canvas and calls drawTopTubePoints
     const drawImageOnCanvas = () => {
@@ -61,6 +54,14 @@ const ScaleInputActive = () => {
         }
         image.src = customSpecState.image;
     }
+
+    //draws the image and points on the canvas when window width or points changes
+    useEffect(() => {
+        drawImageOnCanvas();
+    }, [windowWidth, topTubePoints])
+
+
+    
 
     //draws the points on the canvas
     const drawTopTubePoints = () => {
@@ -89,7 +90,7 @@ const ScaleInputActive = () => {
             let y = (evt.clientY - rect.top);
             let xSourceCoord = x / displayScaleFactor;
             let ySourceCoord = y / displayScaleFactor;
-            if (topTubePoints.length == 1) {
+            if (topTubePoints.length === 1) {
                 setTopTubePoints([topTubePoints[0], [xSourceCoord, ySourceCoord]]);
             } else {
                 setTopTubePoints([[xSourceCoord, ySourceCoord]]);

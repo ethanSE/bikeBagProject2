@@ -5,8 +5,6 @@ import Account from './Account';
 import CustomSpecification from './CustomSpecification';
 import { ModeContext } from '../modeContext';
 import { CustomSpecContext } from '../customSpecContext';
-import { copySync } from 'fs-extra';
-
 
 const initialCustomSpecUIState = {
   image: null,

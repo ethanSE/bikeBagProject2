@@ -22,7 +22,7 @@ const ShapeInput = () => {
 export default ShapeInput;
 
 const ShapeInputActive = () => {
-    const { customSpecState, setCustomSpecState, setCustomSpecUIState } = useContext(CustomSpecContext);
+    const { customSpecState, setCustomSpecState, dispatch } = useContext(CustomSpecContext);
     const [points, setPoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
     const [windowWidth, setWindowWidth] = useState();
@@ -96,7 +96,7 @@ const ShapeInputActive = () => {
             ...customSpecState,
             shape: points
         })
-        setCustomSpecUIState('confirmation');
+        dispatch('confirmation');
     }
 
     // allows user to select points
