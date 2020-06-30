@@ -3,7 +3,7 @@ import { CustomSpecContext } from '../customSpecContext';
 import { debounce } from '../actions';
 import styles from '../styles/ScaleInput.module.css'
 
-const ScaleInput = () => {
+export default function ScaleInput() {
     const { customSpecUIState, dispatch } = useContext(CustomSpecContext)
     switch (customSpecUIState.scale) {
         case 'active':
@@ -18,8 +18,6 @@ const ScaleInput = () => {
             return null;
     }
 }
-
-export default ScaleInput;
 
 const ScaleInputActive = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -59,9 +57,6 @@ const ScaleInputActive = () => {
     useEffect(() => {
         drawImageOnCanvas();
     }, [windowWidth, topTubePoints])
-
-
-    
 
     //draws the points on the canvas
     const drawTopTubePoints = () => {
