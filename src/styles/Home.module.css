@@ -1,4 +1,4 @@
-.home h1{
+.home h1 {
     text-align: center;
     color: white
 }
@@ -9,22 +9,56 @@
     align-items: center;
 }
 
-.flexWrapContainer {
+.iconDescContainer {
+    display: flex;
+    flex-direction: column;
     width: 80%;
-    background-color: green;
+}
+
+.row, .bigScreenReverseRow {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .icon {
-    background-color: red;
-    flex: 1;
-}
-
-.row {
     display: flex;
-    flex-direction: row;
-    flex: 1,
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-color: darkslategrey;
+    color: white;
+    font-size: 40px;
 }
 
 .text {
+    display: flex;
     flex: 1;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    flex: 1;
+}
+
+button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 718px) {
+    .row {
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .bigScreenReverseRow {
+        height: 100px;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
 }
