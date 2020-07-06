@@ -1,5 +1,5 @@
 import { debounce } from '../actions';
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
 export function useWindowWidth(debounceTimer) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)

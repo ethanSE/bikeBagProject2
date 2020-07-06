@@ -8,16 +8,7 @@ import { CustomSpecContext } from '../customSpecContext';
 //components
 import Header from './Header';
 import Home from './Home';
-import Account from './Account';
 import CustomSpecification from './CustomSpecification';
-
-
-const initialCustomSpecState = {
-  style: '',
-  image: null,
-  scale: null,
-  shape: null
-}
 
 export default function App() {
   //set up mode context
@@ -25,7 +16,13 @@ export default function App() {
   const mode = { activeMainComponent, setActiveMainComponent };
 
   //set up customSpecContext
-  const [customSpecState, setCustomSpecState] = useState(initialCustomSpecState);
+  const [customSpecState, setCustomSpecState] = useState({
+    style: '',
+    image: null,
+    scale: null,
+    shape: null
+  });
+  
   const [customSpecUIState, setActiveCustomSpecPhase] = useUIStateManager();
   const custom = { customSpecState, setCustomSpecState, customSpecUIState, setActiveCustomSpecPhase };
 
@@ -45,8 +42,6 @@ const MainComponent = (props) => {
       return (<Home />)
     case 'customSpec':
       return <CustomSpecification />
-    case 'account':
-      return <Account />
     default:
       console.log('default')
   }
