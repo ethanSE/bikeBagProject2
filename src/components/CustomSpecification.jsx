@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+//components
 import StyleSelection from './StyleSelection';
 import ImageUpload from './ImageUpload';
 import ScaleInput from './ScaleInput';
 import ShapeInput from './ShapeInput';
-// import Download from './Download';
+//context
+import { UserContext } from '../userContext';
+//styles
 import styles from '../styles/CustomSpec.module.css';
 
-const BikeCanvas = () => {
+import { Auth } from 'aws-amplify';
+
+export default function CustomSpecification() {
+    const { user } = useContext(UserContext)
+
+    if (!user) return <SignInPrompt />
+    
     return (
         <div className={styles.customSpecContainer}>
             <div className={styles.customSpecContents} >
@@ -14,10 +23,18 @@ const BikeCanvas = () => {
                 <ImageUpload />
                 <ScaleInput />
                 <ShapeInput />
-                {/* <Download /> */}
             </div>
         </div>
     );
 }
 
-export default BikeCanvas;
+const SignInPrompt = () => {
+    return (
+        <div className={styles.customSpecContainer}>
+            <div className={styles.customSpecContents} >
+                <h1>Sign in to create a custom bag</h1>
+                <button className={styles.signInButton} onClick={() => Auth.federatedSignIn()}> Sign In </button>
+            </div>
+        </div>
+    )
+}

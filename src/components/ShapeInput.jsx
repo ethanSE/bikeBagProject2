@@ -94,7 +94,7 @@ const ShapeInputActive = () => {
             ...customSpecState,
             shape: points
         })
-        setActiveCustomSpecPhase('confirmation');
+        setActiveCustomSpecPhase('clear');
     }
 
     // allows user to select points
@@ -126,7 +126,7 @@ const ShapeInputActive = () => {
         <div className={styles.shapeInput} ref={shapeInputDivRef} style={{ minHeight: '50vh' }}>
             <h3>Shape</h3>
             <div className={styles.buttonRow}>
-                <button className={styles.button} onClick={shapeInputSubmit}>Submit Shape</button>
+                <button className={styles.button} onClick={shapeInputSubmit}>Submit Design</button>
                 <button className={styles.button} onClick={resetShape}>Reset Shape</button>
             </div>
             <canvas ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />

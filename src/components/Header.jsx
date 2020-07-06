@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ModeContext } from '../modeContext';
+import { UserContext } from '../userContext';
 import styles from '../styles/Header.module.css';
-import Amplify from 'aws-amplify';
-import config from '../aws-exports';
-import { Auth, Hub } from 'aws-amplify';
 
-Amplify.configure(config)
+import { Auth } from 'aws-amplify';
 
 export default function Header() {
     const { setActiveMainComponent } = useContext(ModeContext);
@@ -25,20 +23,11 @@ export default function Header() {
 }
 
 const SignInOutComponent = () => {
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
-        Hub.listen("auth", ({ payload: { event, data } }) => {
-            if (event === "signOut") {
-                setUser(null);
-            } else if (event === 'signIn') {
-                setUser(Auth.currentAuthenticatedUser());
-            }
-        });
-    });
+    const { setActiveMainComponent } = useContext(ModeContext);
+    const { user } = useContext(UserContext);
 
     if (user) {
-        return (<h3 onClick={() => Auth.signOut()}> Sign Out </h3>)
+        return (<h3 onClick={() => setActiveMainComponent('account')}> Account </h3>)
     } else {
         return (
             <h3 onClick={() => Auth.federatedSignIn()}> Sign In </h3>

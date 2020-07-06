@@ -21,16 +21,13 @@ const customSpecUIReducer = (state, action) => {
                 image: 'active',
                 scale: state.scale === null ? null : 'minimized',
                 shape: state.shape === null ? null : 'minimized',
-                confirmation: state.confirmation == null ? null : 'minimized'
             }
-
         case 'scale':
             return {
                 ...state,
                 scale: 'active',
                 image: 'minimized',
                 shape: state.shape == null ? null : 'minimized',
-                confirmation: state.confirmation == null ? null : 'minimized'
             }
         case 'shape':
             return {
@@ -38,14 +35,13 @@ const customSpecUIReducer = (state, action) => {
                 shape: 'active',
                 image: 'minimized',
                 scale: 'minimized',
-                confirmation: state.confirmation == null ? null : 'minimized'
             }
-        case 'confirmation':
+        case 'clear':
             return {
-                ...state,
-                shape: 'minimized',
-                scale: 'minimized',
-                image: 'minimized',
+                image: null,
+                scale: null,
+                shape: null,
+                download: null
             }
         default:
             throw new Error('invalid custom spec phase');
