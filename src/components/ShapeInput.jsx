@@ -123,7 +123,7 @@ const ShapeInputActive = () => {
     }
 
     return (
-        <div className={styles.shapeInput} ref={shapeInputDivRef}>
+        <div className={styles.shapeInput} ref={shapeInputDivRef} style={{ minHeight: '50vh' }}>
             <h3>Shape</h3>
             <div className={styles.buttonRow}>
                 <button className={styles.button} onClick={shapeInputSubmit}>Submit Shape</button>

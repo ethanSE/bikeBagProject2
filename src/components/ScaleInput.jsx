@@ -105,7 +105,7 @@ const ScaleInputActive = () => {
     }
 
     return (
-        <div className={styles.scaleInput} ref={scaleInputDivRef}>
+        <div className={styles.scaleInput} ref={scaleInputDivRef} style={{minHeight: '50vh'}}>
             <h3>Scale</h3>
             <form onSubmit={(event) => setPixelToInchScale(event)} className={styles.scaleInputForm}>
                 <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length in inches' type='number' />
