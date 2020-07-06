@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/bikeBagProject2/static/css/main.07add8fe.chunk.css",
-    "main.js": "/bikeBagProject2/static/js/main.1f775ecb.chunk.js",
-    "main.js.map": "/bikeBagProject2/static/js/main.1f775ecb.chunk.js.map",
+    "main.css": "/bikeBagProject2/static/css/main.db772633.chunk.css",
+    "main.js": "/bikeBagProject2/static/js/main.40ef2041.chunk.js",
+    "main.js.map": "/bikeBagProject2/static/js/main.40ef2041.chunk.js.map",
     "runtime-main.js": "/bikeBagProject2/static/js/runtime-main.f500f1d3.js",
     "runtime-main.js.map": "/bikeBagProject2/static/js/runtime-main.f500f1d3.js.map",
-    "static/js/2.f17230ef.chunk.js": "/bikeBagProject2/static/js/2.f17230ef.chunk.js",
-    "static/js/2.f17230ef.chunk.js.map": "/bikeBagProject2/static/js/2.f17230ef.chunk.js.map",
+    "static/js/2.f0c76ad3.chunk.js": "/bikeBagProject2/static/js/2.f0c76ad3.chunk.js",
+    "static/js/2.f0c76ad3.chunk.js.map": "/bikeBagProject2/static/js/2.f0c76ad3.chunk.js.map",
     "index.html": "/bikeBagProject2/index.html",
-    "precache-manifest.bb49b406e2f36af2940f58f48f9b71f7.js": "/bikeBagProject2/precache-manifest.bb49b406e2f36af2940f58f48f9b71f7.js",
+    "precache-manifest.272c07fbe56468076f32ea040d1345a2.js": "/bikeBagProject2/precache-manifest.272c07fbe56468076f32ea040d1345a2.js",
     "service-worker.js": "/bikeBagProject2/service-worker.js",
-    "static/css/main.07add8fe.chunk.css.map": "/bikeBagProject2/static/css/main.07add8fe.chunk.css.map",
+    "static/css/main.db772633.chunk.css.map": "/bikeBagProject2/static/css/main.db772633.chunk.css.map",
     "static/media/Header.module.css": "/bikeBagProject2/static/media/IMG_7651.f20e532f.JPG"
   },
   "entrypoints": [
     "static/js/runtime-main.f500f1d3.js",
-    "static/js/2.f17230ef.chunk.js",
-    "static/css/main.07add8fe.chunk.css",
-    "static/js/main.1f775ecb.chunk.js"
+    "static/js/2.f0c76ad3.chunk.js",
+    "static/css/main.db772633.chunk.css",
+    "static/js/main.40ef2041.chunk.js"
   ]
 }
