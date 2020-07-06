@@ -1,7 +1,10 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
-import { CustomSpecContext } from '../customSpecContext';
+//hooks
 import { useWindowWidth } from '../customHooks/useWindowWidth'
 import styles from '../styles/ShapeInput.module.css'
+//context
+import { CustomSpecContext } from '../customSpecContext';
+import { ModeContext } from '../modeContext';
 
 export default function ShapeInput() {
     const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
@@ -21,6 +24,7 @@ export default function ShapeInput() {
 }
 
 const ShapeInputActive = () => {
+    const { setActiveMainComponent } = useContext(ModeContext)
     const [windowWidth] = useWindowWidth(50)
     const { customSpecState, setCustomSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext);
     const [points, setPoints] = useState([]);
@@ -95,6 +99,7 @@ const ShapeInputActive = () => {
             shape: points
         })
         setActiveCustomSpecPhase('clear');
+        setActiveMainComponent('account')
     }
 
     // allows user to select points

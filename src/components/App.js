@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 //hooks
 import { useUIStateManager } from '../customHooks/useUIStateManager'
 //context
 import { ModeContext } from '../modeContext';
 import { CustomSpecContext } from '../customSpecContext';
 import { UserContext } from '../userContext';
-
 //components
 import Header from './Header';
 import Home from './Home';
 import CustomSpecification from './CustomSpecification';
 import Account from './Account';
-
 //aws
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
@@ -24,7 +22,6 @@ export default function App() {
 
   //set up mode context
   const [activeMainComponent, setActiveMainComponent] = useState('home');
-  const mode = { activeMainComponent, setActiveMainComponent };
 
   //set up customSpecContext
   const [customSpecState, setCustomSpecState] = useState({
@@ -49,18 +46,20 @@ export default function App() {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <ModeContext.Provider value={mode}>
+      <ModeContext.Provider value={{ activeMainComponent, setActiveMainComponent }}>
         <CustomSpecContext.Provider value={custom}>
           <Header />
-          <MainComponent mode={mode} />
+          <MainComponent />
         </CustomSpecContext.Provider>
       </ModeContext.Provider>
     </UserContext.Provider>
   )
 }
 
-const MainComponent = (props) => {
-  switch (props.mode.activeMainComponent) {
+const MainComponent = () => {
+  const { activeMainComponent } = useContext(ModeContext)
+
+  switch (activeMainComponent) {
     case 'home':
       return (<Home />)
     case 'customSpec':
