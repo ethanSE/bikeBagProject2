@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
 import { CustomSpecContext } from '../customSpecContext';
-import { debounce } from '../actions';
+import { useWindowWidth } from '../customHooks/useWindowWidth'
 import styles from '../styles/ShapeInput.module.css'
 
 const ShapeInput = () => {
@@ -22,23 +22,13 @@ const ShapeInput = () => {
 export default ShapeInput;
 
 const ShapeInputActive = () => {
+    const [windowWidth] = useWindowWidth(50)
     const { customSpecState, setCustomSpecState, dispatch } = useContext(CustomSpecContext);
     const [points, setPoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
-    const [windowWidth, setWindowWidth] = useState();
     let canvasShapeRef = useRef();
     let shapeInputDivRef = useRef();
     let displayScaleFactor;
-
-    //sets up a listener to update state on window resize
-    useEffect(() => {
-        window.addEventListener('resize', debouncedHandleResize);
-        return () => {
-            window.removeEventListener('resize', debouncedHandleResize)
-        };
-    }, [])
-
-    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
 
     //draws the image and points on the canvas when window width or points changes
     useEffect(() => {

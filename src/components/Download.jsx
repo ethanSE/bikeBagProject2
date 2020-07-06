@@ -71,7 +71,6 @@ function Download(props) {
     }
 
     function signInClicked() {
-        console.log('hi88888888')
         //set active main component
 
     }

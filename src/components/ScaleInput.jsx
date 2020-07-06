@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
+import { useWindowWidth } from '../customHooks/useWindowWidth'
 import { CustomSpecContext } from '../customSpecContext';
-import { debounce } from '../actions';
 import styles from '../styles/ScaleInput.module.css'
 
 export default function ScaleInput() {
@@ -20,7 +20,7 @@ export default function ScaleInput() {
 }
 
 const ScaleInputActive = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth] = useWindowWidth(50)
     const [topTubePoints, setTopTubePoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
     const { setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
@@ -28,15 +28,6 @@ const ScaleInputActive = () => {
     let scaleInputRef = useRef();
     let scaleInputDivRef = useRef();
     let ctx;
-
-    //sets up a listener to update state on window resize
-    const debouncedHandleResize = debounce(() => setWindowWidth(window.innerWidth), 50)
-    useEffect(() => {
-        window.addEventListener('resize', debouncedHandleResize);
-        return () => {
-            window.removeEventListener('resize', debouncedHandleResize)
-        };
-    }, [])
 
     //loads image onto canvas and calls drawTopTubePoints
     const drawImageOnCanvas = () => {

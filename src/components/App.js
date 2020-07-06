@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useContext } from 'react';
 import Header from './Header';
 import Home from './Home';
 import Account from './Account';
@@ -59,45 +59,36 @@ const customSpecUIReducer = (state, action) => {
   }
 }
 
-const App = () => {
+export default function App() {
   //set up mode context
   const [activeMainComponent, setActiveMainComponent] = useState('home');
   const mode = { activeMainComponent, setActiveMainComponent };
-
 
   //set up customSpecContext
   const [customSpecState, setCustomSpecState] = useState(initialCustomSpecState);
   const [customSpecUIState, dispatch] = useReducer(customSpecUIReducer, initialCustomSpecUIState);
   const custom = { customSpecState, setCustomSpecState, customSpecUIState, dispatch };
 
-  useEffect(() => {
-    console.log(customSpecState)
-  }, [customSpecState]);
-
-
-
-
-  const renderMainComponent = () => {
-    switch (mode.activeMainComponent) {
-      case 'home':
-        return <Home />
-      case 'customSpec':
-        return <CustomSpecification />
-      case 'account':
-        return <Account />
-      default:
-        console.log('default')
-    }
-  }
-
   return (
     <ModeContext.Provider value={mode}>
       <CustomSpecContext.Provider value={custom}>
         <Header />
-        {renderMainComponent()}
+        <MainComponent mode={mode}/>
       </CustomSpecContext.Provider>
     </ModeContext.Provider>
   )
 }
 
-export default App;
+const MainComponent = (props) => {
+  // const { mode } = useContext(ModeContext)
+  switch (props.mode.activeMainComponent) {
+    case 'home':
+      return (<Home />)
+    case 'customSpec':
+      return <CustomSpecification />
+    case 'account':
+      return <Account />
+    default:
+      console.log('default')
+  }
+}
