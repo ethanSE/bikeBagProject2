@@ -3,7 +3,7 @@ import { CustomSpecContext } from '../customSpecContext';
 import { useWindowWidth } from '../customHooks/useWindowWidth'
 import styles from '../styles/ShapeInput.module.css'
 
-const ShapeInput = () => {
+export default function ShapeInput() {
     const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
 
     switch (customSpecUIState.shape) {
@@ -19,7 +19,6 @@ const ShapeInput = () => {
             return null;
     }
 }
-export default ShapeInput;
 
 const ShapeInputActive = () => {
     const [windowWidth] = useWindowWidth(50)
@@ -34,6 +33,15 @@ const ShapeInputActive = () => {
     useEffect(() => {
         drawImageOnCanvas();
     }, [windowWidth, points])
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scroll({
+                top: shapeInputDivRef.current.offsetTop,
+                behavior: "smooth",
+            });
+        }, 0);
+    }, [])
 
     const drawImageOnCanvas = () => {
         let image = new Image();
@@ -105,8 +113,8 @@ const ShapeInputActive = () => {
         //check through existing points to see if click is on a previously selected point 
         //(ie. when closing the shape)
         for (let i = 0; i < points.length; i++) {
-            let distance = Math.hypot(points[i][0] * displayScaleFactor - xSourceCoord * displayScaleFactor, points[i][1] * displayScaleFactor- ySourceCoord * displayScaleFactor);
-            if (distance < 10 ) {        //i.e. if click is within drawn circle
+            let distance = Math.hypot(points[i][0] * displayScaleFactor - xSourceCoord * displayScaleFactor, points[i][1] * displayScaleFactor - ySourceCoord * displayScaleFactor);
+            if (distance < 10) {        //i.e. if click is within drawn circle
                 setPoints([...points, [points[i][0], points[i][1]]]); //add that same point to the array
                 return;
             };

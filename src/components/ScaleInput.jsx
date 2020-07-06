@@ -29,6 +29,15 @@ const ScaleInputActive = () => {
     let scaleInputDivRef = useRef();
     let ctx;
 
+    useEffect(() => {
+        setTimeout(() => {
+            window.scroll({
+                top: scaleInputDivRef.current.offsetTop,
+                behavior: "smooth",
+            });
+        }, 0);
+    }, [])
+
     //loads image onto canvas and calls drawTopTubePoints
     const drawImageOnCanvas = () => {
         let image = new Image();
