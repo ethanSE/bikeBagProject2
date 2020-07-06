@@ -7,7 +7,7 @@
     background-color: #3c415e;
     border: 5px solid #1cb3c8;
     border-radius: 5px;
-    width: 80%;
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
     padding-top: 15px;
@@ -52,7 +52,7 @@
 
 .minimized {
     font-size: larger;
-    width: 80%;
+    width: 100%;
     background-color: #3c415e;
     border: 5px solid #1cb3c8;
     border-radius: 5px;
@@ -62,4 +62,8 @@
     margin-bottom: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.minimized:hover {
+    cursor: pointer;
 }

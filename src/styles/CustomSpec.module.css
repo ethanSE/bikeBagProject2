@@ -1,6 +1,13 @@
-.customSpec {
+.customSpecContainer {
     display: flex;
     flex: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+.customSpecContents {
+    width: 1200px;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }

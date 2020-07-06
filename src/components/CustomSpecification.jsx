@@ -8,12 +8,14 @@ import styles from '../styles/CustomSpec.module.css';
 
 const BikeCanvas = () => {
     return (
-        <div className={styles.customSpec} >
-            <StyleSelection />
-            <ImageUpload />
-            <ScaleInput />
-            <ShapeInput />
-            {/* <Download /> */}
+        <div className={styles.customSpecContainer}>
+            <div className={styles.customSpecContents} >
+                <StyleSelection />
+                <ImageUpload />
+                <ScaleInput />
+                <ShapeInput />
+                {/* <Download /> */}
+            </div>
         </div>
     );
 }

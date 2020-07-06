@@ -11,7 +11,7 @@ export default function ShapeInput() {
             return <ShapeInputActive />
         case 'minimized':
             return (
-                <div className={styles.shapeInput} onClick={() => setActiveCustomSpecPhase('shape')}>
+                <div className={styles.minimized} onClick={() => setActiveCustomSpecPhase('shape')}>
                     <h3>Shape</h3>
                 </div>
             )
