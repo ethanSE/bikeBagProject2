@@ -37,7 +37,7 @@ In its current state this project:
   For and awesome open-source program to solve the 2D cutting stock problem with irregular polygons check out https://deepnest.io/ by Jack Qiao.
 
 Goals for this project include:   
-  • icorporate an aws backend that stores order information including bike photo, dimensions, user information, order status, etc.
+  • icorporate an aws backend that stores order information including bike photo, dimensions, user information, order status, etc. 
   • create application that would allow the business to view information, overlay user input and user's photo for manual verification of user input prior to construction and allow admin to tweak design before production or contact customer
 
 ## Support and contact details
