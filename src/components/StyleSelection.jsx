@@ -6,11 +6,11 @@ import { CustomSpecContext } from '../customSpecContext';
 import cssStyle from '../styles/StyleSelection.module.css';
 
 const StyleSelection = () => {
-    const { customSpecState, setCustomSpecState, dispatch } = useContext(CustomSpecContext)
+    const { customSpecState, setCustomSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
     
     const handleClick = (style) => {
         setCustomSpecState({ ...customSpecState, style: style })
-        dispatch('image');
+        setActiveCustomSpecPhase('image');
     }
 
     return (

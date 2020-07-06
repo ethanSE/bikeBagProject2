@@ -1,7 +1,8 @@
-//used for managing state of a list
-//this was built for storing and updating posts and asks in AppStateContainer
-//accomplishes the goal of hooks of removing abstracting away business logic from component
-// exposes a simple API to get data, add items (must be an array currently), or update and item
+//the process of a user completing the design of a bag occurs in phases
+//each phase of user interaction occurs in a seperate component
+//completion of a phase reveals the next component and minimizes the previous component
+//a user can click on a previous component that is minimized to go back to that step
+//this hook abstracts the reducer that manages whether each component is inactive, active, or minimized
 
 import { useReducer } from 'react';
 
@@ -12,29 +13,51 @@ const initialCustomSpecUIState = {
     download: null
 }
 
-function reducer(state, action) {
-    switch (action.type) {
-        case 'add':
-            return [...state, ...action.value]
-        case 'update':
-            // console.log(action.value)
-            const updateIndex = state.findIndex((item) => item.id === action.value.id)
-            console.log(updateIndex)
-            let newState = state;
-            newState[updateIndex] = action.value
-            return [...newState]
+const customSpecUIReducer = (state, action) => {
+    switch (action) {
+        case 'image':
+            return {
+                ...state,
+                image: 'active',
+                scale: state.scale === null ? null : 'minimized',
+                shape: state.shape === null ? null : 'minimized',
+                confirmation: state.confirmation == null ? null : 'minimized'
+            }
+
+        case 'scale':
+            return {
+                ...state,
+                scale: 'active',
+                image: 'minimized',
+                shape: state.shape == null ? null : 'minimized',
+                confirmation: state.confirmation == null ? null : 'minimized'
+            }
+        case 'shape':
+            return {
+                ...state,
+                shape: 'active',
+                image: 'minimized',
+                scale: 'minimized',
+                confirmation: state.confirmation == null ? null : 'minimized'
+            }
+        case 'confirmation':
+            return {
+                ...state,
+                shape: 'minimized',
+                scale: 'minimized',
+                image: 'minimized',
+            }
         default:
-            throw new Error();
+            throw new Error('invalid custom spec phase');
     }
 }
 
-export function useCustomReducer(initialState = []) {
-    const [items, dispatch] = useReducer(reducer, initialState)
-    const add = newItems => {
-        dispatch({ type: 'add', value: newItems })
+export function useUIStateManager() {
+    const [customSpecUIState, dispatch] = useReducer(customSpecUIReducer, initialCustomSpecUIState);
+
+    const setActiveCustomSpecPhase = newActive => {
+        dispatch(newActive)
     };
-    const update = updateItem => {
-        dispatch({ type: 'update', value: updateItem })
-    }
-    return [items, add, update];
+    
+    return [customSpecUIState, setActiveCustomSpecPhase];
 };

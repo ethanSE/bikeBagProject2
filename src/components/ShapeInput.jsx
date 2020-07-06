@@ -4,14 +4,14 @@ import { useWindowWidth } from '../customHooks/useWindowWidth'
 import styles from '../styles/ShapeInput.module.css'
 
 const ShapeInput = () => {
-    const { customSpecUIState, dispatch } = useContext(CustomSpecContext)
+    const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
 
     switch (customSpecUIState.shape) {
         case 'active':
             return <ShapeInputActive />
         case 'minimized':
             return (
-                <div className={styles.shapeInput} onClick={() => dispatch('shape')}>
+                <div className={styles.shapeInput} onClick={() => setActiveCustomSpecPhase('shape')}>
                     <h3>Shape</h3>
                 </div>
             )
@@ -23,7 +23,7 @@ export default ShapeInput;
 
 const ShapeInputActive = () => {
     const [windowWidth] = useWindowWidth(50)
-    const { customSpecState, setCustomSpecState, dispatch } = useContext(CustomSpecContext);
+    const { customSpecState, setCustomSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext);
     const [points, setPoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
     let canvasShapeRef = useRef();
@@ -86,7 +86,7 @@ const ShapeInputActive = () => {
             ...customSpecState,
             shape: points
         })
-        dispatch('confirmation');
+        setActiveCustomSpecPhase('confirmation');
     }
 
     // allows user to select points

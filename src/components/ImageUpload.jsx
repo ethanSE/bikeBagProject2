@@ -3,7 +3,7 @@ import { CustomSpecContext } from '../customSpecContext';
 import styles from '../styles/ImageUpload.module.css';
 
 const ImageUpload = () => {
-    const { customSpecUIState, setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
+    const { customSpecUIState, setCustomSpecState, customSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
     let fileInput = useRef();
     let uploadCanvas = useRef();
     var img = new Image();
@@ -21,7 +21,7 @@ const ImageUpload = () => {
         ctx.drawImage(img, 0, 0);
         let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
         setCustomSpecState({ ...customSpecState, image: canvasDataUrl })
-        dispatch('scale');
+        setActiveCustomSpecPhase('scale');
     }
 
     const imageLoadFailed = () => {
@@ -44,7 +44,7 @@ const ImageUpload = () => {
             )
         case 'minimized':
             return (
-                <div className={styles.minimized} onClick={() => dispatch('image')}>
+                <div className={styles.minimized} onClick={() => setActiveCustomSpecPhase('image')}>
                     <h3>Image Upload</h3>
                 </div>
             )

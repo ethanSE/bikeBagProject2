@@ -4,13 +4,13 @@ import { CustomSpecContext } from '../customSpecContext';
 import styles from '../styles/ScaleInput.module.css'
 
 export default function ScaleInput() {
-    const { customSpecUIState, dispatch } = useContext(CustomSpecContext)
+    const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
     switch (customSpecUIState.scale) {
         case 'active':
             return <ScaleInputActive />
         case 'minimized':
             return (
-                <div className={styles.minimized} onClick={() => dispatch('scale')}>
+                <div className={styles.minimized} onClick={() => setActiveCustomSpecPhase('scale')}>
                     <h3>Scale</h3>
                 </div>
             )
@@ -23,7 +23,7 @@ const ScaleInputActive = () => {
     const [windowWidth] = useWindowWidth(50)
     const [topTubePoints, setTopTubePoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
-    const { setCustomSpecState, customSpecState, dispatch } = useContext(CustomSpecContext)
+    const { setCustomSpecState, customSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
     let canvasScaleRef = useRef();
     let scaleInputRef = useRef();
     let scaleInputDivRef = useRef();
@@ -91,7 +91,7 @@ const ScaleInputActive = () => {
             let distance = Math.hypot(topTubePoints[0][0] - topTubePoints[1][0], topTubePoints[0][1] - topTubePoints[1][1])
             let scale = (distance / scaleInputRef.value);
             setCustomSpecState({ ...customSpecState, scale: scale })
-            dispatch('shape');
+            setActiveCustomSpecPhase('shape');
         }
     }
 

@@ -1,62 +1,22 @@
-import React, { useState, useReducer, useContext } from 'react';
+import React, { useState } from 'react';
+//hooks
+import { useUIStateManager } from '../customHooks/useUIStateManager'
+//context
+import { ModeContext } from '../modeContext';
+import { CustomSpecContext } from '../customSpecContext';
+
+//components
 import Header from './Header';
 import Home from './Home';
 import Account from './Account';
 import CustomSpecification from './CustomSpecification';
-import { ModeContext } from '../modeContext';
-import { CustomSpecContext } from '../customSpecContext';
 
-const initialCustomSpecUIState = {
-  image: null,
-  scale: null,
-  shape: null,
-  download: null
-}
 
 const initialCustomSpecState = {
   style: '',
   image: null,
   scale: null,
   shape: null
-}
-
-const customSpecUIReducer = (state, action) => {
-  switch (action) {
-    case 'image':
-      return {
-        ...state,
-        image: 'active',
-        scale: state.scale === null ? null : 'minimized',
-        shape: state.shape === null ? null : 'minimized',
-        confirmation: state.confirmation == null ? null : 'minimized'
-      }
-
-    case 'scale':
-      return {
-        ...state,
-        scale: 'active',
-        image: 'minimized',
-        shape: state.shape == null ? null : 'minimized',
-        confirmation: state.confirmation == null ? null : 'minimized'
-      }
-    case 'shape':
-      return {
-        ...state,
-        shape: 'active',
-        image: 'minimized',
-        scale: 'minimized',
-        confirmation: state.confirmation == null ? null : 'minimized'
-      }
-    case 'confirmation':
-      return {
-        ...state,
-        shape: 'minimized',
-        scale: 'minimized',
-        image: 'minimized',
-      }
-    default:
-      throw new Error();
-  }
 }
 
 export default function App() {
@@ -66,21 +26,20 @@ export default function App() {
 
   //set up customSpecContext
   const [customSpecState, setCustomSpecState] = useState(initialCustomSpecState);
-  const [customSpecUIState, dispatch] = useReducer(customSpecUIReducer, initialCustomSpecUIState);
-  const custom = { customSpecState, setCustomSpecState, customSpecUIState, dispatch };
+  const [customSpecUIState, setActiveCustomSpecPhase] = useUIStateManager();
+  const custom = { customSpecState, setCustomSpecState, customSpecUIState, setActiveCustomSpecPhase };
 
   return (
     <ModeContext.Provider value={mode}>
       <CustomSpecContext.Provider value={custom}>
         <Header />
-        <MainComponent mode={mode}/>
+        <MainComponent mode={mode} />
       </CustomSpecContext.Provider>
     </ModeContext.Provider>
   )
 }
 
 const MainComponent = (props) => {
-  // const { mode } = useContext(ModeContext)
   switch (props.mode.activeMainComponent) {
     case 'home':
       return (<Home />)
