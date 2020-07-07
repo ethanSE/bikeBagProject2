@@ -5,8 +5,14 @@ import styles from '../styles/ShapeInput.module.css'
 //context
 import { CustomSpecContext } from '../customSpecContext';
 import { ModeContext } from '../modeContext';
+import { UserContext } from '../userContext';
 //actions
 import { drawPoints, drawLines } from '../actions'
+//graphql
+import { API, graphqlOperation } from "aws-amplify";
+import { createCustomDesign } from '../graphql/mutations'
+//uuid
+import { v4 as uuid } from 'uuid';
 
 export default function ShapeInput() {
     const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
@@ -31,6 +37,7 @@ const ShapeInputActive = () => {
     const { customSpecState, setCustomSpecState, setActiveCustomSpecPhase } = useContext(CustomSpecContext);
     const [points, setPoints] = useState([]);
     const [sourceDimensions, setSourceDimensions] = useState(null);
+    const { user } = useContext(UserContext);
     let canvasShapeRef = useRef();
     let shapeInputDivRef = useRef();
     let displayScaleFactor;
@@ -70,14 +77,18 @@ const ShapeInputActive = () => {
     }
 
     //allows users to submit
-    const shapeInputSubmit = () => {
+    const shapeInputSubmit = async () => {
         //do some kind of checking(?)
         //is shape closed?
         //number of points(?)
-        setCustomSpecState({
+        // setCustomSpecState({
+        //     ...customSpecState,
+        //     shape: points
+        // })
+        await uploadDesign({
             ...customSpecState,
             shape: points
-        })
+        });
         setActiveCustomSpecPhase('clear');
         setActiveMainComponent('account')
     }
@@ -92,10 +103,7 @@ const ShapeInputActive = () => {
         let xSourceCoord = x * sourceDimensions.imageWidth / canvasShapeRef.current.width;
         let ySourceCoord = y * sourceDimensions.imageHeight / canvasShapeRef.current.height;
 
-
-
-        //--abstract away
-
+        //--abstract away with hook(?)
         //check through existing points to see if click is on a previously selected point 
         //(ie. when closing the shape)
         for (let i = 0; i < points.length; i++) {
@@ -106,6 +114,19 @@ const ShapeInputActive = () => {
             };
         }
         setPoints([...points, [xSourceCoord, ySourceCoord]]);
+    }
+
+    const uploadDesign = async (design) => {
+
+        //graphql mutation
+        console.log(design)
+        console.log(user)
+
+        // const newBag = {
+
+        // }
+        // const newDesignResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
+        // console.log(newDesignResult)
     }
 
     return (
