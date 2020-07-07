@@ -5,6 +5,8 @@ import styles from '../styles/ShapeInput.module.css'
 //context
 import { CustomSpecContext } from '../customSpecContext';
 import { ModeContext } from '../modeContext';
+//actions
+import { drawPoints, drawLines } from '../actions'
 
 export default function ShapeInput() {
     const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
@@ -35,7 +37,7 @@ const ShapeInputActive = () => {
 
     //draws the image and points on the canvas when window width or points changes
     useEffect(() => {
-        drawImageOnCanvas();
+        drawCanvas();
     }, [windowWidth, points])
 
     useEffect(() => {
@@ -47,7 +49,7 @@ const ShapeInputActive = () => {
         }, 0);
     }, [])
 
-    const drawImageOnCanvas = () => {
+    const drawCanvas = () => {
         let image = new Image();
         image.onload = () => {
             if (!sourceDimensions) setSourceDimensions({ imageHeight: image.height, imageWidth: image.width }); //saves image source dimensions on first load
@@ -56,44 +58,22 @@ const ShapeInputActive = () => {
             canvasShapeRef.current.height = displayScaleFactor * image.height; //set height based on width and image ratio
             let ctx = canvasShapeRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height); //draws image on canvas
-            drawPoints();
-            drawLines();
+            drawPoints(canvasShapeRef, points, displayScaleFactor);
+            drawLines(canvasShapeRef, points, displayScaleFactor);
         }
         image.src = customSpecState.image;
-    }
-
-    const drawPoints = () => {
-        points.forEach(point => {
-            drawCircle(point[0] * displayScaleFactor, point[1] * displayScaleFactor)
-        })
-    }
-
-    const drawCircle = (x, y) => {
-        let ctx = canvasShapeRef.current.getContext('2d');
-        ctx.strokeStyle = "#FF0000";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, 2 * Math.PI);
-        ctx.stroke();
-    }
-
-    const drawLines = () => {
-        for (let i = 0; i < points.length - 1; i++) {
-            let ctx = canvasShapeRef.current.getContext('2d');
-            ctx.strokeStyle = "#FF0000";
-            ctx.lineWidth = 3;
-            ctx.moveTo(points[i][0] * displayScaleFactor, points[i][1] * displayScaleFactor);
-            ctx.lineTo(points[i + 1][0] * displayScaleFactor, points[i + 1][1] * displayScaleFactor);
-            ctx.stroke();
-        }
     }
 
     //allows users to reset
     const resetShape = () => {
         setPoints([]);
     }
+
     //allows users to submit
     const shapeInputSubmit = () => {
+        //do some kind of checking(?)
+        //is shape closed?
+        //number of points(?)
         setCustomSpecState({
             ...customSpecState,
             shape: points
@@ -103,17 +83,18 @@ const ShapeInputActive = () => {
     }
 
     // allows user to select points
-    // translates display coords to source coords
     const canvasShapeClick = (evt) => {
-
         //get display coordinate of click
         let rect = canvasShapeRef.current.getBoundingClientRect();
         let x = (evt.clientX - rect.left);
         let y = (evt.clientY - rect.top);
-
         //transform to source coordinate
         let xSourceCoord = x * sourceDimensions.imageWidth / canvasShapeRef.current.width;
         let ySourceCoord = y * sourceDimensions.imageHeight / canvasShapeRef.current.height;
+
+
+
+        //--abstract away
 
         //check through existing points to see if click is on a previously selected point 
         //(ie. when closing the shape)

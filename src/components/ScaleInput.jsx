@@ -1,6 +1,11 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
+//hooks
 import { useWindowWidth } from '../customHooks/useWindowWidth'
+//context
 import { CustomSpecContext } from '../customSpecContext';
+//actions
+import { drawPoints, drawLines } from '../actions'
+//styles
 import styles from '../styles/ScaleInput.module.css'
 
 export default function ScaleInput() {
@@ -39,7 +44,7 @@ const ScaleInputActive = () => {
     }, [])
 
     //loads image onto canvas and calls drawTopTubePoints
-    const drawImageOnCanvas = () => {
+    const drawCanvas = () => {
         let image = new Image();
         image.onload = () => {
             if (!sourceDimensions) setSourceDimensions({ imageHeight: image.height, imageWidth: image.width });
@@ -48,33 +53,16 @@ const ScaleInputActive = () => {
             canvasScaleRef.current.height = image.height * displayScaleFactor;
             ctx = canvasScaleRef.current.getContext('2d');
             ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height); //draws image on canvas
-            drawTopTubePoints()
+            drawPoints(canvasScaleRef, topTubePoints, displayScaleFactor)
+            drawLines(canvasScaleRef, topTubePoints, displayScaleFactor)
         }
         image.src = customSpecState.image;
     }
 
     //draws the image and points on the canvas when window width or points changes
     useEffect(() => {
-        drawImageOnCanvas();
+        drawCanvas();
     }, [windowWidth, topTubePoints])
-
-    //draws the points on the canvas
-    const drawTopTubePoints = () => {
-        topTubePoints.forEach(point => {
-            drawCircle((point[0] * (canvasScaleRef.current.width / sourceDimensions.imageWidth)),
-                (point[1] * (canvasScaleRef.current.height / sourceDimensions.imageHeight)))
-        })
-    }
-
-    //draws a user-selected point on the canvas
-    const drawCircle = (x, y) => {
-        ctx = canvasScaleRef.current.getContext('2d');
-        ctx.strokeStyle = "#FF0000";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, 2 * Math.PI);
-        ctx.stroke();
-    }
 
     //captures user click on the canvas and converts to pixel coordinates of original image
     const canvasScaleClick = (evt) => {

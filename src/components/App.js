@@ -35,6 +35,7 @@ export default function App() {
     Hub.listen("auth", ({ payload: { event, data } }) => {
       if (event === "signOut") {
         setUser(null);
+        setActiveMainComponent('home')
       } else if (event === 'signIn') {
         Auth.currentAuthenticatedUser().then(u => setUser(u))
       }
