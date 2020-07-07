@@ -1,0 +1,16 @@
+type CustomDesign @model {
+  id: ID!
+  owner: String!
+  image: S3Object!
+  scale: Float!
+  points: String!
+  svg: String!
+  createdAt: AWSDateTime
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+  uri: String!
+}

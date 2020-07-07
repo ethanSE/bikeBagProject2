@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "bikebagproject2",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authbikebagproject2a90f4437",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
