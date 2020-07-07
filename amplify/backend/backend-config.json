@@ -1,10 +1,9 @@
 {
-    "auth": {
-        "bikebagproject2bd47dc12": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
-        }
-    }
+	"auth": {
+		"bikebagproject2a90f4437": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
 }

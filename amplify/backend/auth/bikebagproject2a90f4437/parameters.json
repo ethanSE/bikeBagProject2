@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "bikebagproject2bd47dc12_identitypool_bd47dc12",
+    "identityPoolName": "bikebagproject2a90f4437_identitypool_a90f4437",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "bikebabd47dc12",
-    "userPoolName": "bikebagproject2bd47dc12_userpool_bd47dc12",
+    "resourceNameTruncated": "bikebaa90f4437",
+    "userPoolName": "bikebagproject2a90f4437_userpool_a90f4437",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "bikebabd47dc12_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "bikebaa90f4437_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "bikebagproject2bd47dc12",
+    "sharedId": "a90f4437",
+    "resourceName": "bikebagproject2a90f4437",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -46,12 +47,20 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "bike-bag-project2-new",
+    "usernameAttributes": [
+        "email"
+    ],
+    "triggers": "{}",
+    "hostedUIDomainName": "bikebagproject2a90f4437-a90f4437",
     "authProvidersUserPool": [
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "dependsOn": []
 }
