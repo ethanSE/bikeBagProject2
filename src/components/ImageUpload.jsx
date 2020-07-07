@@ -42,12 +42,13 @@ const ImageUploadActive = () => {
     }
 
     const saveImage = () => {
-        let ctx = uploadCanvas.current.getContext('2d');
-        uploadCanvas.current.width = img.width;
-        uploadCanvas.current.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
-        setCustomSpecState({ ...customSpecState, image: canvasDataUrl })
+        // let ctx = uploadCanvas.current.getContext('2d');
+        // uploadCanvas.current.width = img.width;
+        // uploadCanvas.current.height = img.height;
+        // ctx.drawImage(img, 0, 0);
+        // let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
+        console.log(img)
+        setCustomSpecState({ ...customSpecState, image: img })
         setActiveCustomSpecPhase('scale');
     }
 

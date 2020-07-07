@@ -57,23 +57,17 @@ const ShapeInputActive = () => {
     }, [])
 
     const drawCanvas = () => {
-        let image = new Image();
-        image.onload = () => {
-            if (!sourceDimensions) setSourceDimensions({ imageHeight: image.height, imageWidth: image.width }); //saves image source dimensions on first load
-            canvasShapeRef.current.width = shapeInputDivRef.current.clientWidth; //set width of canvas to be equal to its parent div
-            displayScaleFactor = canvasShapeRef.current.width / image.width;
-            canvasShapeRef.current.height = displayScaleFactor * image.height; //set height based on width and image ratio
-            let ctx = canvasShapeRef.current.getContext('2d');
-            ctx.drawImage(image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height); //draws image on canvas
-            drawPoints(canvasShapeRef, points, displayScaleFactor);
-            drawLines(canvasShapeRef, points, displayScaleFactor);
+        //saves image source dimensions on first load
+        if (!sourceDimensions) {
+            setSourceDimensions({ imageHeight: customSpecState.image.height, imageWidth: customSpecState.image.width });
         }
-        image.src = customSpecState.image;
-    }
-
-    //allows users to reset
-    const resetShape = () => {
-        setPoints([]);
+        canvasShapeRef.current.width = shapeInputDivRef.current.clientWidth; //set width of canvas to be equal to its parent div
+        displayScaleFactor = canvasShapeRef.current.width / customSpecState.image.width;
+        canvasShapeRef.current.height = displayScaleFactor * customSpecState.image.height; //set height based on width and image ratio
+        let ctx = canvasShapeRef.current.getContext('2d');
+        ctx.drawImage(customSpecState.image, 0, 0, canvasShapeRef.current.width, canvasShapeRef.current.height); //draws image on canvas
+        drawPoints(canvasShapeRef, points, displayScaleFactor);
+        drawLines(canvasShapeRef, points, displayScaleFactor);
     }
 
     //allows users to submit
@@ -124,6 +118,8 @@ const ShapeInputActive = () => {
 
         // const newBag = {
 
+        console.log('customSpecState', customSpecState)
+
         // }
         // const newDesignResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
         // console.log(newDesignResult)
@@ -134,7 +130,7 @@ const ShapeInputActive = () => {
             <h3>Shape</h3>
             <div className={styles.buttonRow}>
                 <button className={styles.button} onClick={shapeInputSubmit}>Submit Design</button>
-                <button className={styles.button} onClick={resetShape}>Reset Shape</button>
+                <button className={styles.button} onClick={() => setPoints([])}>Reset Shape</button>
             </div>
             <canvas ref={canvasShapeRef} width='0' height='0' onClick={canvasShapeClick} />
         </div>

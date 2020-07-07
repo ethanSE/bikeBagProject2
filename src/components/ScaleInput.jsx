@@ -45,18 +45,17 @@ const ScaleInputActive = () => {
 
     //loads image onto canvas and calls drawTopTubePoints
     const drawCanvas = () => {
-        let image = new Image();
-        image.onload = () => {
-            if (!sourceDimensions) setSourceDimensions({ imageHeight: image.height, imageWidth: image.width });
-            let displayScaleFactor = scaleInputDivRef.current.clientWidth / image.width;
-            canvasScaleRef.current.width = image.width * displayScaleFactor;
-            canvasScaleRef.current.height = image.height * displayScaleFactor;
-            ctx = canvasScaleRef.current.getContext('2d');
-            ctx.drawImage(image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height); //draws image on canvas
-            drawPoints(canvasScaleRef, topTubePoints, displayScaleFactor)
-            drawLines(canvasScaleRef, topTubePoints, displayScaleFactor)
+        if (!sourceDimensions) {
+            setSourceDimensions({ imageHeight: customSpecState.image.height, imageWidth: customSpecState.image.width });
         }
-        image.src = customSpecState.image;
+        //recalculates in case windown size changed
+        let displayScaleFactor = scaleInputDivRef.current.clientWidth / customSpecState.image.width;
+        canvasScaleRef.current.width = customSpecState.image.width * displayScaleFactor;
+        canvasScaleRef.current.height = customSpecState.image.height * displayScaleFactor;
+        ctx = canvasScaleRef.current.getContext('2d');
+        ctx.drawImage(customSpecState.image, 0, 0, canvasScaleRef.current.width, canvasScaleRef.current.height); //draws image on canvas
+        drawPoints(canvasScaleRef, topTubePoints, displayScaleFactor)
+        drawLines(canvasScaleRef, topTubePoints, displayScaleFactor)
     }
 
     //draws the image and points on the canvas when window width or points changes
@@ -93,7 +92,7 @@ const ScaleInputActive = () => {
     }
 
     return (
-        <div className={styles.scaleInput} ref={scaleInputDivRef} style={{minHeight: '50vh'}}>
+        <div className={styles.scaleInput} ref={scaleInputDivRef} style={{ minHeight: '50vh' }}>
             <h3>Scale</h3>
             <form onSubmit={(event) => setPixelToInchScale(event)} className={styles.scaleInputForm}>
                 <input ref={(input) => { scaleInputRef = input }} placeholder='Top Tube Length in inches' type='number' />
