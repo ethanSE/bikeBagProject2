@@ -13,11 +13,9 @@ export const createCustomDesign = /* GraphQL */ `
         bucket
         region
         key
-        uri
       }
       scale
       points
-      svg
       createdAt
       updatedAt
     }
@@ -35,11 +33,9 @@ export const updateCustomDesign = /* GraphQL */ `
         bucket
         region
         key
-        uri
       }
       scale
       points
-      svg
       createdAt
       updatedAt
     }
@@ -57,11 +53,9 @@ export const deleteCustomDesign = /* GraphQL */ `
         bucket
         region
         key
-        uri
       }
       scale
       points
-      svg
       createdAt
       updatedAt
     }

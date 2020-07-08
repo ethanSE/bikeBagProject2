@@ -10,11 +10,9 @@ export const getCustomDesign = /* GraphQL */ `
         bucket
         region
         key
-        uri
       }
       scale
       points
-      svg
       createdAt
       updatedAt
     }
@@ -34,11 +32,9 @@ export const listCustomDesigns = /* GraphQL */ `
           bucket
           region
           key
-          uri
         }
         scale
         points
-        svg
         createdAt
         updatedAt
       }

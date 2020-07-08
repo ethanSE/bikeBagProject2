@@ -140,7 +140,6 @@ const ShapeInputActive = () => {
                 },
                 scale: customSpecState.scale,
                 points: design.shape.toString(),
-                svg: '1212',
             }
 
             console.log('newBag', newBag)
