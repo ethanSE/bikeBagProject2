@@ -15,6 +15,7 @@ import Amplify from 'aws-amplify';
 import config from '../aws-exports';
 import { Auth, Hub } from 'aws-amplify';
 
+
 Amplify.configure(config)
 
 export default function App() {

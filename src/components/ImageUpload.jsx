@@ -36,20 +36,13 @@ const ImageUploadActive = () => {
     var img = new Image();
 
     const onImageLoad = () => {
-        img.onload = saveImage;
+        img.onload = () => {
+            console.log(img)
+            setCustomSpecState({ ...customSpecState, image: img, imageRaw: fileInput.current.files[0] })
+            setActiveCustomSpecPhase('scale');
+        };
         img.onerror = imageLoadFailed;
         img.src = URL.createObjectURL(fileInput.current.files[0]);
-    }
-
-    const saveImage = () => {
-        // let ctx = uploadCanvas.current.getContext('2d');
-        // uploadCanvas.current.width = img.width;
-        // uploadCanvas.current.height = img.height;
-        // ctx.drawImage(img, 0, 0);
-        // let canvasDataUrl = uploadCanvas.current.toDataURL('image/png');
-        console.log(img)
-        setCustomSpecState({ ...customSpecState, image: img })
-        setActiveCustomSpecPhase('scale');
     }
 
     const imageLoadFailed = () => {

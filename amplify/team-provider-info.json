@@ -18,5 +18,25 @@
                 }
             }
         }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bikebagproject2-prod-154706-authRole",
+            "UnauthRoleArn": "arn:aws:iam::082613591818:role/amplify-bikebagproject2-prod-154706-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::082613591818:role/amplify-bikebagproject2-prod-154706-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-bikebagproject2-prod-154706-deployment",
+            "UnauthRoleName": "amplify-bikebagproject2-prod-154706-unauthRole",
+            "StackName": "amplify-bikebagproject2-prod-154706",
+            "StackId": "arn:aws:cloudformation:us-west-2:082613591818:stack/amplify-bikebagproject2-prod-154706/c955ff40-c0a3-11ea-9f69-0294f1fd1ce8",
+            "AmplifyAppId": "d2a29l3fovl81e"
+        },
+        "categories": {
+            "auth": {
+                "bikebagproject2a90f4437": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"517151323430-f629p8b6nvfmghsqg082jjm2r8cuif58.apps.googleusercontent.com\",\"client_secret\":\"g3QfftlB9mSKEf5jfkr3cwD1\"}]"
+                }
+            }
+        }
     }
 }

@@ -9,10 +9,16 @@ import { UserContext } from '../userContext';
 //actions
 import { drawPoints, drawLines } from '../actions'
 //graphql
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { createCustomDesign } from '../graphql/mutations'
 //uuid
 import { v4 as uuid } from 'uuid';
+import config from '../aws-exports'
+
+const {
+    aws_user_files_s3_bucket_region: region,
+    aws_user_files_s3_bucket: bucket
+} = config
 
 export default function ShapeInput() {
     const { customSpecUIState, setActiveCustomSpecPhase } = useContext(CustomSpecContext)
@@ -112,13 +118,35 @@ const ShapeInputActive = () => {
 
     const uploadDesign = async (design) => {
 
-        //graphql mutation
-        console.log(design)
-        console.log(user)
-
+        //upload image
+        Storage.put(`${uuid()}`, customSpecState.imageRaw, {
+            contentType: 'image/png'
+        })
+            .then((result) => { 
+                console.log('successfully saved file!', result)
+                createCustomBag(result)
+            })
+            .catch(err => console.log('issue with image upload!', err))
         // const newBag = {
 
-        console.log('customSpecState', customSpecState)
+        const createCustomBag = async (result) => {
+            const newBag = {
+                id: `${uuid()}`,
+                owner: user.attributes.sub,
+                image: {
+                    bucket: bucket,
+                    region: region,
+                    key: result.key,
+                },
+                scale: customSpecState.scale,
+                points: design.shape.toString(),
+                svg: '1212',
+            }
+
+            console.log('newBag', newBag)
+            const newExperienceResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
+            console.log(newExperienceResult)
+        }
 
         // }
         // const newDesignResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
