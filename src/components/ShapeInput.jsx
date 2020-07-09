@@ -122,7 +122,7 @@ const ShapeInputActive = () => {
         Storage.put(`${uuid()}`, customSpecState.imageRaw, {
             contentType: 'image/png'
         })
-            .then((result) => { 
+            .then((result) => {
                 console.log('successfully saved file!', result)
                 createCustomBag(result)
             })
@@ -146,10 +146,6 @@ const ShapeInputActive = () => {
             const newExperienceResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
             console.log(newExperienceResult)
         }
-
-        // }
-        // const newDesignResult = await API.graphql(graphqlOperation(createCustomDesign, { input: newBag }));
-        // console.log(newDesignResult)
     }
 
     return (
